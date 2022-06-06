@@ -40,7 +40,7 @@ def generate_new(name)
     f.write ":imagesdir: images\n\n//start content\n"
     f.write"= #{name}\n\n\n"
     f.write "//end content\ninclude::images/_sources.adoc[]" }
-  File.open("src/#{name}/images/_sources.adoc", "w"){ |f| f.write "== Image sources\n* source 1" }
+  File.open("src/#{name}/images/_sources.adoc", "w"){ |f| f.write "== Image Credits\n* source 1" }
 end
 
 # Prints the help

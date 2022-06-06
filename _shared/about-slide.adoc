@@ -1,0 +1,25 @@
+[.columns]
+
+== Contact
+image::../../_shared/images/gluehbirnen.jpg[background, size=cover]
+
+[.column]
+--
+++++
+<h3>Me</h3>
+<a href="https://twitter.com/mboegie">@MBoegi</a> //
+<a href="https://github.com/mboegers">MBoegers</a>
+<br>
+<h3>adesso</h3>
+<a href="https://adesso.de">Infos</a> //
+<a href="https://www.adesso.de/de/news/blog">DevBlog</a>
+++++
+--
+
+[.column.is-one-third]
+--
+++++
+<h3>Jobs</h3>
+++++
+image::../../_shared/images/qrcode_adesso_jobs.png[]
+--

@@ -1,0 +1,41 @@
+:imagesdir: images
+
+= Setup Sliddeck
+
+== Content
+* setup ruby
+* setup ascii doctor
+* build!
+
+== Setup Ruby
+Install via `brew install rbenv`
+
+== Setup Ascii Docotor
+Setup Gemfile and run `bundle config --local path .bundle/gems && budle`
+```ruby
+source 'https://rubygems.org'
+gem 'asciidoctor-revealjs'
+```
+
+== Build!
+Run generation with `asciidoc-slides` and open in Browser
+
+image:generation.png[Slide Generation]
+
+== Present
+Open `index.html` in browser
+
+== Commands
+* `clean` removes the _dist folder
+* `build` compiles all presentations
+* `watch` recompiles on changes in src folder
+
+image:in_browser.png[Display in Browser]
+
+[.notes]
+--
+* tell anecdote
+* make a point
+--
+
+include::images/sources.adoc[]

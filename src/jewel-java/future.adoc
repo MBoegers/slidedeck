@@ -1,0 +1,31 @@
+== From the Dreams
+image::../../_shared/images/dukes/Snooze.svg[height=400px, width=600px, background=white]
+
+=== JEP 302
+*Lambda Leftovers* no target, yet
+
+[source, java]
+----
+BiFunction<Integer, String, String> f
+	= (i, _) -> String.valueOf(i);
+----
+[.notes]
+--
+Underscore for unused, Shadowing by parameters, Fix some ambiguous
+--
+
+=== Consice Method Bodies
+
+[source, java]
+----
+ToIntFunction<String> lenFn = (String s) -> s.length();
+----
+
+=== String Template
+
+[source, java]
+----
+int x = 10, y = 20;
+TemplatedString s = "\{x} + \{y} = \{x + y}";
+     // Concatenation: 10 + 20 = 30
+----

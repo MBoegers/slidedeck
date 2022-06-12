@@ -4,7 +4,7 @@
 	<div class="participant">
 		<img src="../../_shared/images/mboegers.jpg" class="logo">
 		<div class="name">
-			<p><a href="https://nipafx.dev/nicolai-parlog">Merlin B&ouml;gershausen</a></p>
+			<p><a href="https://mboegers.github.io">Merlin B&ouml;gershausen</a></p>
 			<p><a href="https://twitter.com/mboegie" title="Merlin on Twitter">@mboegie</a></p>
 		</div>
 	</div>

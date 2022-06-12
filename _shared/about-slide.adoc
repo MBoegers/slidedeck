@@ -1,5 +1,4 @@
-[.columns]
-
+[.columns.about]
 == Contact
 image::../../_shared/images/gluehbirnen.jpg[background, size=cover]
 

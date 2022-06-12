@@ -17,7 +17,7 @@ end
 # List all directories containing a file named '_presentation.adoc' which marks a presentation
 def list_presentation_dirs()
   puts 'Search for presentations'
-  Dir.glob('**/_presentation.adoc').map {|p| p.chomp('/_presentation.adoc') }
+  Dir.glob('src/**/_presentation.adoc').map {|p| p.chomp('/_presentation.adoc') }
 end
 
 # initializes a file listener to src and recompiles
@@ -35,12 +35,8 @@ end
 # Generates a new presentation skeleton
 def generate_new(name)
   puts "Generate new presentation '#{name}'"
-  FileUtils.mkdir_p "src/#{name}/images"
-  File.open("src/#{name}/_presentation.adoc", "w"){ |f|
-    f.write ":imagesdir: images\n\n//start content\n"
-    f.write"= #{name}\n\n\n"
-    f.write "//end content\ninclude::images/_sources.adoc[]" }
-  File.open("src/#{name}/images/_sources.adoc", "w"){ |f| f.write "== Image Credits\n* source 1" }
+  FileUtils.mkdir_p "src/#{name}"
+  FileUtils.cp_r '_templates/presentation/.', "src/#{name}"
 end
 
 # Prints the help

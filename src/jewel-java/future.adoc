@@ -1,6 +1,6 @@
 == From the Dreams
 
-image::../../_shared/images/dukes/Snooze.svg[height=400px,width=600px,background=white]
+image::../../_shared/images/dukes/Snooze.svg[height=400px, width=600px, background=white]
 
 === JEP 302
 
@@ -32,8 +32,8 @@ class User {
 Jim Laskey and Brian Goetz Sep. 2012
 
 https://openjdk.org/projects/amber/design-notes/templated-strings[String Tapas Redux]
-[source,java]
 
+[source,java]
 ----
 int x = 10, y = 20;
 TemplatedString s = "\{x} + \{y} = \{x + y}";

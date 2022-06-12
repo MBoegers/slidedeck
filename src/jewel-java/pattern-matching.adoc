@@ -23,19 +23,18 @@ if (o instanceof Triangle t) {
 --
 *Goals* Pattern matching for instance of operator
 
-*Informations* Pattern variable is in scope where it is matched , && expands scope || ends scope, !
-Switched in some way, Pattern vars are special local vars
+*Informations* Pattern variable is in scope where it is matched , && expands scope || ends scope, ! Switched in some way, Pattern vars are special local vars
 
 *Gotchas* Don't mix up && and when!
 --
 
 === JEP 427
 
-https://openjdk.org/jeps/427[*Pattern Matching for switch*]
+https://openjdk.org/jeps/427[*Pattern Matching for switch* ]
 
-3^rd^ Preview in Java 19
+3^rd Preview in Java 19
 
-[source,java]
+[source, java]
 ----
 switch (s) {
   case Triangle t when t.calculateArea() > 100 ->

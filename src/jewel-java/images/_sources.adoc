@@ -1,4 +1,5 @@
 == Image Credits
 * Dukes from https://openjdk.java.net/projects/duke/[OpenJDK: Duke]
-* Amber image from unknown author under CC-BY
+* Java Forum Stuttgart Favicon from https://www.java-forum-stuttgart.de/favicon-32x32.png[JFS Conference Page]
+* Amber stone image from unknown author under CC-BY
 * Other Images from https://www.adesso.de/de/index.jsp[adesso SE]

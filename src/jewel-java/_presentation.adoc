@@ -16,11 +16,12 @@
 :iconsdir: ../../_shared/icons
 
 // Edit host information
-:host-name: Unknown Cnf
-:host-url: https://www.unknowconf.com
+:host-name: Java Forum Stuttgart
+:host-url: https://www.java-forum-stuttgart.de
 :host-logo-style: logo
-:host-twitter-url: https://twitter.com/unknownconf
-:host-twitter-name: @unknownconf
+:host-logo-url: ../../_shared/images/hosts/jfs-logo.png
+:host-twitter-url: https://twitter.com/jug_stuttgart
+:host-twitter-name: @jug_stuttgart
 
 [.notes]
 --

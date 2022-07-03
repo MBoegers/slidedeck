@@ -1,5 +1,12 @@
 == What is Amber again?
 image::images/Amber.jpg[width=600px]
+[.notes]
+--
+* fossilized tree resin
+* female Name
+* dialect of the Smalltalk, (on js, still active!)
+* JDK Project since 2017
+--
 
 === JDK Projects
 [quote, OpenJDK Bylaws section 6]

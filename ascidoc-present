@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# for exporting https://github.com/astefanutti/decktape
 
 require 'fileutils'
 require 'listen'

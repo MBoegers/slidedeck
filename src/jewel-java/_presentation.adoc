@@ -22,6 +22,19 @@
 :host-twitter-url: https://twitter.com/unknownconf
 :host-twitter-name: @unknownconf
 
+[.notes]
+--
+*Jigsaw* - mostly for JDK internals
+
+*Loom* - virtual threads
+
+*Valhalla* -
+
+*Lilliput* -
+
+And the mainstream Java Application Developer? - Project Amber
+--
+
 include::../../_shared/hightlightjs.adoc[]
 include::../../_shared/events-on-title-and-footer.adoc[]
 // ####################################################

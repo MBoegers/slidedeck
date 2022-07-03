@@ -31,8 +31,7 @@ compact conical const <1>, Default constructor is conical
 ----
 sealed interface Shape {
   sealed class Cornered implements Shape {}
-  non-sealed class Rectangle
-    implements Cornered {}
+  non-sealed class Rectangle implements Cornered {}
   record Square(int h) implements Cornered {}
   final class Weirdo implements Shape {}
 }

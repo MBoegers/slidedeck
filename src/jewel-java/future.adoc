@@ -4,12 +4,12 @@ image::../../_shared/images/dukes/Snooze.svg[height=400px,width=600px,background
 
 === JEP 302
 
-*Lambda Leftovers* no target, yet
+https://openjdk.org/jeps/302[*Lambda Leftovers*] no target, yet
 
 [source,java]
 ----
 BiFunction<Integer, String, String> f
-	= (i, _) -> String.valueOf(i);
+    = (i, _) -> String.valueOf(i);
 ----
 
 [.notes]
@@ -17,11 +17,14 @@ BiFunction<Integer, String, String> f
 Underscore for unused, Shadowing by parameters, Fix some ambiguous
 --
 
-=== Consice Method Bodies
+=== Concise Method Bodies
 
 [source,java]
 ----
-ToIntFunction<String> lenFn = (String s) -> s.length();
+class User {
+    private final String name;
+    Integer nameLenght() = name::lenght;
+}
 ----
 
 === String Template

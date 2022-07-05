@@ -1,18 +1,23 @@
 == What is Amber again?
+
 image::images/Amber.jpg[width=600px]
+
 [.notes]
 --
 * fossilized tree resin
 * female Name
 * dialect of the Smalltalk, (on js, still active!)
+* Fantasy Novel from Roger Zelazny
 * JDK Project since 2017
 --
 
 === JDK Projects
-[quote, OpenJDK Bylaws section 6]
+
+[quote,OpenJDK Bylaws section 6]
 ____
 A Project is a collaborative effort to produce a specific artifact, which may be a body of code, or documentation, or some other material.
 ____
+
 [.notes]
 --
 * Can have: Web Resource, multiple repositories and mailing lists
@@ -22,10 +27,12 @@ ____
 --
 
 === Project Amber
-[quote, Project Amber main page]
+
+[quote,Project Amber main page]
 ____
 The goal of Project Amber is to explore and incubate smaller, productivity-oriented Java language features
 ____
+
 [.notes]
 --
 * Lead by THE Java Language Architect Brian Goetz

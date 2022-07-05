@@ -4,7 +4,7 @@ image::../../_shared/images/adesso_Fotos/Bilder_PPT_LottoCode.jpg[height=400px]
 
 === JEP 394
 
-*Pattern Matching for instanceof*
+https://openjdk.org/jeps/394[*Pattern Matching for instanceof*]
 
 landed in Java 16
 
@@ -31,15 +31,14 @@ Switched in some way, Pattern vars are special local vars
 
 === JEP 427
 
-*Pattern Matching for switch*
+https://openjdk.org/jeps/427[*Pattern Matching for switch*]
 
 3^rd^ Preview in Java 19
 
 [source,java]
 ----
 switch (s) {
-  case Triangle t
-  when t.calculateArea() > 100 ->
+  case Triangle t when t.calculateArea() > 100 ->
     System.out.println("Large");
   case Triangle t -> System.out.println("Small");
   default -> System.out.println("Non-triangle");
@@ -57,13 +56,14 @@ when instead of && because pattern is not a boolean!
 
 === JEP 405
 
-*Record Patterns and Array Patterns*
+https://openjdk.org/jeps/405[*Record Patterns [.line-through]#and Array Patterns#*]
 
-1^st^ Preview in Java 19, but missing Array Patterns :'(
+1^st^ Preview in Java 19
+
 [source,java]
-
 ----
 record Point(int x, int y) {}
+
 void printSum(Object o) {
   if (o instanceof Point(int x, var y)) {
     System.out.println(x+y);

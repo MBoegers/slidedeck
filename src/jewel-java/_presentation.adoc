@@ -24,15 +24,19 @@
 
 [.notes]
 --
+Java does not move!
+Its old and verbose!
+
 *Jigsaw* - mostly for JDK internals
 
 *Loom* - virtual threads
 
-*Valhalla* -
+*Valhalla* - value and reference types
 
-*Lilliput* -
+*Lilliput* - 128 bits to 64 bits
 
-And the mainstream Java Application Developer? - Project Amber
+And the mainstream Java Application Developer?
+- Project Amber
 --
 
 include::../../_shared/hightlightjs.adoc[]

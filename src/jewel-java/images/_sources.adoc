@@ -1,4 +1,0 @@
-== Image Credits
-* Dukes from https://openjdk.java.net/projects/duke/[OpenJDK: Duke]
-* Amber image from unknown author under CC-BY
-* Other Images from https://www.adesso.de/de/index.jsp[adesso SE]

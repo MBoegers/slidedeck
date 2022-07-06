@@ -11,7 +11,7 @@ image::images/Amber.jpg[width=600px]
 * JDK Project since 2017
 --
 
-=== JDK Projects
+=== JDK Projects?
 
 [quote,OpenJDK Bylaws section 6]
 ____
@@ -26,7 +26,7 @@ ____
 * Has at Least one Sponsoring Group
 --
 
-=== Project Amber
+=== Project Amber?
 
 [quote,Project Amber main page]
 ____
@@ -38,4 +38,18 @@ ____
 * Lead by THE Java Language Architect Brian Goetz
 * Sponsored by Compiler Group
 * Produces JEP in 2 previews rounds
+--
+
+=== JEP?
+
+[quote,JEP 1]
+____
+An enhancement is an effort to design and implement a nontrivial change to the JDK code base or to do some other kind of work whose goals, progress, and result are worth communicating broadly
+____
+
+[.notes]
+--
+* 2+ weeks of effort
+* significant change to jdk, processes or infrastructure
+* high demand by developers or customers
 --

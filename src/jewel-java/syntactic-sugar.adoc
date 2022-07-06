@@ -1,15 +1,19 @@
 == Ambers' Syntactic Sugar
+
 image::../../_shared/images/adesso_Fotos/Bilder_PPT_BigDateMMs.jpg[height=400px]
 
-=== JEP-286
+=== JEP 286
+
 https://openjdk.org/jeps/286[*Local-Variable Type Inference*] landed in Java 10
-[source, java]
+
+[source,java]
 ----
 List<String> lineList = new ArrayList<String>();
 // less duplication
 var lines = new ArrayList<String>();
 final var readLines = lines.size();
 ----
+
 [.notes]
 --
 *Goals*: Less ceremony for locals, Less complex types, Catch up with competing languages (C++, Scala, Go)
@@ -19,9 +23,11 @@ final var readLines = lines.size();
 *FAQ*: Why var, Dynamic typing
 --
 
-=== JEP-323
+=== JEP 323
+
 https://openjdk.org/jeps/323[*Local-Variable Syntax for Lambda Parameters*] landed in Java 11
-[source, java]
+[source,java]
+
 ----
 BiConsumer<Consumer<String>, String> sink
     = (x, y) -> x.accept(y);
@@ -29,6 +35,7 @@ BiConsumer<Consumer<String>, String> sink
 BiConsumer<Consumer<String>, String> safeSink
     = (@Nonnull var x, var y) -> x.accept(y);
 ----
+
 [.notes]
 --
 *Goals*: Align Syntax implicit type
@@ -38,9 +45,11 @@ BiConsumer<Consumer<String>, String> safeSink
 *Gotchas*: No var and non-var mixing, No explicit and var mixing
 --
 
-=== JEP-378
+=== JEP 378
+
 https://openjdk.org/jeps/378[*Multi-line Text Blocks*] landed in Java 11
-[source, java]
+
+[source,java]
 ----
 String helloWorldResponse = """
     <html>
@@ -50,17 +59,18 @@ String helloWorldResponse = """
     </html>
     """;
 ----
+
 [.notes]
 --
 *Goals*: Enhance Readability, Simplify multiline Strings , Drop escape sequences
 
-*Motivation*: Consequent application, Allow modifier and annotations
-
 *Gotchas*: Mandatory lineseperator, No string interpolation,Not raw Stings (no processing in any way)
 --
 
-=== JEP-361
+=== JEP 361
+
 https://openjdk.org/jeps/361[*Switch Expressions*] landed in Java 14
+
 [source,java]
 ----
 int j = switch (day) {// enum Days {MONDAY, …}
@@ -72,6 +82,7 @@ int j = switch (day) {// enum Days {MONDAY, …}
   }
 };
 ----
+
 [.notes]
 --
 *Goals*: Raise switch to expressions, Fix fall through semantic (case : FT)

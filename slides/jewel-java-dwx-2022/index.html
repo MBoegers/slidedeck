@@ -555,7 +555,7 @@ void printSum(Object o) {
     = (i, _) -&gt; String.valueOf(i);</code></pre></div></div>
 <aside class="notes"><div class="paragraph"><p>Underscore for unused, Shadowing by parameters, Fix some ambiguous</p></div></aside></div></section><section id="_concise_method_bodies"><h2>Concise Method Bodies</h2><div class="slide-content"><div class="listingblock"><div class="content"><pre class="highlight"><code class="language-java" data-lang="java">class User {
     private final String name;
-    Integer nameLenght() = name::lenght;
+    Integer nameLength() = name::length;
 }</code></pre></div></div></div></section><section id="_string_template"><h2>String Template</h2><div class="slide-content"><div class="paragraph"><p>Jim Laskey and Brian Goetz Sep. 2012</p></div>
 <div class="paragraph"><p><a href="https://openjdk.org/projects/amber/design-notes/templated-strings">String Tapas Redux</a></p></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code class="language-java" data-lang="java">int x = 10, y = 20;

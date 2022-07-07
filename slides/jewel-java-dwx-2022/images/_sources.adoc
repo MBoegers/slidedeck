@@ -1,5 +1,0 @@
-== Image Credits
-* Dukes from https://openjdk.java.net/projects/duke/[OpenJDK: Duke]
-* Amber image from unknown author under CC-BY
-* Developer Week Logo from https://www.developer-week.de[DWX Website]
-* Other Images from https://www.adesso.de/de/index.jsp[adesso SE]

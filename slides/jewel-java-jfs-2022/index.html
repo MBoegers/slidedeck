@@ -433,12 +433,12 @@
                         </div>
                     </div>
                     <div class="participant">
-                        <a href="https://www.developer-week.de"><img src="../../_shared/images/hosts/DWX.png"
-                                                                     class="logo" style="logo"></a>
+                        <a href="https://www.java-forum-stuttgart.de"><img src="../../_shared/images/hosts/jfs-logo.png"
+                                                                           class="logo" style="logo"></a>
                         <div class="name">
-                            <p><a href="https://www.developer-week.de">Developer Week</a></p>
-                            <p><a href="https://twitter.com/developer_week"
-                                  style="{host-twitter-style}">@developer_week</a></p>
+                            <p><a href="https://www.java-forum-stuttgart.de">Java Forum Stuttgart</a></p>
+                            <p><a href="https://twitter.com/jug_stuttgart"
+                                  style="{host-twitter-style}">@jug_stuttgart</a></p>
                         </div>
                     </div>
                     <div class="participant">
@@ -452,12 +452,12 @@
                 </div>
                 <header>
                     <div class="host">
-                        <a href="https://www.developer-week.de"><img src="../../_shared/images/hosts/DWX.png"
-                                                                     class="logo" style="logo"></a>
+                        <a href="https://www.java-forum-stuttgart.de"><img src="../../_shared/images/hosts/jfs-logo.png"
+                                                                           class="logo" style="logo"></a>
                         <div class="name">
-                            <p><a href="https://www.developer-week.de">Developer Week</a> / <a
-                                    href="https://twitter.com/developer_week" style="{host-twitter-style}">@developer_week</a>
-                            </p>
+                            <p><a href="https://www.java-forum-stuttgart.de">Java Forum Stuttgart</a> / <a
+                                    href="https://twitter.com/jug_stuttgart"
+                                    style="{host-twitter-style}">@jug_stuttgart</a></p>
                         </div>
                     </div>
                     <div class="participant">
@@ -635,12 +635,55 @@ BiConsumer&lt;Consumer&lt;String&gt;, String&gt; safeSink
                         landed in Java 14</p></div>
                     <div class="listingblock">
                         <div class="content"><pre class="highlight"><code class="language-java" data-lang="java">int j = switch (day) {// enum Days {MONDAY, …}
+  case MONDAY, WEDNESDAY -&gt; 0;
+  case TUESDAY -&gt; 1;
+  default -&gt; {
+    int k = day.toString().length();
+    yield k;
+  }
+};</code></pre>
+                        </div>
+                    </div>
+                    <aside class="notes">
+                        <div class="paragraph"><p><strong>Goals</strong>: Raise switch to expressions, Fix fall through
+                            semantic (case : FT)</p></div>
+                        <div class="paragraph"><p><strong>Motivation</strong>: Prepare for pattern matching, Fix fall
+                            through , Throwing exceptions possible , Conditions possible , Case must be complete (sealed
+                            calss, default), Null match-able, Multible lables (case or ‘,’)</p></div>
+                    </aside>
+                </div>
+            </section>
+            <section id="_jep_361_2"><h2>JEP 361</h2>
+                <div class="slide-content">
+                    <div class="paragraph"><p>no more <code>NullPointerExceptions</code> 🥳</p></div>
+                    <div class="listingblock">
+                        <div class="content"><pre class="highlight"><code class="language-java" data-lang="java">int j = switch (day) {// enum Days {MONDAY, …}
   case null, MONDAY -&gt; 0;
   case TUESDAY -&gt; 1;
   default -&gt; {
     int k = day.toString().length();
     yield k;
   }
+};</code></pre>
+                        </div>
+                    </div>
+                    <aside class="notes">
+                        <div class="paragraph"><p><strong>Goals</strong>: Raise switch to expressions, Fix fall through
+                            semantic (case : FT)</p></div>
+                        <div class="paragraph"><p><strong>Motivation</strong>: Prepare for pattern matching, Fix fall
+                            through , Throwing exceptions possible , Conditions possible , Case must be complete (sealed
+                            calss, default), Null match-able, Multible lables (case or ‘,’)</p></div>
+                    </aside>
+                </div>
+            </section>
+            <section id="_jep_361_3"><h2>JEP 361</h2>
+                <div class="slide-content">
+                    <div class="paragraph"><p>exhaustive, <code>default</code> or compilation error 🥳</p></div>
+                    <div class="listingblock">
+                        <div class="content"><pre class="highlight"><code class="language-java" data-lang="java">boolean goToWork = switch (day) {// enum Days {MONDAY, …}
+  case null, MONDAY, TUESDAY, WEDNESDAY,
+        THURSDAY, FRIDAY -&gt; true;
+  case SATURDAY, SUNDAY -&gt; false;
 };</code></pre>
                         </div>
                     </div>
@@ -675,12 +718,22 @@ BiConsumer&lt;Consumer&lt;String&gt;, String&gt; safeSink
 }</code></pre>
                         </div>
                     </div>
+                    <aside class="notes">
+                        <div class="paragraph"><p><strong>Goals</strong>: Enhance with transparent carriers for
+                            immutable data, Step towards pattern matching</p></div>
+                        <div class="paragraph"><p><strong>Motivation</strong>: Simple aggregation of values, Focus on
+                            modelling immutable data, Auto implement data driven methods (equals, hashcode)</p></div>
+                        <div class="paragraph"><p><strong>Gotchas</strong>: Are final, Can only implement sth,, Not only
+                            syntactic sugar</p></div>
+                        <div class="paragraph"><p>compact conical const &lt;1&gt;, Default constructor is conical</p>
+                        </div>
+                    </aside>
                 </div>
             </section>
             <section id="_jep_359_2"><h2>JEP 359</h2>
                 <div class="slide-content">
-                    <div class="paragraph"><p><a href="https://openjdk.org/jeps/359"><strong>Records</strong></a> landed
-                        in Java 16</p></div>
+                    <div class="paragraph"><p><em>normal</em> <code>final class</code> &#8658; usual overloading</p>
+                    </div>
                     <div class="listingblock">
                         <div class="content"><pre class="highlight"><code class="language-java" data-lang="java">record Range(List&lt;Integer&gt; values) {
   Range(List&lt;Integer&gt; values) {
@@ -710,12 +763,48 @@ BiConsumer&lt;Consumer&lt;String&gt;, String&gt; safeSink
                         landed in Java 17</p></div>
                     <div class="listingblock">
                         <div class="content"><pre class="highlight"><code class="language-java" data-lang="java">sealed interface Shape {
-  sealed class Cornered implements Shape
-    permits Rectangle, Square{}
+  sealed class Cornered implements Shape {}
   final class Weirdo implements Shape {}
-}
-non-sealed class Rectangle implements Cornered {}
-record Square(int h) implements Cornered {}</code></pre>
+}</code></pre>
+                        </div>
+                    </div>
+                    <aside class="notes">
+                        <div class="paragraph"><p><strong>Goals</strong>: Add heritage control, Add exhaustiveness</p>
+                        </div>
+                        <div class="paragraph"><p><strong>Motivation</strong>: Give control to developers, Add access
+                            restrictions, Support pattern matching</p></div>
+                    </aside>
+                </div>
+            </section>
+            <section id="_jep_409_2"><h2>JEP 409</h2>
+                <div class="slide-content">
+                    <div class="paragraph"><p>different compile Unit &#8658; <code>permits</code> needed</p></div>
+                    <div class="listingblock">
+                        <div class="content"><pre class="highlight"><code class="language-java" data-lang="java">sealed interface Cornered implements Shape
+    permits Rectangle, Square {}
+
+final class Rectangle implements Cornered {}
+final class Square() implements Cornered {}</code></pre>
+                        </div>
+                    </div>
+                    <aside class="notes">
+                        <div class="paragraph"><p><strong>Goals</strong>: Add heritage control, Add exhaustiveness</p>
+                        </div>
+                        <div class="paragraph"><p><strong>Motivation</strong>: Give control to developers, Add access
+                            restrictions, Support pattern matching</p></div>
+                    </aside>
+                </div>
+            </section>
+            <section id="_jep_409_3"><h2>JEP 409</h2>
+                <div class="slide-content">
+                    <div class="paragraph"><p><code>sealed</code> have to be propagated</p></div>
+                    <div class="listingblock">
+                        <div class="content"><pre class="highlight"><code class="language-java" data-lang="java">sealed interface Shape {
+    non-sealed class Circular implements Shape {}
+    sealed class Cornered implements Shape {}
+    final class Rectangle implements Cornered {}
+    record Square(int h) implements Cornered {}
+}</code></pre>
                         </div>
                     </div>
                     <aside class="notes">
@@ -741,6 +830,27 @@ record Square(int h) implements Cornered {}</code></pre>
                     <div class="paragraph"><p>landed in Java 16</p></div>
                     <div class="listingblock">
                         <div class="content"><pre class="highlight"><code class="language-java" data-lang="java">if (o instanceof Triangle t) {
+    System.out.println("Triangle with area: "
+        + t.calculateArea());
+} else {
+    System.out.println("Not a triangle);
+}</code></pre>
+                        </div>
+                    </div>
+                    <aside class="notes">
+                        <div class="paragraph"><p><strong>Goals</strong> Pattern matching for instance of operator</p>
+                        </div>
+                        <div class="paragraph"><p><strong>Informations</strong> Pattern variable is in scope where it is
+                            matched , &amp;&amp; expands scope || ends scope, !
+                            Switched in some way, Pattern vars are special local vars</p></div>
+                    </aside>
+                </div>
+            </section>
+            <section id="_jep_394_2"><h2>JEP 394</h2>
+                <div class="slide-content">
+                    <div class="paragraph"><p>Mixing of patterns and operators possible</p></div>
+                    <div class="listingblock">
+                        <div class="content"><pre class="highlight"><code class="language-java" data-lang="java">if (o instanceof Triangle t) {
     System.out.println("Area: " + t.calculateArea());
 } else if (!(o instanceof String str)) {
     System.out.println("Not Triangle or String ");
@@ -753,18 +863,36 @@ record Square(int h) implements Cornered {}</code></pre>
                         <div class="paragraph"><p><strong>Goals</strong> Pattern matching for instance of operator</p>
                         </div>
                         <div class="paragraph"><p><strong>Informations</strong> Pattern variable is in scope where it is
-                            matched , &amp;&amp; expands scope || ends scope, ! Switched in some way, Pattern vars are
-                            special local vars</p></div>
-                        <div class="paragraph"><p><strong>Gotchas</strong> Don&#8217;t mix up &amp;&amp; and when!</p>
-                        </div>
+                            matched , &amp;&amp; expands scope || ends scope, !
+                            Switched in some way, Pattern vars are special local vars</p></div>
                     </aside>
                 </div>
             </section>
             <section id="_jep_427"><h2>JEP 427</h2>
                 <div class="slide-content">
                     <div class="paragraph"><p><a href="https://openjdk.org/jeps/427"><strong>Pattern Matching for
-                        switch</strong> </a></p></div>
+                        switch</strong></a></p></div>
                     <div class="paragraph"><p>3<sup>rd</sup> Preview in Java 19</p></div>
+                    <div class="listingblock">
+                        <div class="content"><pre class="highlight"><code class="language-java" data-lang="java">switch (s) {
+  case Triangle t -&gt; System.out.println("Triangle");
+  case Square s -&gt; System.out.println("Square");
+  default -&gt; System.out.println("Something");
+}</code></pre>
+                        </div>
+                    </div>
+                    <aside class="notes">
+                        <div class="paragraph"><p><strong>Goals</strong> Allow type patterns as case label, Introduce
+                            Guarded Patterns</p></div>
+                        <div class="paragraph"><p><strong>Informations</strong> Dominant patterns, Null match no type,
+                            Its just the Beginning</p></div>
+                        <div class="paragraph"><p>when instead of &amp;&amp; because pattern is not a boolean!</p></div>
+                    </aside>
+                </div>
+            </section>
+            <section id="_jep_427_2"><h2>JEP 427</h2>
+                <div class="slide-content">
+                    <div class="paragraph"><p>Guarded Patterns with <code>when</code></p></div>
                     <div class="listingblock">
                         <div class="content"><pre class="highlight"><code class="language-java" data-lang="java">switch (s) {
   case Triangle t when t.calculateArea() &gt; 100 -&gt;
@@ -876,6 +1004,11 @@ TemplatedString s = "\{x} + \{y} = \{x + y}";
                                                      alt="qrcode adesso jobs"></div>
                     </div>
                 </div>
+                <aside class="notes">
+                    <div class="paragraph"><p>Follow me on Twitter for the slides.</p></div>
+                    <div class="paragraph"><p>Look out for cool jobs with new Java at adesso SE.</p></div>
+                    <div class="paragraph"><p>I blog about java at adesso dev blog and in my github page.</p></div>
+                </aside>
             </div>
         </section>
         <section id="_image_credits"><h2>Image Credits</h2>
@@ -883,8 +1016,10 @@ TemplatedString s = "\{x} + \{y} = \{x + y}";
                 <div class="ulist">
                     <ul>
                         <li><p>Dukes from <a href="https://openjdk.java.net/projects/duke/">OpenJDK: Duke</a></p></li>
-                        <li><p>Amber image from unknown author under CC-BY</p></li>
-                        <li><p>Developer Week Logo from <a href="https://www.developer-week.de">DWX Website</a></p></li>
+                        <li><p>Java Forum Stuttgart Favicon from <a
+                                href="https://www.java-forum-stuttgart.de/favicon-32x32.png">JFS Conference Page</a></p>
+                        </li>
+                        <li><p>Amber stone image from unknown author under CC-BY</p></li>
                         <li><p>Other Images from <a href="https://www.adesso.de/de/index.jsp">adesso SE</a></p></li>
                     </ul>
                 </div>

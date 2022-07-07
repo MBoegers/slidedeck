@@ -1,6 +1,6 @@
 == From the Dreams
 
-image::../../_shared/images/dukes/Snooze.svg[height=400px, width=600px, background=white]
+image::../../_shared/images/dukes/Snooze.svg[height=400px,width=600px,background=white]
 
 === JEP 302
 
@@ -23,7 +23,7 @@ Underscore for unused, Shadowing by parameters, Fix some ambiguous
 ----
 class User {
     private final String name;
-    Integer nameLenght() = name::lenght;
+    Integer nameLength() = name::length;
 }
 ----
 

@@ -1,6 +1,7 @@
 [.columns.about]
 == Contact
-image::../../_shared/images/gluehbirnen.jpg[background, size=cover]
+
+image::../../_shared/images/gluehbirnen.jpg[background,size=cover]
 
 [.column]
 --
@@ -21,4 +22,13 @@ image::../../_shared/images/gluehbirnen.jpg[background, size=cover]
 <h3>Jobs</h3>
 ++++
 image::../../_shared/images/qrcode_adesso_jobs.png[]
+--
+
+[.notes]
+--
+Follow me on Twitter for the slides.
+
+Look out for cool jobs with new Java at adesso SE.
+
+I blog about java at adesso dev blog and in my github page.
 --

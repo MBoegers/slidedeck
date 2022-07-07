@@ -23,7 +23,7 @@ Underscore for unused, Shadowing by parameters, Fix some ambiguous
 ----
 class User {
     private final String name;
-    Integer nameLenght() = name::lenght;
+    Integer nameLength() = name::length;
 }
 ----
 

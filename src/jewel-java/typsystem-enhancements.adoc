@@ -80,7 +80,7 @@ different compile Unit => `permits` needed
 
 [source,java]
 ----
-sealed class Cornered implements Shape
+sealed interface Cornered implements Shape
     permits Rectangle, Square {}
 
 final class Rectangle implements Cornered {}
@@ -100,7 +100,7 @@ final class Square() implements Cornered {}
 
 [source,java]
 ----
-sealed class Cornered implements Shape {
+sealed interface Shape {
     non-sealed class Circular implements Shape {}
     sealed class Cornered implements Shape {}
     final class Rectangle implements Cornered {}

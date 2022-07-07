@@ -11,6 +11,28 @@ landed in Java 16
 [source,java]
 ----
 if (o instanceof Triangle t) {
+    System.out.println("Triangle with area: "
+        + t.calculateArea());
+} else {
+    System.out.println("Not a triangle);
+}
+----
+
+[.notes]
+--
+*Goals* Pattern matching for instance of operator
+
+*Informations* Pattern variable is in scope where it is matched , && expands scope || ends scope, !
+Switched in some way, Pattern vars are special local vars
+--
+
+=== JEP 394
+
+Mixing of patterns and operators possible
+
+[source,java]
+----
+if (o instanceof Triangle t) {
     System.out.println("Area: " + t.calculateArea());
 } else if (!(o instanceof String str)) {
     System.out.println("Not Triangle or String ");
@@ -25,8 +47,6 @@ if (o instanceof Triangle t) {
 
 *Informations* Pattern variable is in scope where it is matched , && expands scope || ends scope, !
 Switched in some way, Pattern vars are special local vars
-
-*Gotchas* Don't mix up && and when!
 --
 
 === JEP 427
@@ -34,6 +54,28 @@ Switched in some way, Pattern vars are special local vars
 https://openjdk.org/jeps/427[*Pattern Matching for switch*]
 
 3^rd^ Preview in Java 19
+
+[source,java]
+----
+switch (s) {
+  case Triangle t -> System.out.println("Triangle");
+  case Square s -> System.out.println("Square");
+  default -> System.out.println("Something");
+}
+----
+
+[.notes]
+--
+*Goals* Allow type patterns as case label, Introduce Guarded Patterns
+
+*Informations* Dominant patterns, Null match no type, Its just the Beginning
+
+when instead of && because pattern is not a boolean!
+--
+
+=== JEP 427
+
+Guarded Patterns with `when`
 
 [source,java]
 ----

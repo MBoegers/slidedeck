@@ -17,17 +17,18 @@ record EmptyTree() implements Tree {}
 ----
 // SubTree#delete(int)
 if (value.equals(v)) {
-    if (!hasLeftTree() && !hasRightTree())
-        return new EmptyTree();
-    else if (!hasLeftTree() && hasRightTree())
-        return right;
-    else if (hasRightTree() && !hasLeftTree())
-        return left;
-    else if (hasLeftTree() && hasRightTree())
-        return ((SubTree)left).insertInRightTree(right);
-    else
-        System.err.println("🎶And I said to myself 'What the fuck?'🎶");
-        return tree;
+  if (!hasLeftTree() && !hasRightTree())
+    return new EmptyTree();
+  else if (!hasLeftTree() && hasRightTree())
+    return right;
+  else if (hasRightTree() && !hasLeftTree())
+    return left;
+  else if (hasLeftTree() && hasRightTree())
+    return ((SubTree)left).insertInRightTree(right);
+  else
+    System.err.println(
+            "🎶And I said to myself 'What the fuck?'🎶");
+    return tree;
 } else //...
 ----
 
@@ -37,16 +38,18 @@ if (value.equals(v)) {
 ----
 // SubTree#delete(int)
 return switch (tree) {
-    case EmptyTree e -> e;
-    case SubTree(Tree l, Integer v, Tree r) when contains(l, value) -> delete(l, value);
-    case SubTree(Tree l, Integer v, Tree r) when contains(r, value) -> delete(r, value);
-    case SubTree(EmptyTree l, Integer v, EmptyTree r) when v.equals(value) -> new EmptyTree();
-    case SubTree(SubTree l, Integer v, EmptyTree r) when v.equals(value) -> l;
-    case SubTree(EmptyTree l, Integer v, SubTree r) when v.equals(value) -> r;
-    case SubTree(SubTree l, Integer v, SubTree r) when v.equals(value)-> insertSubTree(r, l);
-    default -> {
-        System.err.println("🎶And I said to myself 'What the fuck?'🎶");
-        yield tree;
-    }
+  case EmptyTree e -> e;
+  case SubTree(Tree l, Integer v, Tree r)
+    when contains(l, value) -> delete(l, value);
+  case SubTree(Tree l, Integer v, Tree r)
+    when contains(r, value) -> delete(r, value);
+  case SubTree(EmptyTree l, Integer v, EmptyTree r)
+    when v.equals(value) -> new EmptyTree();
+  case SubTree(SubTree l, Integer v, EmptyTree r)
+    when v.equals(value) -> l;
+  case SubTree(EmptyTree l, Integer v, SubTree r)
+    when v.equals(value) -> r;
+  case SubTree(SubTree l, Integer v, SubTree r)
+    when v.equals(value)-> insertSubTree(r, l);
 };
 ----

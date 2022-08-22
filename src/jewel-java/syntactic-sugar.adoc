@@ -74,12 +74,55 @@ https://openjdk.org/jeps/361[*Switch Expressions*] landed in Java 14
 [source,java]
 ----
 int j = switch (day) {// enum Days {MONDAY, …}
+  case MONDAY, WEDNESDAY -> 0;
+  case TUESDAY -> 1;
+  default -> {
+    int k = day.toString().length();
+    yield k;
+  }
+};
+----
+
+[.notes]
+--
+*Goals*: Raise switch to expressions, Fix fall through semantic (case : FT)
+
+*Motivation*: Prepare for pattern matching, Fix fall through , Throwing exceptions possible , Conditions possible , Case must be complete (sealed calss, default), Null match-able, Multible lables (case or ‘,’)
+--
+
+=== JEP 361
+
+no more `NullPointerExceptions` 🥳
+
+[source,java]
+----
+int j = switch (day) {// enum Days {MONDAY, …}
   case null, MONDAY -> 0;
   case TUESDAY -> 1;
   default -> {
     int k = day.toString().length();
     yield k;
   }
+};
+----
+
+[.notes]
+--
+*Goals*: Raise switch to expressions, Fix fall through semantic (case : FT)
+
+*Motivation*: Prepare for pattern matching, Fix fall through , Throwing exceptions possible , Conditions possible , Case must be complete (sealed calss, default), Null match-able, Multible lables (case or ‘,’)
+--
+
+=== JEP 361
+
+exhaustive, `default` or compilation error 🥳
+
+[source,java]
+----
+boolean goToWork = switch (day) {// enum Days {MONDAY, …}
+  case null, MONDAY, TUESDAY, WEDNESDAY,
+        THURSDAY, FRIDAY -> true;
+  case SATURDAY, SUNDAY -> false;
 };
 ----
 

@@ -16,12 +16,11 @@
 :iconsdir: ../../_shared/icons
 
 // Edit host information
-:host-name: Developer Week
-:host-url: https://www.developer-week.de
+:host-name: Unknown Cnf
+:host-url: https://www.unknowconf.com
 :host-logo-style: logo
-:host-logo-url: ../../_shared/images/hosts/DWX.png
-:host-twitter-url: https://twitter.com/developer_week
-:host-twitter-name: @developer_week
+:host-twitter-url: https://twitter.com/unknownconf
+:host-twitter-name: @unknownconf
 
 [.notes]
 --

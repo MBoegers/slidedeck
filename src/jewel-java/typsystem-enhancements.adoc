@@ -17,9 +17,20 @@ record Range(int low, int high) {
 }
 ----
 
+[.notes]
+--
+*Goals*: Enhance with transparent carriers for immutable data, Step towards pattern matching
+
+*Motivation*: Simple aggregation of values, Focus on modelling immutable data, Auto implement data driven methods (equals, hashcode)
+
+*Gotchas*: Are final, Can only implement sth,, Not only syntactic sugar
+
+compact conical const <1>, Default constructor is conical
+--
+
 === JEP 359
 
-https://openjdk.org/jeps/359[*Records*] landed in Java 16
+_normal_ `final class` => usual overloading
 
 [source,java]
 ----
@@ -51,12 +62,50 @@ https://openjdk.org/jeps/409[*Sealed Classes*] landed in Java 17
 [source,java]
 ----
 sealed interface Shape {
-  sealed class Cornered implements Shape
-    permits Rectangle, Square{}
+  sealed class Cornered implements Shape {}
   final class Weirdo implements Shape {}
 }
-non-sealed class Rectangle implements Cornered {}
-record Square(int h) implements Cornered {}
+----
+
+[.notes]
+--
+*Goals*: Add heritage control, Add exhaustiveness
+
+*Motivation*: Give control to developers, Add access restrictions, Support pattern matching
+--
+
+=== JEP 409
+
+different compile Unit => `permits` needed
+
+[source,java]
+----
+sealed interface Cornered implements Shape
+    permits Rectangle, Square {}
+
+final class Rectangle implements Cornered {}
+final class Square() implements Cornered {}
+----
+
+[.notes]
+--
+*Goals*: Add heritage control, Add exhaustiveness
+
+*Motivation*: Give control to developers, Add access restrictions, Support pattern matching
+--
+
+=== JEP 409
+
+`sealed` have to be propagated
+
+[source,java]
+----
+sealed interface Shape {
+    non-sealed class Circular implements Shape {}
+    sealed class Cornered implements Shape {}
+    final class Rectangle implements Cornered {}
+    record Square(int h) implements Cornered {}
+}
 ----
 
 [.notes]

@@ -1,4 +1,5 @@
 == Image Credits
 * Dukes from https://openjdk.java.net/projects/duke/[OpenJDK: Duke]
-* Amber image from unknown author under CC-BY
+* Amber stone image from unknown author under CC-BY
+* Binary Tree from https://commons.wikimedia.org/wiki/File:Binary_tree_v2.svg[Wikipedia]
 * Other Images from https://www.adesso.de/de/index.jsp[adesso SE]

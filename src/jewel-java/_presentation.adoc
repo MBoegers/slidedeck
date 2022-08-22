@@ -50,6 +50,7 @@ include::syntactic-sugar.adoc[]
 include::typsystem-enhancements.adoc[]
 include::pattern-matching.adoc[]
 include::future.adoc[]
+include::example.adoc[]
 
 // ####################################################
 // #            Presentation area  end                #

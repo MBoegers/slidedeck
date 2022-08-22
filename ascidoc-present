@@ -8,7 +8,7 @@ require 'listen'
 # @param presentation_dir directory containing sources
 def compile_presentation(presentation_dir)
   out_dir = "_dist/#{presentation_dir}"
-  out_dir['src/']=''
+  out_dir['src/'] = ''
 
   puts "Compiling presentation '#{presentation_dir}' into '#{out_dir}'"
   system "bundle exec asciidoctor-revealjs --destination-dir=#{out_dir} --out-file=index.html -arevealjsdir=../../_reveal.js #{presentation_dir}/_presentation.adoc"
@@ -18,15 +18,15 @@ end
 # List all directories containing a file named '_presentation.adoc' which marks a presentation
 def list_presentation_dirs()
   puts 'Search for presentations'
-  Dir.glob('src/**/_presentation.adoc').map {|p| p.chomp('/_presentation.adoc') }
+  Dir.glob('src/**/_presentation.adoc').map { |p| p.chomp('/_presentation.adoc') }
 end
 
 # initializes a file listener to src and recompiles
 def configure_recompile()
   listener = Listen.to('src') do |modified, added, removed|
     puts 'Found changes to files'
-    (modified.map{ |p| p.rpartition('/').first } | added.map{ |p| p.rpartition('/').first! } | removed.map{ |p| p.rpartition('/').first! })
-      .each { |p| compile_presentation p  }
+    (modified.map { |p| p.rpartition('/').first } | added.map { |p| p.rpartition('/').first! } | removed.map { |p| p.rpartition('/').first! })
+      .each { |p| compile_presentation p }
   end
   listener.start
   puts 'Watch dog started'
@@ -48,8 +48,13 @@ def print_help()
   puts "\tbuild/b\t- builds all presentations"
   puts "\twatch/w\t- rebuilds changed presentation on save"
   puts "\tnew/i n\t- generate a new presentation skeleton under name 'n'. New is not chainable!!"
+  puts "\tprint/p <name> <size>\t- generate pdf for presentation <name> with optional <size>, default is 1280x820"
   puts "\thelp/h\t- prints this help"
 end
+
+# def print_to_pdf(presentation, size = '1280x820')
+#   system "decktape -s {size} reveal _dist/{presentation}/index.html {presentation}.pdf"
+# end
 
 ARGV.each { |cmd|
   case cmd.upcase

@@ -16,11 +16,12 @@
 :iconsdir: ../../_shared/icons
 
 // Edit host information
-:host-name: Unknown Cnf
-:host-url: https://www.unknowconf.com
+:host-name: JUG Bonn Meetup
+:host-url: https://www.meetup.com/jug-bonn/
 :host-logo-style: logo
-:host-twitter-url: https://twitter.com/unknownconf
-:host-twitter-name: @unknownconf
+:host-logo-url: ../../_shared/images/hosts/jug_bonn.jpeg
+:host-twitter-url: https://twitter.com/JUGBonn
+:host-twitter-name: @JUGBonn
 
 [.notes]
 --

@@ -9,7 +9,8 @@ Source Code: https://github.com/MBoegers/TreeExperiments[github.com/MBoegers/Tre
 [source,java]
 ----
 sealed interface Tree { Tree delete(int value); }
-record SubTree(Tree left, int value, Tree right) implements Tree {}
+record SubTree(Tree left, int value, Tree right)
+    implements Tree {}
 record EmptyTree() implements Tree {}
 ----
 
@@ -18,19 +19,18 @@ record EmptyTree() implements Tree {}
 [source,java]
 ----
 // SubTree#delete(int)
-if (value.equals(v)) {
-  if (!hasLeftTree() && !hasRightTree())
-    return new EmptyTree();
-  else if (!hasLeftTree() && hasRightTree())
-    return right;
-  else if (hasRightTree() && !hasLeftTree())
-    return left;
-  else if (hasLeftTree() && hasRightTree())
-    return ((SubTree)left).insertInRightTree(right);
-  else
-    System.err.println(
-            "🎶And I said to myself 'What the fuck?'🎶");
-    return tree;
+if (value == v) {
+  if (left instanceof EmptyTree
+        && right instanceof EmptyTree) return new EmptyTree();
+  else if (left instanceof EmptyTree
+        && right instanceof SubTree) return right;
+  else if (left instanceof SubTree
+        && right instanceof EmptyTree) return left;
+  else if (left instanceof SubTree l
+        && right instanceof SubTree)
+    return l.insertInRightTree(right);
+  else throw new IllegalStateException(
+            "This should not be possible");
 } else //...
 ----
 
@@ -38,20 +38,21 @@ if (value.equals(v)) {
 
 [source,java]
 ----
-// SubTree#delete(int)
+// TreeOperations#delete(int)
 return switch (tree) {
-  case EmptyTree e -> e;
-  case SubTree(Tree l, Integer v, Tree r)
+  case EmptyTree e, null -> e;
+  case SubTree(Tree l,Integer v,Tree r)
     when contains(l, value) -> delete(l, value);
-  case SubTree(Tree l, Integer v, Tree r)
+  case SubTree(Tree l,Integer v,Tree r)
     when contains(r, value) -> delete(r, value);
-  case SubTree(EmptyTree l, Integer v, EmptyTree r)
-    when v.equals(value) -> new EmptyTree();
-  case SubTree(SubTree l, Integer v, EmptyTree r)
-    when v.equals(value) -> l;
-  case SubTree(EmptyTree l, Integer v, SubTree r)
-    when v.equals(value) -> r;
-  case SubTree(SubTree l, Integer v, SubTree r)
-    when v.equals(value)-> insertSubTree(r, l);
+  case SubTree(EmptyTree l,Integer v,EmptyTree r)
+    when (v == value) -> new EmptyTree();
+  case SubTree(SubTree l,Integer v,EmptyTree r)
+    when (v == value) -> l;
+  case SubTree(EmptyTree l,Integer v,SubTree r)
+    when (v == value) -> r;
+  case SubTree(SubTree l,Integer v,SubTree r)
+    when (v == value) -> insertSubTree(r, l);
+  case SubTree subTree -> subTree;
 };
 ----

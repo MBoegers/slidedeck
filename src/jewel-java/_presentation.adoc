@@ -53,6 +53,11 @@ include::pattern-matching.adoc[]
 include::future.adoc[]
 include::example.adoc[]
 
+[%notitle]
+== Cheers
+
+image::../../_shared/images/Abschied_Coole_Leute.jpeg[background,size=80% auto]
+
 // ####################################################
 // #            Presentation area  end                #
 // ####################################################

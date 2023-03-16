@@ -1,0 +1,14 @@
+== The risky Part: Java 21
+
+=== Candidates
+
+* https://openjdk.org/jeps/440[Finalization of Record Patterns] 🏁
+* https://openjdk.org/jeps/441[Pattern Matching for Switch] 🏁
+* https://openjdk.org/jeps/439[Generational ZGC] 🎉
+
+=== Drafts
+
+* Scoped Values 🔬 https://openjdk.org/jeps/8304357
+* Virtual Threads 🏁 https://openjdk.org/jeps/8303683
+* Windows 32 Deprecation ⚠️ https://openjdk.org/jeps/8303167
+* Anonymous Main Class and enhanced Main Methode 🔬 https://openjdk.org/jeps/8302326

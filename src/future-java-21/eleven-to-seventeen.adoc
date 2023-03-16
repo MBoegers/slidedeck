@@ -1,0 +1,51 @@
+== 11 to 17
+
+=== Java 12
+
+* https://openjdk.org/jeps/346[G1 return Memory to OS] 🛠️
+* Switch Expressions Preview 🔬
+
+=== Java 13
+
+* https://openjdk.org/jeps/350[Dynamic App CDS] 🛠️
+* Text Block preview 🔬
+
+=== Java 14
+
+* https://openjdk.org/jeps/349[JFR Event Streaming] 🎉
+* https://openjdk.org/jeps/358[Helpfull Nullpointer Exceptions] 🏁
+* https://openjdk.org/jeps/361[Finalization Switch Expression] 🏁
+* ZGC for Windows and MacOs 🛠️
+* instanceof Patern 🔬
+* Record classes 🔬
+* jpackage Incubation 🔬
+
+=== Java 15
+
+* Sealed Classes 🔬
+* https://openjdk.org/jeps/371[Hidden Class]
+* Remove of Nashorn 🚧
+* https://openjdk.org/jeps/378[Text Blocks finalization] 🏁
+* Incubation Foreign-Memory Access API 🔬^{2}
+* RMI Deprecation ⚠️
+
+=== Java 16
+
+* Move to GitHub 🎉
+* Alpine Linux Port 🎉
+* https://openjdk.org/jeps/387[Elastif Meta Space] 🎉
+* Incubation Foreign Linker API 🔬^{2}
+* https://openjdk.org/jeps/390[Depricate Wrapper Class Constructor] 🛠️
+* https://openjdk.org/jeps/392[Finalization of JPackage] 🏁
+* https://openjdk.org/jeps/394[Instanceof Pattern finalization] 🏁
+* https://openjdk.org/jeps/395[Record Class Finalization] 🏁
+
+=== Java 17
+
+* https://openjdk.org/jeps/356[Open Random Number API for implementations] 🛠
+* Deprecation of Applet API ⚠️
+* Hide JDK internals effectively 🚧
+* Pattern Matching for switch 🔬
+* https://openjdk.org/jeps/407[RMI Removed] 🚧
+* https://openjdk.org/jeps/409[Sealed Classes Finaluzation] 🏁
+* Remove AOT and JIT Compiler 🚧

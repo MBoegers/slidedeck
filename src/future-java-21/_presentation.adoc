@@ -1,0 +1,44 @@
+= Daily Java 21
+:backend: revealjs
+:revealjs_theme: adesso
+:revealjs_controls: false
+:revealjs_controlsTutorial: false
+:revealjs_progress: false
+:revealjs_slideNumber: false
+:revealjs_history: true
+:revealjs_center: true
+:revealjs_transition: fade
+:revealjs_backgroundTransition: fade
+
+:imagedir: images
+
+:icons: image
+:icontype: svg
+:iconsdir: ../../_shared/icons
+
+// Edit host information
+:host-name: Unknown Cnf
+:host-url: https://www.unknowconf.com
+:host-logo-style: logo
+:host-twitter-url: https://twitter.com/unknownconf
+:host-twitter-name: @unknownconf
+
+include::../../_shared/hightlightjs.adoc[]
+include::../../_shared/events-on-title-and-footer.adoc[]
+// ####################################################
+// #            Presentation area  start              #
+// ####################################################
+
+include::entry.adoc[]
+include::eleven.adoc[]
+include::eleven-to-seventeen.adoc[]
+include::state-of-seventeen.adoc[]
+include::seventeen-to-twenty.adoc[]
+include::state-of-twenty.adoc[]
+include::twentyone-prediction.adoc[]
+
+// ####################################################
+// #            Presentation area  end                #
+// ####################################################
+include::../../_shared/about-slide.adoc[]
+include::images/_sources.adoc[]

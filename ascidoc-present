@@ -1,32 +1,43 @@
 #!/usr/bin/env ruby
 # for exporting https://github.com/astefanutti/decktape
+# decktape -s '1280x820' reveal _dist/jewel-java/index.html output.pdf
 
 require 'fileutils'
 require 'listen'
+require 'asciidoctor-diagram'
 
 # Compile the content of the directory to a presentation into dir
 # @param presentation_dir directory containing sources
 def compile_presentation(presentation_dir)
   out_dir = "_dist/#{presentation_dir}"
-  out_dir['src/']=''
+  out_dir['src/'] = ''
 
   puts "Compiling presentation '#{presentation_dir}' into '#{out_dir}'"
-  system "bundle exec asciidoctor-revealjs --destination-dir=#{out_dir} --out-file=index.html -arevealjsdir=../../_reveal.js #{presentation_dir}/_presentation.adoc"
+  system "bundle exec asciidoctor-revealjs -r asciidoctor-diagram --destination-dir=#{out_dir} --out-file=index.html -arevealjsdir=../../_reveal.js #{presentation_dir}/_presentation.adoc"
   FileUtils.cp_r "#{presentation_dir}/images", "#{out_dir}"
+end
+
+def print_to_pdf(presentation_dir)
+  out_file = "_print/#{presentation_dir}.pdf"
+  out_file['src/'] = ''
+  in_file = "_dist/#{presentation_dir}/index.html"
+  in_file['src/'] = ''
+
+  puts "print presentation '#{presentation_dir}' into '#{out_file}'"
+  system "decktape -s '1280x820' reveal #{in_file} #{out_file}"
 end
 
 # List all directories containing a file named '_presentation.adoc' which marks a presentation
 def list_presentation_dirs()
-  puts 'Search for presentations'
-  Dir.glob('src/**/_presentation.adoc').map {|p| p.chomp('/_presentation.adoc') }
+  Dir.glob('src/**/_presentation.adoc').map { |p| p.chomp('/_presentation.adoc') }
 end
 
 # initializes a file listener to src and recompiles
 def configure_recompile()
   listener = Listen.to('src') do |modified, added, removed|
     puts 'Found changes to files'
-    (modified.map{ |p| p.rpartition('/').first } | added.map{ |p| p.rpartition('/').first! } | removed.map{ |p| p.rpartition('/').first! })
-      .each { |p| compile_presentation p  }
+    (modified.map { |p| p.rpartition('/').first } | added.map { |p| p.rpartition('/').first! } | removed.map { |p| p.rpartition('/').first! })
+      .each { |p| compile_presentation p }
   end
   listener.start
   puts 'Watch dog started'
@@ -47,18 +58,31 @@ def print_help()
   puts "\tclean/c\t- removes prior build slides"
   puts "\tbuild/b\t- builds all presentations"
   puts "\twatch/w\t- rebuilds changed presentation on save"
+  puts "\tprint/p\t- print the given presentations or asks for presentation to print"
+  puts "\tprintall/pa\t- prints all presentations"
   puts "\tnew/i n\t- generate a new presentation skeleton under name 'n'. New is not chainable!!"
   puts "\thelp/h\t- prints this help"
+end
+
+def select_presentation
+  list_presentation_dirs.each_with_index { |p, i| puts "#{i}: #{p}" }
+  puts 'enter number to select presentation to process: '
+  i = STDIN.gets.to_i
+  list_presentation_dirs[i]
 end
 
 ARGV.each { |cmd|
   case cmd.upcase
   when 'CLEAN', 'C'
     FileUtils.remove_dir "_dist", force: true
-  when 'BUILD', 'W'
+  when 'BUILD', 'B'
     list_presentation_dirs.each { |p| compile_presentation p }
   when 'WATCH', 'W'
     configure_recompile
+  when 'PRINTALL', 'PA'
+    list_presentation_dirs.each { |p| print_to_pdf p }
+  when 'PRINT', 'P'
+    print_to_pdf ARGV[1] != nil ? ARGV[1] : select_presentation
   when 'NEW', 'N'
     if ARGV[1] == nil || ARGV.length != 2
       print_help
@@ -73,5 +97,3 @@ ARGV.each { |cmd|
     print_help
   end
 }
-
-

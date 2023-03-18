@@ -1,5 +1,8 @@
 == 17 to 20
 
+bibber!
+bibber!
+
 === Java 18
 
 * https://openjdk.org/jeps/400[UTF 8 by default] 🎉
@@ -11,8 +14,8 @@
 * Record Patterns 🔬
 * Foreign Function & Memory API 🔬
 * Virtual Threads 🔬
-* Structured Concurrency 🔬^{2}
+* Structured Concurrency 🔬^2^
 
 === Java 20
 
-* Scoped Values 🔬^{2}
+* Scoped Values 🔬^2^

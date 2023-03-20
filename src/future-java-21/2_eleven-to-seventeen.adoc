@@ -1,5 +1,7 @@
 == 11 to 17
 
+image::images/CloudSurfDuke.png[550,550]
+
 === Java 12
 
 * https://openjdk.org/jeps/346[G1 return Memory to OS] 🛠️
@@ -33,19 +35,20 @@
 
 * Move to GitHub 🎉
 * Alpine Linux Port 🎉
-* https://openjdk.org/jeps/387[Elastif Meta Space] 🎉
+* https://openjdk.org/jeps/387[Elastic Meta Space] 🎉
 * Incubation Foreign Linker API 🔬^2^
-* https://openjdk.org/jeps/390[Depricate Wrapper Class Constructor] 🛠️
+* https://openjdk.org/jeps/390[Deprecate Wrapper Class Constructor] 🛠️
 * https://openjdk.org/jeps/392[Finalization of JPackage] 🏁
 * https://openjdk.org/jeps/394[Instanceof Pattern finalization] 🏁
 * https://openjdk.org/jeps/395[Record Class Finalization] 🏁
 
 === Java 17
 
-* https://openjdk.org/jeps/356[Open Random Number API for implementations] 🛠
+* https://openjdk.org/jeps/356[Open Random Number API] 🛠
 * Deprecation of Applet API ⚠️
 * Hide JDK internals effectively 🚧
 * Pattern Matching for switch 🔬
 * https://openjdk.org/jeps/407[RMI Removed] 🚧
 * https://openjdk.org/jeps/409[Sealed Classes Finaluzation] 🏁
 * Remove AOT and JIT Compiler 🚧
+

@@ -1,7 +1,6 @@
 == 17 to 20
 
-bibber!
-bibber!
+image::images/CloudSurfDuke.png[550,550]
 
 === Java 18
 
@@ -19,3 +18,9 @@ bibber!
 === Java 20
 
 * Scoped Values 🔬^2^
+
+[fade-in.%step]
+--
+something big is coming!
+--
+

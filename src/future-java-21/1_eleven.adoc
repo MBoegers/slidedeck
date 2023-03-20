@@ -1,4 +1,8 @@
-== State of 11 ...
+== State of 11
+
+image::images/Reward_duke.svg[500,500]
+
+=== Features
 
 * Streams
 * Lambdas
@@ -15,7 +19,7 @@ Map.of("Vanessa", "👧🏻", "Fred", "👶🏼", "Merlin", "🧙‍♂️")
     .ifPresent(System.out::println);
 ----
 
-=== ... more ...
+=== ... more features ...
 
 * Local Variable Type Inference
 * try-with-Resource
@@ -33,7 +37,7 @@ var req = HttpRequest.newBuilder()
 var res = client.send(req, HttpResponse.BodyHandlers.ofString());
 ----
 
-=== ... more ...
+=== ... more features ...
 
 * Local Variable Type Inference
 * try-with-Resource
@@ -60,5 +64,6 @@ try(var in = new ByteArrayInputStream(res.body().getBytes())) {
 
 [source,bash]
 ----
-java Example.java
+java -XX:StartFlightRecording\
+  -add-modules java.base Example.java
 ----

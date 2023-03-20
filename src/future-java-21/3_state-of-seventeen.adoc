@@ -1,0 +1,85 @@
+== Overall State of 17
+
+image::images/Reward_duke.svg[500,500]
+
+=== Most Awesome
+
+* Sealed class and Records
+* Type Pattern & Switch Expression
+* Helpfull Null
+* Text Blocks
+* JPackage
+
+=== Types
+
+* Sealed Class & Interfaces
+* Records
+
+[source,java]
+----
+sealed interface Shape {
+  sealed class Cornered implements Shape {}
+  non-sealed interface Round implements Shape {}
+  final class Weirdo implements Shape {}
+}
+----
+
+=== Flow Control
+
+* Type Pattern
+* Switch Expression
+
+[source,java]
+----
+switch (s) {
+  case Triangle t when t.calculateArea() > 100 ->
+    System.out.println("Large");
+  case Triangle t -> System.out.println("Small");
+  default -> System.out.println("Non-triangle");
+}
+----
+
+=== Utilities
+
+* *Helpful Nullpointer Exceptions*
+* Textblocks
+* JPackage
+
+[source,log]
+----
+Exception in thread "main" java.lang.NullPointerException:
+        Cannot read field "c" because "a.b" is null
+    at Prog.main(Prog.java:5)
+----
+
+=== Utilities
+
+* Helpful Nullpointer Exceptions
+* *Textblocks*
+* JPackage
+
+[source,java]
+----
+String helloWorldResponse = String.format(
+    """
+    <html>
+        <body>
+            <p>Hello, %s</p>
+        </body>
+    </html>
+    """, getName());
+----
+
+=== Utilities
+
+* Helpful Nullpointer Exceptions
+* Textblocks
+* *JPackage*
+
+[source,bash]
+----
+jpackage --type app-image\
+  -i inputDir -n name
+  --main-class className --main-jar\
+  myJar.jar
+----

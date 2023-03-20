@@ -1,9 +1,16 @@
+[.columns]
 == Entry Poll
 
-image::images/umfrage.jpg[background,size=cover]
-image::images/entry-poll.png[Mentimeter https://www.menti.com/aljvomg56fse,200,200]
+[.column]
+--
+image::images/umfrage.jpg[400,400]
+--
 
-https://www.menti.com/aljvomg56fse
+[.column]
+--
+image::images/entry-poll.png[Mentimeter https://www.menti.com/aljvomg56fse,300,300]
+https://www.menti.com/aljvomg56fse[menti.com/aljvomg56fse]
+--
 
 === Release Cycle
 

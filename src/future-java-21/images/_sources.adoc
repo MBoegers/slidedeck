@@ -2,3 +2,5 @@
 
 * Poll from https://de.freepik.com/vektoren-kostenlos/faq-bereich-der-website-benutzer-helpdesk-kundensupport-haeufig-gestellte-fragen-problemloesung-quizspiel-verwirrter-mann-zeichentrickfigur_11667041.htm#query=Umfrage&position=1&from_view=search&track=sph[freepik.com]
 * Features per Java Release https://dev.java/assets/images/evolution/release_cadence.png[from dev.java]
+* Class Diagramm from https://github.com/MBoegers/DataOrientedJava[GH/MBoegers/DataOrientedJava]
+* Dukes from https://wiki.openjdk.org/display/duke/Gallery[OpenJDK]

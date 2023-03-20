@@ -1,0 +1,36 @@
+== Final Throughts
+
+image::images/thinking_duke.png[400,400]
+
+[.columns]
+=== 10 Releases with 💯JEPs
+
+[.column]
+--
+
+image::images/openjdk_shot.png[OpenJDK.org as Baseline]
+
+--
+
+[.column]
+--
+
+image::images/devjava_shot.png[Dev.java for learning]
+
+--
+
+[.columns]
+=== Path into Future
+
+[.column]
+--
+* https://inside.java/2023/03/09/data-oriented-programming/[Data oriented programming] inside Modules
+* https://dev.java/learn/modules/[Modularization] in the Big
+* Linea Programming, Concurrent Execution
+* Cloud Enabling: https://wiki.openjdk.org/display/lilliput[Lilliput] and https://openjdk.org/projects/crac/[CRaC]
+--
+
+[.column.is-one-third]
+--
+image::images/CloudSurfDuke.png[]
+--

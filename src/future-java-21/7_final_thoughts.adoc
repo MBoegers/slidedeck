@@ -1,6 +1,11 @@
-== Final Throughts
+== Final Thoughts
 
 image::images/thinking_duke.png[400,400]
+
+[notes]
+--
+What we have seen and where do we find it?
+--
 
 [.columns]
 === 10 Releases with 💯JEPs
@@ -19,6 +24,14 @@ image::images/devjava_shot.png[Dev.java for learning]
 
 --
 
+[notes]
+--
+* 10 times more JEPs that releases
+* estimated 100 times more features
+* And more Bugfixes!!
+* See dev.java for learning and openjdk.org/jeps for research
+--
+
 [.columns]
 === Path into Future
 
@@ -33,4 +46,14 @@ image::images/devjava_shot.png[Dev.java for learning]
 [.column.is-one-third]
 --
 image::images/CloudSurfDuke.png[]
+--
+
+[notes]
+--
+I think we will see:
+
+* modules on the height levels
+* FP in the small parts
+* Concurrent Code that look and feel like linea
+* Cloud more possible
 --

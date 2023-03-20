@@ -19,11 +19,20 @@ Map.of("Vanessa", "👧🏻", "Fred", "👶🏼", "Merlin", "🧙‍♂️")
     .ifPresent(System.out::println);
 ----
 
+[notes]
+--
+* Streams: work on data streams i.E. pipelines of instances
+* Lambdas: The big one!
+Functions as variables, parameters
+* Optional: provide null
+* Collection FM: Create Immutable Collections wo. add
+--
+
 === ... more features ...
 
-* Local Variable Type Inference
+* *Local Variable Type Inference*
+* *HTTP Client*
 * try-with-Resource
-* HTTP Client
 * private Interface Methods
 
 [source,java]
@@ -37,11 +46,17 @@ var req = HttpRequest.newBuilder()
 var res = client.send(req, HttpResponse.BodyHandlers.ofString());
 ----
 
+[notes]
+--
+* var: reduce repeat, beware type erasure
+* Http Client: Easy to use, Builder based
+--
+
 === ... more features ...
 
 * Local Variable Type Inference
-* try-with-Resource
 * HTTP Client
+* *try-with-Resource*
 * private Interface Methods
 
 [source,java]
@@ -55,11 +70,17 @@ try(var in = new ByteArrayInputStream(res.body().getBytes())) {
 }
 ----
 
+[notes]
+--
+* try-w-res: Close resources automatically
+* private statis Methods in Interfaces
+--
+
 === ... that's it.
 
 * Java Platform Module System
 * https://openjdk.org/jeps/328[JDK Flight Recorder]
-* https://openjdk.org/jeps/320[Remove of Java EE and CORBA ]
+* https://openjdk.org/jeps/320[Remove of Java EE and CORBA]
 * Execute .java Files
 
 [source,bash]
@@ -67,3 +88,11 @@ try(var in = new ByteArrayInputStream(res.body().getBytes())) {
 java -XX:StartFlightRecording\
   -add-modules java.base Example.java
 ----
+
+[notes]
+--
+* JPMS: encapsulation within modules
+* JFR: Record VM operation with less 1% overhead
+* JavaEE -> Jakarta EE transformation
+* No javac needed, see JBang!
+--

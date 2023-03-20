@@ -6,7 +6,7 @@ image::images/Reward_duke.svg[500,500]
 
 * Sealed class and Records
 * Type Pattern & Switch Expression
-* Helpfull Null
+* Helpful Null
 * Text Blocks
 * JPackage
 
@@ -18,7 +18,8 @@ image::images/Reward_duke.svg[500,500]
 [source,java]
 ----
 sealed interface Shape {
-  sealed class Cornered implements Shape {}
+  record Cornered(int x, int y, int h, int w)
+    implements Shape {}
   non-sealed interface Round implements Shape {}
   final class Weirdo implements Shape {}
 }

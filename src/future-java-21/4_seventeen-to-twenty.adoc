@@ -2,11 +2,22 @@
 
 image::images/CloudSurfDuke.png[550,550]
 
+[notes]
+--
+less shocking
+--
+
 === Java 18
 
 * https://openjdk.org/jeps/400[UTF 8 by default] 🎉
 * https://openjdk.org/jeps/408[Simple Web Server] 🎉
 * https://openjdk.org/jeps/413[Java Snippets in Java Doc] 🎉
+
+[notes]
+--
+* Simple Web Server inside JDK for testing and prototyping
+* Snippets importable from src and can be tested
+--
 
 === Java 19
 
@@ -15,6 +26,14 @@ image::images/CloudSurfDuke.png[550,550]
 * Virtual Threads 🔬
 * Structured Concurrency 🔬^2^
 
+[notes]
+--
+* Records deconstruction to access the inner data
+* Foreign API for nativ interaction like ML and MLIP
+* Virtual Threads as lightweight parallel working unit
+* StructCon: write linear code, executed in parallel
+--
+
 === Java 20
 
 * Scoped Values 🔬^2^
@@ -22,5 +41,11 @@ image::images/CloudSurfDuke.png[550,550]
 [fade-in.%step]
 --
 something big is coming!
+--
+
+[notes]
+--
+* very few new stuff, a lot of preview and incubation of preview and incubation
+* Scoped Values: Share data within threads, siblings and children.
 --
 

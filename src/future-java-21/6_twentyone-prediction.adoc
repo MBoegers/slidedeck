@@ -2,11 +2,26 @@
 
 image::images/Plug_duke.png[400,400]
 
+=== Targetted
+
+* https://openjdk.org/jeps/431[Sequenced Collection 🎉]
+
+[notes]
+--
+* Collections that can be read backwards as well
+--
+
 === Candidates
 
 * https://openjdk.org/jeps/440[Finalization of Record Patterns] 🏁
 * https://openjdk.org/jeps/441[Pattern Matching for Switch] 🏁
 * https://openjdk.org/jeps/439[Generational ZGC] 🎉
+
+[notes]
+--
+* final steps towards Pattern Matching in Production
+* Generation ZGC handles young instances that usually die young
+--
 
 === Drafts
 
@@ -15,13 +30,23 @@ image::images/Plug_duke.png[400,400]
 * https://openjdk.org/jeps/8303167[Windows 32 Deprecation ⚠️]
 * https://openjdk.org/jeps/8302326[Anonymous Main Class and enhanced Main Methode 🔬]
 
+[notes]
+--
+could be possible from the jep text * Scoped values into preview
+--
+
 === How does it Look?
 
 image::images/BeispielKlasssenDiagramm.svg[]
 
-=== Domain Modeling
-
 Sources: https://github.com/MBoegers/DataOrientedJava[github.com/MBoegers/DataOrientedJava]
+
+[notes]
+--
+An example used in my work shop under construction and articles
+--
+
+=== Domain Modeling
 
 [source,java]
 ----
@@ -37,6 +62,12 @@ record Businesskunde(String name, String mail,
 record TestKunde(String name, String mail) implements Kunde {}
 ----
 
+[notes]
+--
+* We model possible types as different implementations of the interface abd records as the data carrier.
+* Watch out, I use the method names (name,mail) matching the accessors ;-)
+--
+
 === Flow Controll
 
 [source,java]
@@ -50,6 +81,12 @@ static double calculateMwSt(Kunde kunde, double wert) {
   };
 }
 ----
+
+[notes]
+--
+Each Kunde is different and is handled at ONE point and not 3 different locations.
+lead to more coherent logic.
+--
 
 === Deconstruction
 
@@ -66,6 +103,11 @@ switch (rechnung) {
 }
 ----
 
+[notes]
+--
+avoid getter and use the values further down the road.
+--
+
 === String interpolation
 
 [source,java]
@@ -79,6 +121,11 @@ Mit freundlichen Grüßen
 """.formatted(name, wert, mwst);
 ----
 
+[notes]
+--
+no real interpolation, that will be possible with String Templates, which may be previewed ;)
+--
+
 === Concurrency
 
 [source,java]
@@ -91,3 +138,7 @@ try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
   response.fail(e);
 }
 ----
+
+[notes]
+--
+--

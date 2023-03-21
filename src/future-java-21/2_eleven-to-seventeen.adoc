@@ -7,7 +7,7 @@ image::images/CloudSurfDuke.png[550,550]
 * https://openjdk.org/jeps/346[G1 return Memory to OS] 🛠️
 * Switch Expressions Preview 🔬
 
-[notes]
+[.notes]
 --
 * relativ small
 * Freed memory is handed back to OS
@@ -19,7 +19,7 @@ image::images/CloudSurfDuke.png[550,550]
 * https://openjdk.org/jeps/350[Dynamic App CDS 🛠]️
 * Text Block preview 🔬
 
-[notes]
+[.notes]
 --
 * Class data sharing: loaded class stored for later use by ClassLoader
 * Dynamic i.e. write on termination
@@ -36,7 +36,7 @@ image::images/CloudSurfDuke.png[550,550]
 * Record classes 🔬
 * jpackage Incubation 🔬
 
-[notes]
+[.notes]
 --
 * JFR streams events at runtime
 * Nullpointer helpfull after 20+ years
@@ -53,7 +53,7 @@ image::images/CloudSurfDuke.png[550,550]
 * Incubation Foreign-Memory Access API 🔬^2^
 * RMI Deprecation ⚠️
 
-[notes]
+[.notes]
 --
 * Sealed Classes to provide developer full control
 * Hidden Class: can not be accessed from external
@@ -72,7 +72,7 @@ image::images/CloudSurfDuke.png[550,550]
 * https://openjdk.org/jeps/394[Instanceof Pattern finalization] 🏁
 * https://openjdk.org/jeps/395[Record Class Finalization] 🏁
 
-[notes]
+[.notes]
 --
 * Alpine fascinating for Container
 * Elastic Meta Space: freed memory from metaspace is handed back
@@ -88,7 +88,7 @@ image::images/CloudSurfDuke.png[550,550]
 * https://openjdk.org/jeps/409[Sealed Classes Finalization] 🏁
 * Remove AOT and JIT Compiler 🚧
 
-[notes]
+[.notes]
 --
 * JPMS can not be deactivated
 * RMI, AOT and JIT: there are better alternatives..

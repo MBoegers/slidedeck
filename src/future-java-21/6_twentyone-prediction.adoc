@@ -6,7 +6,7 @@ image::images/Plug_duke.png[400,400]
 
 * https://openjdk.org/jeps/431[Sequenced Collection 🎉]
 
-[notes]
+[.notes]
 --
 * Collections that can be read backwards as well
 --
@@ -17,7 +17,7 @@ image::images/Plug_duke.png[400,400]
 * https://openjdk.org/jeps/441[Pattern Matching for Switch] 🏁
 * https://openjdk.org/jeps/439[Generational ZGC] 🎉
 
-[notes]
+[.notes]
 --
 * final steps towards Pattern Matching in Production
 * Generation ZGC handles young instances that usually die young
@@ -30,7 +30,7 @@ image::images/Plug_duke.png[400,400]
 * https://openjdk.org/jeps/8303167[Windows 32 Deprecation ⚠️]
 * https://openjdk.org/jeps/8302326[Anonymous Main Class and enhanced Main Methode 🔬]
 
-[notes]
+[.notes]
 --
 could be possible from the jep text * Scoped values into preview
 --
@@ -41,7 +41,7 @@ image::images/BeispielKlasssenDiagramm.svg[]
 
 Sources: https://github.com/MBoegers/DataOrientedJava[github.com/MBoegers/DataOrientedJava]
 
-[notes]
+[.notes]
 --
 An example used in my work shop under construction and articles
 --
@@ -51,24 +51,22 @@ An example used in my work shop under construction and articles
 [source,java]
 ----
 sealed interface Kunde permits Businesskunde, Privatkunde,
-  TestKunde { String name(); String mail(); }
+{ String name(); String mail(); }
 
 record Privatkunde(String name, String mail)
   implements Kunde {}
 
 record Businesskunde(String name, String mail,
   boolean isVorsteuerAbzugsberechtigt) implements Kunde {}
-
-record TestKunde(String name, String mail) implements Kunde {}
 ----
 
-[notes]
+[.notes]
 --
 * We model possible types as different implementations of the interface abd records as the data carrier.
 * Watch out, I use the method names (name,mail) matching the accessors ;-)
 --
 
-=== Flow Controll
+=== Flow Control
 
 [source,java]
 ----
@@ -76,16 +74,17 @@ static double calculateMwSt(Kunde kunde, double wert) {
   return switch (kunde) {
     case Businesskunde b when b.isVorsteuerAbzugsberechtigt()
         -> 0.0d;
-    case Businesskunde b -> wert * 0.1d;
-    case Privatkunde p -> wert * 0.1d;
+    case Businesskunde b -> wert * 0.18d;
+    case Privatkunde p -> wert * 0.18d;
   };
 }
 ----
 
-[notes]
+[.notes]
 --
 Each Kunde is different and is handled at ONE point and not 3 different locations.
 lead to more coherent logic.
+No default because exaustive, otherwise compile error.
 --
 
 === Deconstruction
@@ -103,7 +102,7 @@ switch (rechnung) {
 }
 ----
 
-[notes]
+[.notes]
 --
 avoid getter and use the values further down the road.
 --
@@ -121,7 +120,7 @@ Mit freundlichen Grüßen
 """.formatted(name, wert, mwst);
 ----
 
-[notes]
+[.notes]
 --
 no real interpolation, that will be possible with String Templates, which may be previewed ;)
 --
@@ -139,6 +138,6 @@ try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
 }
 ----
 
-[notes]
+[.notes]
 --
 --

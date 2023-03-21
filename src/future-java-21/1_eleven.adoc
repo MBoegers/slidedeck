@@ -19,7 +19,7 @@ Map.of("Vanessa", "👧🏻", "Fred", "👶🏼", "Merlin", "🧙‍♂️")
     .ifPresent(System.out::println);
 ----
 
-[notes]
+[.notes]
 --
 * Streams: work on data streams i.E. pipelines of instances
 * Lambdas: The big one!
@@ -46,7 +46,7 @@ var req = HttpRequest.newBuilder()
 var res = client.send(req, HttpResponse.BodyHandlers.ofString());
 ----
 
-[notes]
+[.notes]
 --
 * var: reduce repeat, beware type erasure
 * Http Client: Easy to use, Builder based
@@ -70,7 +70,7 @@ try(var in = new ByteArrayInputStream(res.body().getBytes())) {
 }
 ----
 
-[notes]
+[.notes]
 --
 * try-w-res: Close resources automatically
 * private statis Methods in Interfaces
@@ -89,7 +89,7 @@ java -XX:StartFlightRecording\
   -add-modules java.base Example.java
 ----
 
-[notes]
+[.notes]
 --
 * JPMS: encapsulation within modules
 * JFR: Record VM operation with less 1% overhead

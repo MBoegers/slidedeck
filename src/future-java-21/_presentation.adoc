@@ -20,6 +20,7 @@
 :host-name: Unknown Cnf
 :host-url: https://www.unknowconf.com
 :host-logo-style: logo
+:host-logo-url: ../../_shared/images/hosts/logo_javaland.png
 :host-twitter-url: https://twitter.com/unknownconf
 :host-twitter-name: @unknownconf
 

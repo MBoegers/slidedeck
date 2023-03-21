@@ -2,7 +2,7 @@
 
 image::images/thinking_duke.png[400,400]
 
-[notes]
+[.notes]
 --
 What we have seen and where do we find it?
 --
@@ -24,7 +24,7 @@ image::images/devjava_shot.png[Dev.java for learning]
 
 --
 
-[notes]
+[.notes]
 --
 * 10 times more JEPs that releases
 * estimated 100 times more features
@@ -48,7 +48,7 @@ image::images/devjava_shot.png[Dev.java for learning]
 image::images/CloudSurfDuke.png[]
 --
 
-[notes]
+[.notes]
 --
 I think we will see:
 

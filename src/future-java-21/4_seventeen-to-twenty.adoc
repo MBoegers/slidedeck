@@ -2,7 +2,7 @@
 
 image::images/CloudSurfDuke.png[550,550]
 
-[notes]
+[.notes]
 --
 less shocking
 --
@@ -13,7 +13,7 @@ less shocking
 * https://openjdk.org/jeps/408[Simple Web Server] 🎉
 * https://openjdk.org/jeps/413[Java Snippets in Java Doc] 🎉
 
-[notes]
+[.notes]
 --
 * Simple Web Server inside JDK for testing and prototyping
 * Snippets importable from src and can be tested
@@ -26,7 +26,7 @@ less shocking
 * Virtual Threads 🔬
 * Structured Concurrency 🔬^2^
 
-[notes]
+[.notes]
 --
 * Records deconstruction to access the inner data
 * Foreign API for nativ interaction like ML and MLIP
@@ -43,7 +43,7 @@ less shocking
 something big is coming!
 --
 
-[notes]
+[.notes]
 --
 * very few new stuff, a lot of preview and incubation of preview and incubation
 * Scoped Values: Share data within threads, siblings and children.

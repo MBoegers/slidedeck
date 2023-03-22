@@ -17,12 +17,12 @@
 :iconsdir: ../../_shared/icons
 
 // Edit host information
-:host-name: Unknown Cnf
-:host-url: https://www.unknowconf.com
+:host-name: Java Land 2023
+:host-url: https://www.javaland.eu/de/home/
 :host-logo-style: logo
 :host-logo-url: ../../_shared/images/hosts/logo_javaland.png
-:host-twitter-url: https://twitter.com/unknownconf
-:host-twitter-name: @unknownconf
+:host-twitter-url: https://twitter.com/JavaLandConf
+:host-twitter-name: @JavaLandConf
 
 include::../../_shared/hightlightjs.adoc[]
 include::../../_shared/events-on-title-and-footer.adoc[]

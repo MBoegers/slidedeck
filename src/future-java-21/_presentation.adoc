@@ -24,6 +24,8 @@
 :host-twitter-url: https://twitter.com/JavaLandConf
 :host-twitter-name: @JavaLandConf
 
+:booth_map_url: images/IMG_1302.png
+
 include::../../_shared/hightlightjs.adoc[]
 include::../../_shared/events-on-title-and-footer.adoc[]
 // ####################################################
@@ -42,5 +44,8 @@ include::7_final_thoughts.adoc[]
 // ####################################################
 // #            Presentation area  end                #
 // ####################################################
-include::../../_shared/about-slide.adoc[]
+include::../../_shared/about-slide_withbooth.adoc[]
 include::images/_sources.adoc[]
+
+// G1 macht was?
+// ZGC heißt was?

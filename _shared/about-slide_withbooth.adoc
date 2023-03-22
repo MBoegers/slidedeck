@@ -1,0 +1,34 @@
+[.columns.about]
+== Contact
+
+image::../../_shared/images/gluehbirnen.jpg[background,size=cover]
+
+[.column]
+--
+++++
+<h3>Me</h3>
+<a href="https://twitter.com/mboegie">@MBoegi</a> //
+<a href="https://github.com/mboegers">MBoegers</a>
+<br>
+<h3>adesso</h3>
+<a href="https://adesso.de">Infos</a> //
+<a href="https://www.adesso.de/de/news/blog">DevBlog</a>
+++++
+--
+
+[.column.is-one-third]
+--
+++++
+<h3>See you!</h3>
+++++
+image::{booth_map_url}[]
+--
+
+[.notes]
+--
+Follow me on Twitter for the slides.
+
+Look out for cool jobs with new Java at adesso SE.
+
+I blog about java at adesso dev blog and in my github page.
+--

@@ -9,7 +9,9 @@ image::images/umfrage.jpg[400,400]
 [.column]
 --
 image::images/entry-poll.png[Mentimeter https://www.menti.com/aljvomg56fse,300,300]
-https://www.menti.com/aljvomg56fse[menti.com/aljvomg56fse]
+Mentimeter.com:
+
+https://www.menti.com/aljvomg56fse[5520 4780]
 --
 
 === Release Cycle
@@ -39,9 +41,13 @@ https://www.menti.com/aljvomg56fse[menti.com/aljvomg56fse]
 |Oracle 2031
 |===
 
+Mentimeter.com: https://www.menti.com/aljvomg56fse[5520 4780]
+
 === Feature pace
 
 image::images/release_and_features.png[]
+
+Mentimeter.com: https://www.menti.com/aljvomg56fse[5520 4780]
 
 === Results
 

@@ -46,6 +46,3 @@ include::7_final_thoughts.adoc[]
 // ####################################################
 include::../../_shared/about-slide_withbooth.adoc[]
 include::images/_sources.adoc[]
-
-// G1 macht was?
-// ZGC heißt was?

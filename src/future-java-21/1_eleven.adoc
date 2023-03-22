@@ -73,7 +73,7 @@ try(var in = new ByteArrayInputStream(res.body().getBytes())) {
 [.notes]
 --
 * try-w-res: Close resources automatically
-* private statis Methods in Interfaces
+* private static Methods in Interfaces
 --
 
 === ... that's it.

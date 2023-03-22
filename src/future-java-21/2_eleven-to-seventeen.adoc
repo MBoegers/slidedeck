@@ -11,7 +11,7 @@ image::images/CloudSurfDuke.png[550,550]
 --
 * relativ small
 * Freed memory is handed back to OS by G1 Collector
-* Switch without Fallthrought which can yield values
+* Switch without Fallthrough which can yield values
 --
 
 === Java 13
@@ -31,7 +31,7 @@ image::images/CloudSurfDuke.png[550,550]
 * https://openjdk.org/jeps/349[JFR Event Streaming 🎉]
 * https://openjdk.org/jeps/358[Helpfull Nullpointer Exceptions 🏁]
 * https://openjdk.org/jeps/361[Finalization Switch Expression 🏁]
-* ZGC for Windows and MacOs 🛠️
+* ZGC for Windows and MacOS 🛠️
 * instanceof Patern 🔬
 * Record classes 🔬
 * jpackage tool 🔬^2^
@@ -40,7 +40,7 @@ image::images/CloudSurfDuke.png[550,550]
 --
 * JFR streams events at runtime
 * ZGC a low latency GC on big heaps
-* Nullpointer helpfull after 20+ years
+* Nullpointer helpful after 20+ years
 * Records as Immutable Data Carrier
 * jpackage can be used to generate standalone installable packages
 --

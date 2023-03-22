@@ -2,7 +2,7 @@
 
 image::images/Plug_duke.png[400,400]
 
-=== Targetted
+=== Targeted
 
 * https://openjdk.org/jeps/431[Sequenced Collection 🎉]
 
@@ -50,8 +50,8 @@ An example used in my work shop under construction and articles
 
 [source,java]
 ----
-sealed interface Kunde permits Businesskunde, Privatkunde,
-{ String name(); String mail(); }
+sealed interface Kunde permits Businesskunde, Privatkunde
+  { String name(); String mail(); }
 
 record Privatkunde(String name, String mail)
   implements Kunde {}
@@ -84,7 +84,7 @@ static double calculateMwSt(Kunde kunde, double wert) {
 --
 Each Kunde is different and is handled at ONE point and not 3 different locations.
 lead to more coherent logic.
-No default because exaustive, otherwise compile error.
+No default because exhaustive, otherwise compile error.
 --
 
 === Deconstruction
@@ -111,7 +111,7 @@ avoid getter and use the values further down the road.
 
 [source,java]
 ----
-String mailText =  """
+String mailText = """
 Hallo %s, Bitte senden Sie uns den Rechnungsbetrag in Höhe
 von %.2f€ plus %.2f€ MwSt.
 

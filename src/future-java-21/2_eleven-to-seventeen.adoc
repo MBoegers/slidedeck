@@ -1,0 +1,96 @@
+== 11 to 17
+
+image::images/CloudSurfDuke.png[550,550]
+
+=== Java 12
+
+* https://openjdk.org/jeps/346[G1 return Memory to OS] 🛠️
+* Switch Expressions Preview 🔬
+
+[.notes]
+--
+* relativ small
+* Freed memory is handed back to OS by G1 Collector
+* Switch without Fallthrough which can yield values
+--
+
+=== Java 13
+
+* https://openjdk.org/jeps/350[Dynamic App CDS 🛠]️
+* Text Block preview 🔬
+
+[.notes]
+--
+* Class data sharing: loaded class stored for later use by ClassLoader
+* Dynamic i.e. write on termination
+* Multiline texts without format operations
+--
+
+=== Java 14
+
+* https://openjdk.org/jeps/349[JFR Event Streaming 🎉]
+* https://openjdk.org/jeps/358[Helpfull Nullpointer Exceptions 🏁]
+* https://openjdk.org/jeps/361[Finalization Switch Expression 🏁]
+* ZGC for Windows and MacOS 🛠️
+* instanceof Patern 🔬
+* Record classes 🔬
+* jpackage tool 🔬^2^
+
+[.notes]
+--
+* JFR streams events at runtime
+* ZGC a low latency GC on big heaps
+* Nullpointer helpful after 20+ years
+* Records as Immutable Data Carrier
+* jpackage can be used to generate standalone installable packages
+--
+
+=== Java 15
+
+* Sealed Classes 🔬
+* https://openjdk.org/jeps/371[Hidden Class]
+* Remove of Nashorn 🚧
+* https://openjdk.org/jeps/378[Text Blocks finalization] 🏁
+* Incubation Foreign-Memory Access API 🔬^2^
+* RMI Deprecation ⚠️
+
+[.notes]
+--
+* Sealed Classes to provide developer full control
+* Hidden Class: can not be accessed from external
+* no JS Vm inside JVM
+* ForeignMemAcc: Use memory that is not exclusive
+--
+
+=== Java 16
+
+* Move to GitHub 🎉
+* Alpine Linux Port 🎉
+* https://openjdk.org/jeps/387[Elastic Meta Space] 🎉
+* Incubation Foreign Linker API 🔬^2^
+* https://openjdk.org/jeps/390[Deprecate Wrapper Class Constructor] 🛠️
+* https://openjdk.org/jeps/392[Finalization of JPackage] 🏁
+* https://openjdk.org/jeps/394[Instanceof Pattern finalization] 🏁
+* https://openjdk.org/jeps/395[Record Class Finalization] 🏁
+
+[.notes]
+--
+* Alpine fascinating for Container
+* Elastic Meta Space: freed memory from metaspace is handed back
+--
+
+=== Java 17
+
+* https://openjdk.org/jeps/356[Open Random Number API] 🛠
+* Deprecation of Applet API ⚠️
+* Hide JDK internals effectively 🚧
+* Pattern Matching for switch 🔬
+* https://openjdk.org/jeps/407[RMI Removed] 🚧
+* https://openjdk.org/jeps/409[Sealed Classes Finalization] 🏁
+* Remove AOT and JIT Compiler 🚧
+
+[.notes]
+--
+* JPMS can not be deactivated
+* RMI, AOT and JIT: there are better alternatives..
+--

@@ -10,7 +10,7 @@ require 'asciidoctor-diagram'
 # @param presentation_dir directory containing sources
 def compile_presentation(presentation_dir)
   out_dir = "_dist/#{presentation_dir}"
-  out_dir['src/'] = ''
+  out_dir['src/']=''
 
   puts "Compiling presentation '#{presentation_dir}' into '#{out_dir}'"
   system "bundle exec asciidoctor-revealjs -r asciidoctor-diagram --destination-dir=#{out_dir} --out-file=index.html -arevealjsdir=../../_reveal.js #{presentation_dir}/_presentation.adoc"
@@ -29,6 +29,7 @@ end
 
 # List all directories containing a file named '_presentation.adoc' which marks a presentation
 def list_presentation_dirs()
+  puts 'Search for presentations'
   Dir.glob('src/**/_presentation.adoc').map { |p| p.chomp('/_presentation.adoc') }
 end
 
@@ -58,8 +59,8 @@ def print_help()
   puts "\tclean/c\t- removes prior build slides"
   puts "\tbuild/b\t- builds all presentations"
   puts "\twatch/w\t- rebuilds changed presentation on save"
-  puts "\tprint/p\t- print the given presentations or asks for presentation to print"
-  puts "\tprintall/pa\t- prints all presentations"
+  puts "\tprint/p\t- prints all presentations"
+  puts "\tzip/z\t- prints all presentations"
   puts "\tnew/i n\t- generate a new presentation skeleton under name 'n'. New is not chainable!!"
   puts "\thelp/h\t- prints this help"
 end
@@ -82,6 +83,8 @@ ARGV.each { |cmd|
   when 'PRINTALL', 'PA'
     list_presentation_dirs.each { |p| print_to_pdf p }
   when 'PRINT', 'P'
+    print_to_pdf ARGV[1] != nil ? ARGV[1] : select_presentation
+  when 'ZIP', 'Z'
     print_to_pdf ARGV[1] != nil ? ARGV[1] : select_presentation
   when 'NEW', 'N'
     if ARGV[1] == nil || ARGV.length != 2

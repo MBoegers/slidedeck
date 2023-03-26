@@ -1,0 +1,48 @@
+= Daily Java 21
+:backend: revealjs
+:revealjs_theme: adesso
+:revealjs_controls: false
+:revealjs_controlsTutorial: false
+:revealjs_progress: false
+:revealjs_slideNumber: false
+:revealjs_history: true
+:revealjs_center: true
+:revealjs_transition: fade
+:revealjs_backgroundTransition: fade
+
+:imagedir: images
+
+:icons: image
+:icontype: svg
+:iconsdir: ../../_shared/icons
+
+// Edit host information
+:host-name: Java Land 2023
+:host-url: https://www.javaland.eu/de/home/
+:host-logo-style: logo
+:host-logo-url: ../../_shared/images/hosts/logo_javaland.png
+:host-twitter-url: https://twitter.com/JavaLandConf
+:host-twitter-name: @JavaLandConf
+
+:booth_map_url: images/IMG_1302.png
+
+include::../../_shared/hightlightjs.adoc[]
+include::../../_shared/events-on-title-and-footer.adoc[]
+// ####################################################
+// #            Presentation area  start              #
+// ####################################################
+
+include::0_entry.adoc[]
+include::1_eleven.adoc[]
+include::2_eleven-to-seventeen.adoc[]
+include::3_state-of-seventeen.adoc[]
+include::4_seventeen-to-twenty.adoc[]
+//include::5_state-of-twenty.adoc[]
+include::6_twentyone-prediction.adoc[]
+include::7_final_thoughts.adoc[]
+
+// ####################################################
+// #            Presentation area  end                #
+// ####################################################
+include::../../_shared/about-slide_withbooth.adoc[]
+include::images/_sources.adoc[]

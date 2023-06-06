@@ -1,4 +1,4 @@
-= New Presentation
+= Accessibility: in the Web
 :backend: revealjs
 :revealjs_theme: adesso
 :revealjs_controls: false
@@ -17,11 +17,12 @@
 :iconsdir: ../../_shared/icons
 
 // Edit host information
-:host-name: Unknown Cnf
-:host-url: https://www.unknowconf.com
+:host-name: JCON Europe 2023
+:host-url: https://2023.europe.jcon.one
 :host-logo-style: logo
-:host-twitter-url: https://twitter.com/unknownconf
-:host-twitter-name: @unknownconf
+:host-logo-url: ../../_shared/images/hosts/JCON-2023-Logo.png
+:host-twitter-url: https://twitter.com/jcon_conference
+:host-twitter-name: @jcon_conference
 
 include::../../_shared/hightlightjs.adoc[]
 include::../../_shared/events-on-title-and-footer.adoc[]
@@ -29,10 +30,13 @@ include::../../_shared/events-on-title-and-footer.adoc[]
 // #            Presentation area  start              #
 // ####################################################
 
+include::1_understand_problem.adoc[]
+include::XX_WCAG_lowhanging.adoc[]
+include::XX_tools_for_devs.adoc[]
+include::2_example_application.adoc[]
+include::3_help_for_low_sight.adoc[]
 
-
-
-
+include::0_kolobri_as_support.adoc[]
 
 // ####################################################
 // #            Presentation area  end                #

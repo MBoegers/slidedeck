@@ -17,12 +17,12 @@
 :iconsdir: ../../_shared/icons
 
 // Edit host information
-:host-name: Java Usergroup Hamburg
-:host-url: https://www.meetup.com/jug-hamburg/
+:host-name: Architekturzirkel
+:host-url: https://www.adesso.de
 :host-logo-style: logo
-:host-logo-url: ../../_shared/images/hosts/jughh_duke.png
-:host-twitter-url: https://twitter.com/jughh
-:host-twitter-name: @jughh
+:host-logo-url: ../../_shared/images/adesso_logo_NoClaim.png
+:host-twitter-url: https://twitter.com/adesso_se
+:host-twitter-name: @adesso_SE
 
 include::../../_shared/hightlightjs.adoc[]
 include::../../_shared/events-on-title-and-footer.adoc[]
@@ -75,10 +75,7 @@ String query = """
 [.notes]
 --
 * nur lesbarkeit und tool support, kein value
-* und ab Java 21 schon wieder outdated..
 * aber daraus setzten sich upgrades zusammen ;)
-
-apropos Updates!
 --
 
 === Framework Migration
@@ -89,36 +86,14 @@ See https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.7-Release-
 
 [.notes]
 --
-* Verbindungsdaten sind nun in _spring.artemis.broker-url_ kodiert
-* geht mit Boot 3 in nächste Runde
-* dann auch zwingend Java 17
-
-Also gibt es spannen?
+Verbindungsdaten sind nun in _spring.artemis.broker-url_ kodiert.
 --
-
-=== Migration Types
-
-image::images/Komplexitaet_verteiling.webp[]
-
-[.notes]
---
-* Zeit vs. Complexity therefore risk
-* unten MultilineStrings
-* Spring Boot 2.6 zu 2.7
-* Major Migrations Boot 3, JEE to Spring
-
-Wir haben gesehen, es gibt vers. Größenordnungen und oft setzten sich große aus kleinen zusammen
---
-
-=== Migration Types
-
-image::images/Komplexitaet_verteiling.webp[]
 
 == Lösung: OpenRewrite
 
 image::images/61478321.png[Open Rewrite Logo]
 
-//https://docs.openrewrite.org
+https://docs.openrewrite.org
 
 [.notes]
 --
@@ -129,7 +104,7 @@ image::images/61478321.png[Open Rewrite Logo]
 
 === Let's dive in!
 
-//Upgrade Spring Boot 2.7 to 3.0 in https://spring-petclinic.github.io/[Spring Pet Clinic]
+Upgrade Spring Boot 2.7 to 3.0 in https://spring-petclinic.github.io/[Spring Pet Clinic]
 image:images/springbootpetclinic.png[Screenshot,630,370]
 
 [.notes]
@@ -140,7 +115,7 @@ image:images/springbootpetclinic.png[Screenshot,630,370]
 
 === Configure Plugin
 
-//Auch für Gradle und ohne Modifikationen, siehe https://docs.openrewrite.org/running-recipes[Getting Started]
+Auch für Gradle und ohne Modifikationen, siehe https://docs.openrewrite.org/running-recipes[Getting Started]
 
 [source,bash]
 mvn -U org.openrewrite.maven:rewrite-maven-plugin:run
@@ -157,17 +132,9 @@ mvn -U org.openrewrite.maven:rewrite-maven-plugin:run
 ....
 --
 
-[.notes]
---
-* Per Maven CLI
-* Gradle / maven config
---
-
 === Activate Recipe
 
-//Komplette Liste verfügbar im https://docs.openrewrite.org/recipes[Recipe Katalog]
-siehe https://docs.openrewrite.org/recipes[openrewrite.org: Recipe Katalog]
-
+Komplette Liste verfügbar im https://docs.openrewrite.org/recipes[Recipe Katalog]
 
 [source,bash]
 -Drewrite.activeRecipes=\
@@ -180,7 +147,7 @@ siehe https://docs.openrewrite.org/recipes[openrewrite.org: Recipe Katalog]
 <configuration>
   <activeRecipes>
     <recipe>
-      org.openrewrite.java.RemoveUnusedImports
+      org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_0
     </recipe>
   </activeRecipes>
 </configuration>
@@ -211,12 +178,11 @@ Changes have been made to .github/workflows/maven-build.yml by:
 
 === LST
 
-der https://docs.openrewrite.org/concepts-explanations/lossless-semantic-trees[Lossless Semantic Tree]
+Sicht auf die Dinge, der https://docs.openrewrite.org/concepts-explanations/lossless-semantic-trees[Lossless Semantic Tree]
 
 [source,java]
 ....
-// 0
-class A { // 1
+class A {
   void test() {
     int a;
     a = 0;
@@ -228,48 +194,34 @@ class A { // 1
 --
 [source,bash]
 ....
--J.CompilationUnit // 0
- \-J.ClassDeclaration // 1 - start
+-J.CompilationUnit
+ \-J.ClassDeclaration
    |-J.Identifier | "A"
-   \-J.Block // 1 - end
+   \-J.Block
      \-J.MethodDeclaration | "MethodDeclaration{A{name=test,return=void,parameters=[]}}"
+       |---J.Primitive | "void"
+       |---J.Identifier | "test"
 ....
---
-
-[.notes]
---
-* Verlustfreier semantischer Baum kein Abstract Syntax Tree
-* nicht nur syntax für interpreter
-* semantik & format wird auch transportier
-
-als Ergebnis kein diff im Git
 --
 
 === Recipe
 
-https://docs.openrewrite.org/concepts-explanations/recipes[Recipe] ein ausführbares Refactoring
+Ausführbare Einheit in OpenRewrite, ein https://docs.openrewrite.org/concepts-explanations/recipes[Recipe]
 
 [source,java]
 ....
 public class MakePublic extends Recipe {
   @Override
   protected JavaVisitor<ExecutionContext> getVisitor() {
-    return new MakePublicVisitor(); // 1
+    return new ChangeTypeVisitor();
   }
   public String getDisplayName() {
-    return "Change class visibility to public 🤡";
+    return "Make Class Public";
   }
   private class MakePublicVisitor
     extends JavaVisitor<ExecutionContext> {}
 }
 ....
-
-[.notes]
---
-* möglichst atomar
-* von compilierbar zu compilierbar
-* never break philisophy
---
 
 === Visitor
 
@@ -288,43 +240,27 @@ class JavaVisitor<P> extends TreeVisitor<J, P> {
 }
 ....
 
-[.notes]
---
-* für jeden Knoten im LST gibt es eine Methode
-* liefert ergenis auch als J.*
---
-
 === Visitor Implementation
 
 [source,java]
 ....
 new JavaIsoVisitor<ExecutionContext> {
   public J.ClassDeclaration visitClassDeclaration(
-          J.ClassDeclaration cd, ExecutionContext ctx) { // 1
+          J.ClassDeclaration cd, ExecutionContext ctx) {
     cd = super.visitClassDeclaration(cd, ctx);
-    List<J.Modifier> modifiers = cd.getModifiers(); // 2
-    modifiers.removeIf( //2
+    List<J.Modifier> modifiers = cd.getModifiers();
+    modifiers.removeIf(
             m -> J.Modifier.Type.Private.equals(m.getType()));
-    // and Protected & Publicπ
-    modifiers.add(PUBLIC_MODIFIER); // 3
-    return cd.withModifiers(modifiers); // 4
+    // and Protected & Public
+    modifiers.add(PUBLIC_MODIFIER);
+    return cd.withModifiers(modifiers);
   }
 }
 ....
 
-[.notes]
---
-sieht wirr aus, wir gehen durch
-
-1. wir bearbeiten jede Klassen Declaration, auch inner classes
-2. hole aktuelle modifier
-3. lösche all die private, protected sind
-
---
-
 === Declarative YAML
 
-Be https://docs.openrewrite.org/reference/yaml-format-reference[declarative]!
+Wenn es https://docs.openrewrite.org/reference/yaml-format-reference[declarative] geht, mach es deklarativ
 
 [source,yaml]
 ....
@@ -338,13 +274,6 @@ recipeList:
       newAccessLevel: public
       matchOverrides: null
 ....
-
-[.notes]
---
-hier greife ich auf eine vorbereitetes Reciepe zu um methoden public zu machen
-
-https://docs.openrewrite.org/recipes/java/changemethodaccesslevel
---
 
 === Styles
 
@@ -378,61 +307,36 @@ if(success()){
 ....
 --
 
-[.notes]
---
-Formate sind dann wichtig wenn unkonventionelle Vereinbarungen gelten.
-Es gibt viele vorbereitete leder (noch) kein Katalog dazu, evtl. einfacher über IDE/Formatter
-
-https://docs.openrewrite.org/recipes/java/changemethodaccesslevel
---
-
 == Takeaways
 
 image:../../_shared/images/adesso_Fotos/Bilder_PPT_Notizbuch.jpg[600,447]
-
-[.notes]
---
-* code semantisch korrekt parsen, quasi lesen
-* atomare Refactorings definieren in Java
-* declarativ zu komplexen Migrations kombinieren (siehe Quarkus & Spring Boot)
-* das ganze reprodizierbar und in einem Bruchteil der Zeit
-
-Meine Manager/PO/PL wie auch immer sie bei euch heißen, Entscheider, schalten am Terminal ab.
---
-
-=== Moderne.io
-
-image::images/moderne_ui_screenshot.png[700,700]
-
-[.notes]
---
-* Frei für open Source Projekte auf GitHub
-* on Prem möglich
-* klicki bunti auf Spring updaten oder Methoden Public machen
-* Pull Requests direkt erstellen
-* auch on Prem möglich
-
-Aber Merlin das ist doch alles nur Java - nope
---
 
 === Abilities
 
 image::images/powerOfRewrite.png[background=white,600,347]
 
+=== When?
+
+* Vereinheitlichung bei unterschiedlichen Adaptionsniveaus 🧐
+* Modernisierung bei Major Updates 🤢
+* Sonar Qube Silencer 🙃
+
 [.notes]
 --
-Ich finde hier vieles mit dem ich Arbeite!
-Was vermisst ihr? lasst es uns anregen
+* List.of() wird nicht verwendet
+* Spring Framework
 --
 
-[%notitle]
-== Danke
+=== Future
 
-image:../../_shared/images/Abschied_Coole_Leute.jpeg[.stretch]
+* Basic JavaScript Support in 8.0.0 🥳
+* Var Usage Recipe(s) 🤹‍
+* C# denkbar 😉
 
 [%notitle]
 == Interaction
 
+//image::../../_shared/images/adesso_Fotos/Bilder_PPT_InteractionRoom I.jpg[background]
 image:../../_shared/images/adesso_Fotos/Bilder_PPT_InteractionRoom I.jpg[.stretch]
 
 // ####################################################

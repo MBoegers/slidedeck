@@ -110,7 +110,11 @@ image::images/Komplexitaet_verteiling.webp[]
 Wir haben gesehen, es gibt vers. Größenordnungen und oft setzten sich große aus kleinen zusammen
 --
 
-== Automate IT!
+=== Migration Types
+
+image::images/Komplexitaet_verteiling.webp[]
+
+== Lösung: OpenRewrite
 
 image::images/61478321.png[Open Rewrite Logo]
 

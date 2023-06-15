@@ -89,6 +89,10 @@ See https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.7-Release-
 Verbindungsdaten sind nun in _spring.artemis.broker-url_ kodiert.
 --
 
+=== Migration Types
+
+image::images/Komplexitaet_verteiling.webp[]
+
 == Lösung: OpenRewrite
 
 image::images/61478321.png[Open Rewrite Logo]
@@ -326,6 +330,10 @@ image::images/powerOfRewrite.png[background=white,600,347]
 * List.of() wird nicht verwendet
 * Spring Framework
 --
+
+=== https://public.moderne.io[Moderne] UI
+
+image:images/moderne_ui_screenshot.png[height=400px]
 
 === Future
 

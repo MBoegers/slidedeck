@@ -1,2 +1,11 @@
 == Image Credits
-* TODO
+
+* https://www.w3.org/StyleSheets/TR/2016/logos/W3C[WCAG Logo] from www.w3.org
+* Meme from https://i.imgflip.com/7ppbe4.jpg[imageflip.com]
+* Toolbox from https://de.freepik.com/fotos-kostenlos/diy-werkzeuge_8992057.htm#query=toolbox&position=4&from_view=search&track=sph[Racool_studio at Freepik]
+* NVDA logo from https://www.bhvd.de/bilder/nvda-box.png[BHVD Website]
+* Microsoft Narrator Logo from https://www.tenforums.com/geek/gars/images/2/types/thumb_15576170910_arrator.png[tenforums.com]
+* Apple VoiceOver Logo from https://www.apple.com/v/accessibility/r/images/shared/voiceover__e4sa7zp6ku0y_large_2x.png[Apple.com]
+* ESLint logo from https://icon-icons.com/de/symbol/eslint-logo/170171[icon-icons.com]
+* Sonar Qube logo from https://www.sonarsource.com/logos-and-usage/[Sonarsource]
+* KoliBri Logo from https://public-ui.github.io/[Public-UI.github.io]

@@ -1,5 +1,7 @@
 == Tools
 
+image::images/diy-werkzeuge.jpg[background,size=cover]
+
 [.columns]
 === Check WCAG
 
@@ -36,16 +38,3 @@ image::images/whocanuse-app.png[]
 * check for various visual impairments
 * see distribution based on Australia
 --
-
-=== Testing
-
-* VoiceOver
-* ScreenReader Std
-* GitHub App https://accesslint.com/[AccessLint]
-* Firefox Plugin https://addons.mozilla.org/de/firefox/addon/wcag-contrast-checker[WCAG Contrast Checker]
-
-=== Resources
-
-* https://public-ui.github.io/docs[KoliBri] des ITZ Bund <- Components to use
-* Vitaly Friedman https://www.smashingmagazine.com/2021/03/complete-guide-accessible-front-end-components/[A Complete Guide To Accessible Front-End Components] <- How to design
-

@@ -1,8 +1,8 @@
-== Real World!
+== Take care of own affairs
 
-image::images/adesso_dev_blog.png[.strech]
+image::images/adesso_dev_blog.png[background,size=cover]
 
-https://www.adesso.de/de/news/blog/index.jsp[adesso Dev Blog]
+//https://www.adesso.de/de/news/blog/index.jsp[adesso Dev Blog]
 
 === Missing Labels: Search
 

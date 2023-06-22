@@ -1,0 +1,72 @@
+== Disabilities
+
+image::images/disabliities.jpg[background,size=cover]
+
+[.notes]
+--
+Most people think about them.
+Das sind 7.8Mio Deutsche, 9.4%, Ü64 24.7%, Schwerbehinderte.
+
+Hohe Wahrscheinlichkeit, 6 Monate oder länger, Alterstypischer Lebenszustand beeinträchtigt zu mehr als 50%.
+
+But most of these are abel to participate in the Web.
+--
+
+=== WCAG Disabilities
+
+* visual 👁
+* auditory 🦻
+* physical 💪
+* speech 🎤
+* cognitive & neurological 🧠
+
+[.notes]
+--
+Web Content Accessibility Guidelines
+
+* in web application we are text based
+* may contain video data
+--
+
+=== Colorblindness
+
+image::images/farbsehen_farbenblind.png[]
+
+[%step]
+--
+est. 68% have regular vision, based on calculation of https://www.visionaustralia.org/[Vision Australia]
+--
+
+[.notes]
+--
+https://www.ichbinfarbenblind.de/[ichbinfarbenblind.de]
+
+Oragnge am rechten Ballon ist gleich zu grün
+--
+
+=== Low vision
+
+image::images/amd_puzzel.png[]
+
+[%step]
+--
+Altersbedingte Makula-Degeneration 10-20% of western world, source https://www.gesundheitsinformation.de/altersabhaengige-makuladegeneration-amd.html#H%C3%A4ufigkeit[Gesundheitsinformation.de]
+
+Abgrenzung der einzelnen Teile verschwimmen
+--
+
+[.notes]
+--
+* Sehnerv im bereich des schärfsten Sehens zerstört
+* Allgemeiner Blinden- und Sehbehindertenverein Berlin
+* https://www.absv.de/puzzle-makula[ABSV Simulator]
+--
+
+=== Blindness
+
+image::images/blindness_stock.jpg[width=500px]
+
+[.notes]
+--
+Augen verbinden, achtung ihr kennt die Application immerhin
+--

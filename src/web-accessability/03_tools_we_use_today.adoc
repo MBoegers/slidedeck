@@ -1,0 +1,40 @@
+== Tools
+
+image::images/diy-werkzeuge.jpg[background,size=cover]
+
+[.columns]
+=== Check WCAG
+
+[.column.is-one-third]
+image::images/aiinspector-plugin.png[]
+
+[.column]
+--
+* https://addons.mozilla.org/de/firefox/addon/ainspector-wcag[AInspector WCAG] evaluates WCAG 2.0 against current page
+* Has false negatives and requires manual checking (MC)
+* Similar available for other browsers
+--
+
+=== Choose Colors
+
+image::images/geenes-app.png[]
+
+//https://geenes.app/editor/accessibility[Geenes.app] play with colors, see WCAG impact
+[.notes]
+--
+* https://geenes.app/
+* play with colors
+* see WCAG impact
+--
+
+=== Check Colors
+
+image::images/whocanuse-app.png[]
+
+//https://www.whocanuse.com/[whocanuse.com] check for various visual impairments
+[.notes]
+--
+* https://www.whocanuse.com/
+* check for various visual impairments
+* see distribution based on Australia
+--

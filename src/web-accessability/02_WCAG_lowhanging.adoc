@@ -6,6 +6,7 @@ image::images/W3C.svg[background,size=cover]
 --
 * 61 Success Criteria with rating from A to AAA
 * A to AAA, but AAA is not recommended as general target
+* wir gehen 4 Beispiele durch
 --
 
 === Info and Relationships

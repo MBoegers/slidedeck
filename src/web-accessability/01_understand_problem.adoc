@@ -22,6 +22,8 @@ But most of these are abel to participate in the Web.
 
 [.notes]
 --
+Web Content Accessibility Guidelines
+
 * in web application we are text based
 * may contain video data
 --
@@ -38,6 +40,8 @@ est. 68% have regular vision, based on calculation of https://www.visionaustrali
 [.notes]
 --
 https://www.ichbinfarbenblind.de/[ichbinfarbenblind.de]
+
+Oragnge am rechten Ballon ist gleich zu grün
 --
 
 === Low vision
@@ -47,6 +51,8 @@ image::images/amd_puzzel.png[]
 [%step]
 --
 Altersbedingte Makula-Degeneration 10-20% of western world, source https://www.gesundheitsinformation.de/altersabhaengige-makuladegeneration-amd.html#H%C3%A4ufigkeit[Gesundheitsinformation.de]
+
+Abgrenzung der einzelnen Teile verschwimmen
 --
 
 [.notes]
@@ -59,3 +65,8 @@ Altersbedingte Makula-Degeneration 10-20% of western world, source https://www.g
 === Blindness
 
 image::images/blindness_stock.jpg[width=500px]
+
+[.notes]
+--
+Augen verbinden, achtung ihr kennt die Application immerhin
+--

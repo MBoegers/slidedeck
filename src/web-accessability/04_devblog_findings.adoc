@@ -2,7 +2,10 @@
 
 image::images/adesso_dev_blog.png[background,size=cover]
 
-//https://www.adesso.de/de/news/blog/index.jsp[adesso Dev Blog]
+[.notes]
+--
+https://www.adesso.de/de/news/blog/index.jsp[adesso Dev Blog]
+--
 
 === Missing Labels: Search
 
@@ -36,7 +39,7 @@ image::images/devblog_homelink_nocotext.png[]
 [source,html]
 ....
 <a class="logo page-scroll" href="/de/index.jsp"
-    aria-label="Got to adesso.de">
+    title="to adesso Landingpage">
   <svg aria-label="Logo adesso" class="adesso-logo" role="img"/>
 </a>
 ....

@@ -77,8 +77,8 @@ https://public-ui.github.io/[KoliBri - Public UI]
 * React, Angular, Vue.js, Solid, Preact
 * Designersystem for global styling
 
-=== READ
+//=== READ
 
-Examples:
+//Examples:
 
-* Vitaly Friedman https://www.smashingmagazine.com/2021/03/complete-guide-accessible-front-end-components/[A Complete Guide To Accessible Front-End Components] <- How to design
+//* Vitaly Friedman https://www.smashingmagazine.com/2021/03/complete-guide-accessible-front-end-components/[A Complete Guide To Accessible Front-End Components] <- How to design

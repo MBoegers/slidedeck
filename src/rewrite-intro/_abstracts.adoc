@@ -1,0 +1,42 @@
+# OpenRewrite: Automated Refactorings
+
+## Abstract
+
+### English
+
+A refactoring, as defined by Fowler, refers to improvements to existing code that often provide little, sometimes even too little, value.
+These refactorings usually do not bring immediate business value and often span the entire code base, which means they are often neglected.
+Nevertheless, they are necessary to meet requirements such as using Java 17 for Spring Boot 3 or closing security gaps.
+
+The open source project "Open Rewrite" offers a solution to perform multiple refactorings in an automated and scalable way.
+Developers can use preconfigured steps or define their own test-driven "recipes".
+These refactoring recipes can be activated in regular builds to contain technical debt or one-time via CLI to implement the content of extensive refactoring sprints in just a few hours.
+
+This session will introduce the basic concepts and techniques of Open Rewrite.
+Possible use cases will be highlighted and the configuration of both existing and custom recipes will be explained.
+Open Rewrite provides participants with a new tool that makes future refactoring projects easy and time-saving.
+
+### German
+
+Ein Refactoring, wie von Fowler definiert, bezeichnet Verbesserungen am vorhandenen Code, die häufig nur geringen, manchmal sogar zu wenig Wert bieten.
+Diese Refactorings bringen in der Regel keinen unmittelbaren Businesswert mit sich und erstrecken sich oft über die gesamte Codebasis, wodurch sie oft vernachlässigt werden.
+Dennoch sind sie notwendig, um Anforderungen wie die Nutzung von Java 17 für Spring Boot 3 oder das Schließen von Sicherheitslücken zu erfüllen.
+
+Das Open-Source-Projekt "Open Rewrite" bietet eine Lösung zur automatisierten und skalierbaren Durchführung mehrerer Refactorings.
+Entwickler:innen können vorkonfigurierte Schritte nutzen oder testgetrieben eigene sogenannten "Rezepten" definieren.
+Diese Refactoring-Rezepte können in regelmäßigen Build aktiviert werden, um technische Schulden einzudämmen oder einmalig per CLI den Inhalt von umfangreiche Refactoring-Sprints in nur wenigen Stunden umzusetzen.
+
+In dieser Session werden die grundlegenden Konzepte und Techniken von Open Rewrite vorgestellt.
+Es werden mögliche Anwendungsfälle beleuchtet und die Konfiguration sowohl vorhandener als auch eigener Rezepte erläutert.
+Mit Open Rewrite steht den Teilnehmer:innen ein neues Werkzeug zur Verfügung, das zukünftige Refactoring-Vorhaben einfach und zeitsparend gestaltet.
+
+## Gigs
+
+|===
+|Date |Host |Link
+
+|2023-06-15
+|adesso Architekturzirkel
+|internal, not published
+
+|===

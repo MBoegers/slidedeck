@@ -1,0 +1,5 @@
+== Image Credits
+
+* Project Logos from respective Project Page
+* Migration Types from https://docs.moderne.io/administrator-documentation/proof-of-value[Moderne Prove of Value]
+* Moderne UI Screenshot by Author

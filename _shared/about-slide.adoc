@@ -13,6 +13,8 @@ image::../../_shared/images/gluehbirnen.jpg[background,size=cover]
 <h3>adesso</h3>
 <a href="https://adesso.de">Infos</a> //
 <a href="https://www.adesso.de/de/news/blog">DevBlog</a>
+<h3>Approach direct</h3>
+I'm here all day with cookies!
 ++++
 --
 

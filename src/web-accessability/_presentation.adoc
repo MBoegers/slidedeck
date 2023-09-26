@@ -17,14 +17,12 @@
 :iconsdir: ../../_shared/icons
 
 // Edit host information
-:host-name: JCON Europe 2023
-:host-url: https://2023.europe.jcon.one
+:host-name: DEVOXX Belgium 2023
+:host-url: https://devoxx.be/
 :host-logo-style: logo
-:host-logo-url: ../../_shared/images/hosts/JCON-2023-Logo.png
-:host-twitter-url: https://twitter.com/jcon_conference
-:host-twitter-name: @jcon_conference
-
-:booth_map_url: images/jcon_booth.jpg
+:host-logo-url: ../../_shared/images/hosts/DEVOXX-Name-Only-TransparentBackground.png
+:host-twitter-url: https://twitter.com/Devoxx
+:host-twitter-name: @Devoxx
 
 include::../../_shared/hightlightjs.adoc[]
 include::../../_shared/events-on-title-and-footer.adoc[]
@@ -59,7 +57,7 @@ Damit wir die zweite Rolltreppe vergessen.
 --
 
 include::01_understand_problem.adoc[]
-include::02_WCAG_lowhanging.adoc[]
+
 include::03_tools_we_use_today.adoc[]
 include::04_devblog_findings.adoc[]
 include::05_what_can_I_do.adoc[]
@@ -77,5 +75,5 @@ Think till the end.
 // ####################################################
 // #            Presentation area  end                #
 // ####################################################
-include::../../_shared/about-slide_withbooth.adoc[]
+include::../../_shared/about-slide.adoc[]
 include::images/_sources.adoc[]

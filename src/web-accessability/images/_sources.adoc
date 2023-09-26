@@ -14,3 +14,4 @@
 * KoliBri Logo from https://public-ui.github.io/[Public-UI.github.io]
 * Farbenblindheits Example https://www.ichbinfarbenblind.de/simulatoren-farbenblindheit[inbinfarbenblind.de]
 * Disablilities backgroud from https://de.freepik.com/vektoren-kostenlos/behinderte-menschen-icons-set_3799745.htm#query=Behinderung&position=4&from_view=search&track=sph[ macrovector on freepik]
+* pa11y Dashboard Screenshots from https://www.lullabot.com/articles/monitoring-web-accessibility-compliance-with-pa11y-dashboard[lullabot.com]

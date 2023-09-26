@@ -2,6 +2,8 @@
 
 https://www.adesso.de/de/news/blog/schmuckes-java-project-amber-und-das-pattern-matching.jsp
 
+WCAG Checker
+
 ## Missing Labels
 
 3.3 > 3.3.2
@@ -27,22 +29,6 @@ wir könnten ein aria-label oder aria-labeled by ergänzen.
 Oder aber ein Title, der hilft allem nutzern.
 `title="Adesso Landingpage"`
 
-## Text contrast des Codes
-
-1.4 > 1.4.3
-
-### Source code listings
-
-Farben passen nicht, lets check. Lass und mal den Contrast checker fauf machen.
-
-https://www.whocanuse.com/?bg=f3f2f1&fg=0077aa&fs=16&fw=
-
-dann tweaken wir: https://geenes.app/editor/accessibility
-
-background: f3f2f1
-text is: 0077aa (300)
-text should: 006185 (400)
-
 ## Headings
 
 1.3 > 1.3.3
@@ -54,3 +40,31 @@ wir haben h2 > h1 > h3? > h4
 
 correct nesten und css anpassen s.d. aussehen wieder passt.
 CSS ist Style und sollte nicht die Struktur beeinflussen!
+
+## Text contrast des Codes
+
+1.4 > 1.4.3
+
+### Source code listings
+
+Farben passen nicht, lets check. Lass und mal den Contrast checker auf machen.
+
+https://www.whocanuse.com/?bg=f3f2f1&fg=0077aa&fs=16&fw=
+
+dann tweaken wir: https://geenes.app/editor/accessibility
+
+background: f3f2f1
+text is: 0077aa (300)
+text should: 006185 (400)
+
+## pa11y
+
+### Setup
+```shell
+brew install node
+npm install -g pa11y
+pa11y --reporter csv https://www.adesso.de/de/news/blog/index.jsp > adesso_devblog_pa11y-findings.csv
+```
+
+### pa11y Dashboard
+

@@ -27,7 +27,7 @@ Test with Screen Reader
 * Windows https://support.microsoft.com/en-us/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1[Narrator]
 --
 
-=== Optimize
+=== Analyze
 
 image::images/whocanuse-app.png[width=500]
 
@@ -45,25 +45,39 @@ image::images/please_use_html.jpg[width=500]
 
 *...*
 
-=== Enable analysis
+=== Automated analysis with Pa11y
 
-image::images/accesslint-pr.jpg[width=500]
+https://pa11y.org/[pa11y] - Toolkit to test accessibility
 
-Use https://accesslint.com/[AccessLint] GitHub App on PRs
+CI integration available as https://pa11y.org/[pa11y-ci]
+
+[source,bash]
+--
+brew install node
+npm install -g pa11y
+pa11y https://www.adesso.de/de/news/blog/index.jsp
+--
+
+[source,bash]
+....
+Results for URL: https://www.adesso.de/de/news/blog/index.jsp
+ • Error: This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.1:1. Recommendation:  change text colour to #616161.
+   ├── WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail
+   ├── #ppms_cm_footer__powered_by
+   └── <span class="ppms_cm_footer__powered_by" data-disable-select="true" id="ppms_cm_footer__powered_by">Powered by</span>
+....
 
 [.columns]
-=== Enable analysis
+=== Monitor with Pa11y
 
 [.column]
 --
-image::images/sonar-logo.svg[width=400]
-Sonar HTML rules with tag https://rules.sonarsource.com/html/tag/accessibility[_accessibility_]
+image::images/pa11y-dashboard-landing-page.jpg.webp[]
 --
 
 [.column]
 --
-image::images/eslint_logo_icon_170171.png[width=300]
-ESLint Plugin https://www.npmjs.com/package/eslint-plugin-jsx-a11y[eslint-plugin-jsx-a11y]
+image::images/pa11y-dashboard-task.jpg.webp[]
 --
 
 === Appropriate Framework

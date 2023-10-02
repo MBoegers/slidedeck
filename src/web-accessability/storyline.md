@@ -4,60 +4,40 @@ https://www.adesso.de/de/news/blog/schmuckes-java-project-amber-und-das-pattern-
 
 WCAG Checker
 
-## Missing Labels
+## Adesso Xing Link
+Its just a SVG containing no text at all!
+add aria-label for example as aria-label="adesso at Xing"
 
-3.3 > 3.3.2
-
-### Label für Input
-
-label fehlt, können wir hinzufügen `<label id="adesso-search-label" for="adesso-search">Suche</label>`
-
-### Label für button
-
-aria-label does the trick für den Button `aria-label="Suche starten"`
-
-## Link name
-
-2.4 > 2.2.4
-
-### Home link Adesso
-
-* svg hat aria-label, gut
-* a hat aber keinen
-
-wir könnten ein aria-label oder aria-labeled by ergänzen.
-Oder aber ein Title, der hilft allem nutzern.
-`title="Adesso Landingpage"`
+Now ist no violation and can be accessed by blind people.
+This small change fixed a lot of problems!
 
 ## Headings
 
-1.3 > 1.3.3
-
-### Nesting
-
 h1 > h2 > h3 > h4 ist soll
-wir haben h2 > h1 > h3? > h4
+wir haben h1 in h1 next level is h4 Oo
 
-correct nesten und css anpassen s.d. aussehen wieder passt.
-CSS ist Style und sollte nicht die Struktur beeinflussen!
-
-## Text contrast des Codes
-
+## Source code listings
 1.4 > 1.4.3
+Navigate to a listing, keep in mind DEV BLOG, with Code!
 
-### Source code listings
-
-Farben passen nicht, lets check. Lass und mal den Contrast checker auf machen.
+Some colors are reported as real bad, like the red Classes and Methods
 
 https://www.whocanuse.com/?bg=f3f2f1&fg=0077aa&fs=16&fw=
 
-dann tweaken wir: https://geenes.app/editor/accessibility
+let's tweak: https://geenes.app/editor/accessibility
 
 background: f3f2f1
+### Blue
 text is: 0077aa (300)
 text should: 006185 (400)
 
+### Red
+text is: dd4a68 (200)
+text should: ae324d (400)
+
 ## pa11y
+Okay, that was very clicky, do it with tools!
+https://pa11y.org/
 
 ### Setup
 ```shell
@@ -67,4 +47,5 @@ pa11y --reporter csv https://www.adesso.de/de/news/blog/index.jsp > adesso_devbl
 ```
 
 ### pa11y Dashboard
-
+https://user-images.githubusercontent.com/6110968/61603347-0bce1000-abf2-11e9-87b2-a53f91d315bb.jpg
+https://user-images.githubusercontent.com/6110968/62183438-05851580-b30f-11e9-9bc4-b6a4823ae9e8.jpg

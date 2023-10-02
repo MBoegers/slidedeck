@@ -9,7 +9,7 @@ image::images/contrast_checker_action.png[]
 Present with https://addons.mozilla.org/de/firefox/addon/wcag-contrast-checker[WCAG Contrast Checker] activated
 
 [.columns]
-=== Create Awareness
+=== Eat your own Dog Food
 
 [.column.is-one-third]
 --
@@ -27,25 +27,25 @@ Test with Screen Reader
 * Windows https://support.microsoft.com/en-us/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1[Narrator]
 --
 
-=== Analyze
+=== Make Problems Visible
 
 image::images/whocanuse-app.png[width=500]
 
 Check your colors with https://www.whocanuse.com/[whocanuse.com]
 
-=== Optimize
+=== Demonstrate Changes
 
 image::images/geenes-app.png[width=500]
 
 Little tweaks with https://geenes.app/[Geenes] may do the trick
 
-=== Optimize
+=== Use proper HTML
 
 image::images/please_use_html.jpg[width=500]
 
 *...*
 
-=== Automated analysis with Pa11y
+=== Automated with Pa11y
 
 https://pa11y.org/[pa11y] - Toolkit to test accessibility
 

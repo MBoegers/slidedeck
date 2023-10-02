@@ -4,12 +4,11 @@ image::images/disabliities.jpg[background,size=cover]
 
 [.notes]
 --
-Most people think about them.
-Das sind 7.8Mio Deutsche, 9.4%, Ü64 24.7%, Schwerbehinderte.
-
-Hohe Wahrscheinlichkeit, 6 Monate oder länger, Alterstypischer Lebenszustand beeinträchtigt zu mehr als 50%.
-
-But most of these are abel to participate in the Web.
+Who is disabled?
+People with a high probability to have only a 50% age typical state of live for more than 6 month, according to german law.
+That applies to approximate 9.5% and above 64 25%, one fourth!
+And on this slide are only the most prominent and visible ones and most of these are abel to participate in the Web.
+So what to target?
 --
 
 === WCAG Disabilities
@@ -24,6 +23,8 @@ But most of these are abel to participate in the Web.
 --
 Web Content Accessibility Guidelines
 
+defines five different types.
+
 * in web application we are text based
 * may contain video data
 --
@@ -36,7 +37,7 @@ est. 68% have regular vision, based on calculation of https://www.visionaustrali
 
 [.notes]
 --
-https://www.ichbinfarbenblind.de/[ichbinfarbenblind.de]
+https://www.ichbinfarbenblind.de/[ichbinfarbenblind.de] generated a version of the same picture
 
 Orange is equal to green
 --

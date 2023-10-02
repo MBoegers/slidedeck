@@ -1,40 +1,54 @@
 == Tools
 
 image::images/diy-werkzeuge.jpg[background,size=cover]
+[.notes]
+--
+I promissed to show some tools, here we go.
+I will step thought them now and enter a demo directly afterwards.
+--
+
 
 [.columns]
-=== Check WCAG
+=== AInspector
 
 [.column.is-one-third]
 image::images/aiinspector-plugin.png[]
 
 [.column]
 --
-* https://addons.mozilla.org/de/firefox/addon/ainspector-wcag[AInspector WCAG] evaluates WCAG 2.0 against current page
-* Has false negatives and requires manual checking (MC)
-* Similar available for other browsers
+A Inspector checks WCAG rules for current page
 --
 
-=== Choose Colors
+=== Geenes
 
 image::images/geenes-app.png[]
 
 //https://geenes.app/editor/accessibility[Geenes.app] play with colors, see WCAG impact
 [.notes]
 --
-* https://geenes.app/
-* play with colors
-* see WCAG impact
+Geenes.app to select best matches for back and foregrounds
 --
 
-=== Check Colors
+=== Who can use
 
 image::images/whocanuse-app.png[]
 
 //https://www.whocanuse.com/[whocanuse.com] check for various visual impairments
 [.notes]
 --
-* https://www.whocanuse.com/
-* check for various visual impairments
-* see distribution based on Australia
+whocanuse.com to check against common diseases
+--
+
+[.columns]
+=== Pa11y Stack
+
+[.column]
+image::images/pa11y-dashboard-landing-page.jpg.webp[]
+
+[.column]
+image::images/pa11y-dashboard-task.jpg.webp[]
+
+[.notes]
+--
+pa11y for automated checks and monitoring
 --

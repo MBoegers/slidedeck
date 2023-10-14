@@ -1,0 +1,51 @@
+= New Style: Data Oriented Java
+:backend: revealjs
+:revealjs_theme: adesso
+:revealjs_controls: false
+:revealjs_controlsTutorial: false
+:revealjs_progress: false
+:revealjs_slideNumber: false
+:revealjs_history: true
+:revealjs_center: true
+:revealjs_transition: fade
+:revealjs_backgroundTransition: fade
+
+:imagedir: images
+
+:icons: image
+:icontype: svg
+:iconsdir: ../../_shared/icons
+
+// Edit host information
+:host-name: ECLIPSE CON 2023
+:host-url: https://www.eclipsecon.org/2023
+:host-logo-style: logo
+:host-logo-url: ../../_shared/images/hosts/eclipsecon.ico
+:host-twitter-url: https://twitter.com/EclipseCon
+:host-twitter-name: @EclipseCon
+
+include::../../_shared/hightlightjs.adoc[]
+include::../../_shared/events-on-title-and-footer.adoc[]
+// ####################################################
+// #            Presentation area  start              #
+// ####################################################
+
+[.notes]
+--
+Hi I am Merlin, Enterprise Java Developer for more than 10 year.
+I am Glider Instructor, Volleyball Setter and in love with the new Java.
+But the _new_ ideas Pattern Matching and Data oriented Programming are not that new in general.
+In this talk I'll show you Data Oriented Programming in Java with modern Language features.
+If you wanne learn about the new features in depth, stay here and listen to Falk directly afterwards.
+--
+
+include::01_what_is_dop.adoc[]
+include::02_how_to_dop.adoc[]
+include::03_embed_into_oop.adoc[]
+include::04_final_thoughts.adoc[]
+
+// ####################################################
+// #            Presentation area  end                #
+// ####################################################
+include::../../_shared/about-slide.adoc[]
+include::images/_sources.adoc[]

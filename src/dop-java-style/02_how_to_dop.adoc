@@ -1,0 +1,179 @@
+== How to DOP
+image::../../_shared/images/adesso_Fotos/Bilder_PPT_CodeDatenschutz.jpg[background,size=cover]
+
+=== Analyze Domain
+// look for thinks to work with
+// define down to atomics
+// combine them to bigger
+
+image::images/Domain.png[]
+
+[.notes]
+--
+1. Es gibt Rechnungen und Kunden
+2. Rechnungen können intern oder extern sein
+3. interne Rechnunngen werden in den Büchern gespeicher
+4. externe Rechnungen können an Privatkunden oder Businesskunden gehen
+5. Businesskunden können Vorsteuerabzugsberechtigt
+6. Auf Rechnungen werden 10% Steuern erhoben, außer Kunden sind Abzugsberechtigt
+--
+
+=== Model only valid state
+// no use of raw type
+// restrict extension wherever possible
+image::images/BeispielKlasssenDiagramm.svg[]
+
+=== Write Domain
+
+[source,java]
+....
+sealed interface Rechnung
+  permits InterneVerechnung, ExternVersandt {}
+
+record ExternVersandt(Kunde kunde, double wert)
+  implements Rechnung {}
+
+record InterneVerechnung(String abteilung, double wert)
+  implements Rechnung { }
+....
+
+=== Write Domain
+[source,java]
+....
+// omitted interface Kunde and record Businesskunde
+
+record Privatkunde(String name, List<String> mail)
+  implements Kunde {
+    Privatkunde {
+        Objects.requireNonNull(name);
+        mail = List.copyOf(mail);
+    }
+}
+....
+
+// use sealed hierarchies
+// use records
+// write as less code as possible
+// asses data in constructors
+
+=== Write Logic - OOP
+[source,java]
+....
+static double calculateMwSt(Kunde kunde, double wert) {
+  if (kunde instanceof Privatkunde)
+    return calculateMwSt((Privatkunde) kunde, wert);
+  else if (kunde instanceof Businesskunde)
+    return calculateMwSt((Businesskunde) kunde, wert);
+  else
+    throw new IllegalArgumentException(/* */);
+}
+
+static double calculateMwSt(Privatkunde p, double wert) {
+  return wert * 0.1d;
+}
+
+static double calculateMwSt(Businesskunde b, double wert) {
+  return b.isVorsteuerAbzugsberechtigt() ? 0d : wert * 0.1d;
+}
+....
+
+=== Instanceof Pattern
+[source,java]
+....
+static double calculateMwSt(Kunde kunde, double wert) {
+  if (kunde instanceof Businesskunde b) {
+    if (b.isVorsteuerAbzugsberechtigt()) return 0.0d;
+    else return wert * 0.1d;
+  } else if (kunde instanceof Privatkunde) {
+    return wert * 0.1d;
+  } else {
+    throw new IllegalArgumentException(/* */);
+  }
+}
+....
+
+=== Switch Expression
+[source,java]
+....
+static double calculateMwSt(Kunde kunde, double wert) {
+  return switch (kunde) {
+    case Businesskunde b
+      when b.isVorsteuerAbzugsberechtigt() -> 0.0d;
+    case Businesskunde b -> wert * 0.1d;
+    case Privatkunde p -> wert * 0.1d;
+  };
+}
+....
+
+=== Deconstruct
+[source,java]
+....
+static double calculateMwSt(Kunde kunde, double wert) {
+  return switch (kunde) {
+    case Businesskunde(
+      String name, var mail, var abzugsBerechtigt)
+      when isVorsteuerAbzugsberechtigt -> 0.0d;
+    case Businesskunde b -> wert * 0.1d;
+    case Privatkunde p -> wert * 0.1d;
+  };
+}
+....
+
+=== Ignore Parts
+[source,java]
+....
+static double calculateMwSt(Kunde kunde, double wert) {
+  return switch (kunde) {
+    case Businesskunde(_, _, var abzugsBerechtigt)
+      when isVorsteuerAbzugsberechtigt -> 0.0d;
+    case Businesskunde _ -> wert * 0.1d;
+    case Privatkunde _ -> wert * 0.1d;
+  };
+}
+....
+
+// small atomic functions outside of domain classes
+// only rely on in exact type
+// write more instead of less, yes duplication are not bad in every case
+
+=== Format the Text
+[source,java]
+....
+static String produceInvoiceText(
+        Kunde kunde, double wert, double mwst) {
+  return FMT. """
+    Hallo \{
+      switch (kunde) {
+        case Privatkunde(String name, var _) -> name;
+        case Businesskunde(var name, _, _) -> name;
+      } },
+    Bitte senden Sie uns den Rechnungsbetrag in Höhe von \
+    %.2f\{ wert }€ plus %.2f\{ mwst }€ MwSt.
+
+    Mit freundlichen Grüßen
+    Merlin Bögershausen
+    """ ;
+}
+....
+
+=== Testing
+[source,java]
+....
+@Test
+void invoiceValue100() {
+  var customer = new Privatkunde("test", "test@dummy.de");
+
+  var actualMwSt = MwStRechner.calculateMwSt(customer, 100d);
+
+  assertThat(actualMwSt).isEqualTo(10d);
+}
+....
+
+[%step]
+--
+6 Test to rule them all
+--
+
+// easy because no setup
+// just JUnit (optional AssertJ and Instancio)
+// write down, test, only fey edge cases possible

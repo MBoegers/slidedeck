@@ -1,0 +1,34 @@
+== Real World
+image::images/standard-qualitaetssicherungskonzept-m.jpg[background,size=cover]
+
+=== Modules
+image::images/modularization.svg[]
+
+// modules are the building blocks of Enterprise Applications
+// modularity is what OOP is good at
+// lets use OOP to draw boarders between out modules
+// only expose needed information and APIs, f.e. no Persistence, Only a Service Interface o.s.
+
+=== Integrate in EE
+
+[source,java]
+--
+@Path("/invoice")
+public class InvoiceResource {
+  @Inject KundenRepository kundenRepo;
+  @Inject MailService mailService;
+  @GET
+  public void sendInvoice(long kundeID, double wert) {
+    var kunde = kundenRepo.findById(kundeID);
+    var mwst = MwStRechner.calculateMwSt(kunde, wert);
+    var text = InvoiceFormatter.
+        produceInvoiceText(kunde, wert, mwst);
+    mailService.sendMail(kunde, text);
+  }
+}
+--
+
+// Controller -> Services
+// Services load via Respository, apply DOP Methods, Respond
+// Core is SE only -> easy & fast to test, few overhead
+// EE Layer is very thin, switch to real SE / Spring easy!

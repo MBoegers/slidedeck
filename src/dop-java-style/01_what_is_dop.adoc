@@ -6,11 +6,14 @@ image::images/Monolith.png[width="50%"]
 
 [.notes]
 --
-Bach 10 year+ back in time Application usually solved the problem for an organisation with one solution.
-Applications back then where developed to model one organisation at a time.
-May they be whole companies or "only" one department, big monilithic applications were developed.
+Back 10 years+.
+Back in that time Application usually solved the problem for an organisation with one solution.
+
+May they be whole companies or "only" one department, big monolithic applications were the result.
+
 It's nothing wrong with one UI and shared model to with modules doing *there* thing.
-It simply does not scale that idependently and are not that easyly updated one by one.
+
+It simply does not *scale* that dependently and are not that *easily updated* one by one.
 --
 
 === Self-Contained Systems
@@ -19,7 +22,12 @@ image::images/SelfcontainedSystems.png[width="50%"]
 [.notes]
 --
 I hope that was the reason why your applications were migrated to microservivces.
-Microservices or Self-contained Systems are more oriented on doing one thing i.e. Process or process steps correctly and are there for tighter tided to the data.
+
+Microservices or Self-contained Systems are more oriented on doing one thing i.e. Process or process steps correctly and are there for tighter coupled to the data needed for there work.
+
+No need to share anemic model and handle all the edge-cases every time.
+
+One step further is even possible.
 --
 
 === Even smaller
@@ -27,16 +35,12 @@ image::images/konzept-der-cyber-server-cloud-datenspeicherung-cloudscape-digital
 
 [.notes]
 --
-Application are even more tide to data of you done the lifting into the cloud.
-With Azure Functions or AWS Lamdas the data is even more in focus and less the overall process/organization.
+Application in the cloud are even more tide to data.
+
+With Azure Functions or AWS Lamdas the data is main focus and less the overall process/organization.
+
 Functions do a thing with data, but the data only has a shape no logic.
 Logic is implemented dependently from the data.
-
-With the architecure the way of programming envoled also.
-
-Data Oriented Programming focuses on the data and enforces the separation of data and logic.
-This enables the possibility to modle Domain as immutable, error state free, nothing but the data
-Features (in terms of new logic) does not infer domain objects, it grows besides.
 --
 
 === Data Orientation means
@@ -47,13 +51,14 @@ Features (in terms of new logic) does not infer domain objects, it grows besides
 
 [.notes]
 --
-Data Oriented Programming focuses on data and the separation between data and logic
+Data Oriented Programming as the name suggests focuses on data and the separation between data and logic
 guides:
 
-* focus on empty interfaces
-* no logic in classes
+* Interfaces are there to model choices in type, no need for methods
+* Records work as carrier of data and ofter are used nested, only few methods are needed
 * static Methods without state do the "heavy" lifting
 
-This enables the possibility to modle Domain as immutable, error state free, nothing but the data
+This enables the possibility to modle Domain as immutable, error state free, nothing but the data.
+
 Features (in terms of new logic) does not infer domain objects it grows besides
 --

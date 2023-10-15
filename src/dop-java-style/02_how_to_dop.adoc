@@ -2,10 +2,6 @@
 image::../../_shared/images/adesso_Fotos/Bilder_PPT_CodeDatenschutz.jpg[background,size=cover]
 
 === Analyze Domain
-// look for thinks to work with
-// define down to atomics
-// combine them to bigger
-
 image::images/Domain.png[]
 
 [.notes]
@@ -22,6 +18,15 @@ image::images/Domain.png[]
 // no use of raw type
 // restrict extension wherever possible
 image::images/BeispielKlasssenDiagramm.svg[]
+[.notes]
+--
+Records or Immutable values
+
+Interfaces represent choice in type, like Privat-/Businesskunden or Rechnungen
+
+No methods/interactions only connections.
+
+--
 
 === Write Domain
 
@@ -34,8 +39,18 @@ record ExternVersandt(Kunde kunde, double wert)
   implements Rechnung {}
 
 record InterneVerechnung(String abteilung, double wert)
-  implements Rechnung { }
+  implements Rechnung {}
 ....
+
+[.notes]
+--
+sealed Rechnung because it can only have 2 types, other types are not modeled into the domain.
+
+Records (implicitly final)
+
+String and double are not mutable, nice!
+But String could be null, and about mutable data?
+--
 
 === Write Domain
 [source,java]
@@ -51,10 +66,16 @@ record Privatkunde(String name, List<String> mail)
 }
 ....
 
-// use sealed hierarchies
-// use records
-// write as less code as possible
-// asses data in constructors
+[.notes]
+--
+Use the conical constructor to implement checks and deep copies
+
+This will help to make erroneous state unreachable.
+
+If there would be a PrivatKunde without a List (not empty, without) modle such Kunde independently!
+
+We still need logic, do we?
+--
 
 === Write Logic - OOP
 [source,java]
@@ -77,60 +98,122 @@ static double calculateMwSt(Businesskunde b, double wert) {
 }
 ....
 
+[.notes]
+--
+To do small steps I present you a version using OOP techniques as starting point.
+
+Yes I use instanceof and I am not a shame! Yes could be done in an other way, it's to keep the API.
+
+A big problem I see is the distributed logic here, even if we include it into the if-Branches.
+Another Big problem which will lead to ClassCastExceptions while development or operation, the instanceof-cast problem.
+--
+
 === Instanceof Pattern
 [source,java]
 ....
 static double calculateMwSt(Kunde kunde, double wert) {
-  if (kunde instanceof Businesskunde b) {
+  if (kunde instanceof Privatkunde) {
+    return wert * 0.1d;
+  } else if (kunde instanceof Businesskunde b) {
     if (b.isVorsteuerAbzugsberechtigt()) return 0.0d;
     else return wert * 0.1d;
-  } else if (kunde instanceof Privatkunde) {
-    return wert * 0.1d;
   } else {
     throw new IllegalArgumentException(/* */);
   }
 }
 ....
 
+[.notes]
+--
+There is a pattern for this, called instanceof pattern, it basically does the same but in a safe way.
+
+Never ever forget to change the cast type after copy'n'past.
+
+We have no distributed logic and no cause for ClassCastExcpetion.
+But the if cascade will grow and become an ugly mess, especially if new types are introduced.
+
+Oh hello IllegalArgumentException..
+--
+
 === Switch Expression
 [source,java]
 ....
 static double calculateMwSt(Kunde kunde, double wert) {
   return switch (kunde) {
+    case Privatkunde p -> wert * 0.1d;
     case Businesskunde b
       when b.isVorsteuerAbzugsberechtigt() -> 0.0d;
     case Businesskunde b -> wert * 0.1d;
-    case Privatkunde p -> wert * 0.1d;
   };
 }
 ....
+
+[.notes]
+--
+There is an expression that helps us with this problem, the freshly recovered switch!
+
+We still use an instanceof pattern but this time the compiler can use the information from the data model to determine if we covered all cases.
+
+It also includes the when-part into the analysis. this when guards the branch and check additional conditions.
+In this case if a Kunde is allowed to pay 0% MwSt..
+
+No default branch is needed and the compiler throws an error if a new class is introduced.
+--
 
 === Deconstruct
 [source,java]
 ....
 static double calculateMwSt(Kunde kunde, double wert) {
   return switch (kunde) {
-    case Businesskunde(
-      String name, var mail, var abzugsBerechtigt)
-      when isVorsteuerAbzugsberechtigt -> 0.0d;
-    case Businesskunde b -> wert * 0.1d;
     case Privatkunde p -> wert * 0.1d;
+    case Businesskunde(String n, var m, var noMwSt)
+      when noMwSt -> 0.0d;
+    case Businesskunde b -> wert * 0.1d;
   };
 }
 ....
+
+[.notes]
+--
+I only relay in contained data and not the object a the whole.
+
+Here I use the deconstruction pattern to take the kunde apart and use portions inside the when.
+
+Now I have multiple not needed Variables, like n and m which are name and Mailadresse,
+
+Important but they do not contribute to the solution, they only produce noise and motivate the add not related logic.
+--
 
 === Ignore Parts
 [source,java]
 ....
 static double calculateMwSt(Kunde kunde, double wert) {
   return switch (kunde) {
-    case Businesskunde(_, _, var abzugsBerechtigt)
-      when isVorsteuerAbzugsberechtigt -> 0.0d;
-    case Businesskunde _ -> wert * 0.1d;
     case Privatkunde _ -> wert * 0.1d;
+    case Businesskunde(_, _, var noMwSt) when noMwSt -> 0.0d;
+    case Businesskunde _ -> wert * 0.1d;
   };
 }
 ....
+
+[.notes]
+--
+Here I get rid of everything not directly needed.
+
+The I only check the type but mark the variable as unused with a _, there will be no binding.
+This lil trick works on catch as well..
+
+Now we have reached the end, for the current version of Java.
+We have a solution that
+
+* is type safe
+* deals with new type
+* focus only on the data needed
+* is very concise, compared to the first version
+
+Last thing I want to show is a later open for dicussion, it is perfektly fine java.
+It may lack style :D
+--
 
 // small atomic functions outside of domain classes
 // only rely on in exact type
@@ -144,11 +227,12 @@ static String produceInvoiceText(
   return FMT. """
     Hallo \{
       switch (kunde) {
-        case Privatkunde(String name, var _) -> name;
+        case Privatkunde(String name, _) -> name;
         case Businesskunde(var name, _, _) -> name;
       } },
     Bitte senden Sie uns den Rechnungsbetrag in Höhe von \
-    %.2f\{ wert }€ plus %.2f\{ mwst }€ MwSt.
+    %.2f\{ wert }€ plus %.2f\{ mwst }€ MwSt \
+    %2.f\{ wert + mwst }.
 
     Mit freundlichen Grüßen
     Merlin Bögershausen
@@ -156,24 +240,15 @@ static String produceInvoiceText(
 }
 ....
 
-=== Testing
-[source,java]
-....
-@Test
-void invoiceValue100() {
-  var customer = new Privatkunde("test", "test@dummy.de");
-
-  var actualMwSt = MwStRechner.calculateMwSt(customer, 100d);
-
-  assertThat(actualMwSt).isEqualTo(10d);
-}
-....
-
-[%step]
+[.notes]
 --
-6 Test to rule them all
---
+Let this sink in.
 
-// easy because no setup
-// just JUnit (optional AssertJ and Instancio)
-// write down, test, only fey edge cases possible
+We work with data at the place where it is needed and interpolate the String template with Formating informatione.
+This of this as a Method call for String.format(), it is nothing less but with Multiline Strings and Expressions within.
+
+For the Record, I am fan of the curly brace notation.
+It indicates what it is, a Java Block within a String.
+
+But I am not yet done with this one.
+--

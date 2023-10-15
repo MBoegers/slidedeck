@@ -33,11 +33,14 @@ include::../../_shared/events-on-title-and-footer.adoc[]
 [.notes]
 --
 Hi I am Merlin, Enterprise Java Developer for more than 10 year.
-I am Glider Instructor, Volleyball Setter and in love with the new Java.
+I am Glider Instructor, Volleyball Setter and in love with the _new_ Java.
 But the _new_ ideas Pattern Matching and Data oriented Programming are not that new in general.
 In this talk I'll show you Data Oriented Programming in Java with modern Language features.
 If you wanne learn about the new features in depth, stay here and listen to Falk directly afterwards.
 --
+
+== Warning
+Heavy use of preview features!
 
 include::01_what_is_dop.adoc[]
 include::02_how_to_dop.adoc[]

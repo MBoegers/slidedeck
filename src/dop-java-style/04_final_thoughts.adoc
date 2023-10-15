@@ -9,6 +9,16 @@ For every te am there are different trade-offs:
 * Testability - no brain needed
 * Performance - don't guess, measure!
 
+[%step]
+--
+Micro steps and huge gain for small disruption.
+--
+
+=== Try it!
+image::images/github_dop-java.png[background,size=cover]
+
+https://github.com/MBoegers/DataOrientedJava[GitHub.com/MBoegers/DataOrientedJava]
+
 // === Readability
 // patterns are great
 // switch is great

@@ -2,9 +2,10 @@
 ++++
 <div class="event">
 	<div class="participant">
-		<img src="../../_shared/images/mboegers.jpg" class="logo">
+		<img src="../../_shared/images/merlin-at-devoxx.jpg" class="logo">
 		<div class="name">
 			<p><a href="https://mboegers.github.io">Merlin B&ouml;gershausen</a></p>
+			<p><a href="https://fosstodon.org/@MBoegie" title="Merlin on Fosstodon">MBoegie@fosstodon.org</a></p>
 			<p><a href="https://twitter.com/mboegie" title="Merlin on Twitter">@mboegie</a></p>
 		</div>
 	</div>
@@ -31,7 +32,7 @@
         </div>
     </div>
     <div class="participant">
-        <img src="../../_shared/images/mboegers.jpg" class="logo">
+        <img src="../../_shared/images/merlin-at-devoxx.jpg" class="logo">
         <a href="https://www.adesso.de/de/"><img src="../../_shared/images/adesso_logo_NoClaim.png" class="logo"></a>
         <div class="name"><p>
             Merlin B&ouml;gershausen

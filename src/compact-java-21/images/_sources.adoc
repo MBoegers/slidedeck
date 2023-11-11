@@ -4,3 +4,5 @@
 * Chaos image from https://de.freepik.com/vektoren-kostenlos/fuehrungskraefte-loesen-probleme-und-leiten-die-organisation-an-geschaeftliche-hindernisse-zu-ueberwinden-um-die-geplanten-geschaeftsziele-zu-erreichen_29175410.htm#query=Chaos&position=42&from_view=search&track=sph[jcomp] on Freepik
 * Stagelights from https://de.freepik.com/fotos-kostenlos/projektor-buehnenbeleuchtung_24515767.htm#query=sieger&from_query=Siegerehrung&position=7&from_view=search&track=sph[vector_corp] on Freepik
 * Collection Hirachy by https://cr.openjdk.org/~smarks/collections/SequencedCollectionDiagram20220216.png[Stuart Marks]
+* Gears from https://www.freepik.com/free-photo/closeup-shot-dirty-metal-gears-grid-light_12651417.htm#query=Grind%20gears&position=7&from_view=search&track=ais[wirestock] on Freepik
+

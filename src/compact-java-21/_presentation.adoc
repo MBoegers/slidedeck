@@ -234,7 +234,7 @@ Natürlich führt das zu juristischen Problemen und im Zweifel müssen sie tats�
 Wie bei jeder Auseinandersetzung sich zu merken was die Schritte waren, doch Zombies sind nicht die hellsten also wird alles gespeichert.
 --
 
-== Needs
+=== Needs
 * first and last letter
 * keep order and travers revers
 * add and remove at both ends
@@ -353,24 +353,168 @@ see https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Seque
 
 === Abschluss
 
+== learn Java, it's easy
+image::images/auto-feldweg.jpg[background,size=cover]
 
+[.notes]
+--
+Java ist eine Sprache mit Enterprise Fokus.
+Der Einstiegserfahrung wurde nicht besonders viel Aufmerksamkeit geschenkt.
 
-== JEP 445 Unnamed Classes and Instance Main
-// Raketen Start Bild
-// die Zombies wollen es selber Warten
-// Dummerweise sind sie nicht besonders visiert und lernen erst Java
-// Es reicht Strings zu interpolieren, wir bauen es als eine kleine Main Methode
+Erinnert euch mal daran wie oft ihr Dinge akzeptieren musstet am Anfang.
+--
+
+=== Main
+[source,java]
+....
+public class Main {
+  public static void main(String[] args) {
+    System.out.println("Hello 🧟‍-Land");
+  }
+}
+....
+
+[.notes]
+--
+Enthaltene Konzepte sind 10
+
+* class
+* visibility
+* static
+* methods
+* method parameter
+* variables
+* array
+* method call
+* entry point
+
+--
+
+=== Flexible launching
+Allow all non-private classes
+
+from 3 default constructor mandatory
+
+. `static void main(String[] args)`
+. `static void main()`
+. `void main(String[] args)`
+. `void main()`
+
+[.notes]
+--
+Versteckte Konzepte die den Einstieg erleichtern:
+
+* Starten von einer Instance-main Methode
+* keine static main mit parameter String[] aber static main without parameter take that
+* keine static main methode aber non-private NoArgsConstructor and a non-private main methode then construct the class and call main
+* wenn eine main methode mit parametern da ist call diese, sonst die ohne parameter
+--
+
+=== Flexible launching
+[source,java]
+....
+public class Main {
+  public static void main(String[] args) {
+    System.out.println("Hello 🧟‍-Land");
+  }
+}
+....
 
 [source,java]
 ....
-String name = "Merlin";
-double value = 35.0;
+class Main {
+  void main() {
+    System.out.println("Hello 🧟‍-Land");
+  }
+}
+....
+
+[.notes]
+--
+Durch das neue flexibile lauch protokoll kann das Programm zuammmen gekürzt werden.
+Jetzt muss "nur" noch das Konstruct Class akzeptiert werden, doch das kommt auch noch weg.
+
+Dazu die Frage, wo genau "legt" diese Klasse, also zu welchem Package gehört sie.
+--
+
+=== Grind the Gears!
+image::images/closeup-shot-dirty-metal-gears-grid-light.jpg[background,size=cover]
+
+[.notes]
+--
+Die Klasse ist der Startpunkt und referenziert andere Klassen.
+Der Startpunkt sollte idr. nicht referenziert werden (circular dependency).
+Sie braucht also keinen Namen, package und module.
+
+Um eine Instanz zu erzeugen braucht es auch keine Konfiguration, also keinen besonderen Konstruktor.
+
+Hier lässt sich doch eine kleine Einschränkung einbauen und dann passt das Lauchnprogramm mit rein!
+
+Auftritt Unnamed Class
+--
+
+=== Unnamed Class
+
+==== SomeName.java
+
+[source,java]
+....
+void main() {
+  System.out.println("Hello 🧟-Land");
+}
+....
+
+==== 🚀 Launch 🚀
+
+[source,shell]
+....
+$ java SomeName.java
+Hello 🧟-Land
+....
+
+[.notes]
+--
+Einschränkung ist: alles kommt in eine Klasse
+
+Dann implizieren wir: Die Klasse die hat keinen Namen, lebt im unnamed package im unnamed module
+
+schon kann die Klasse gelaunched werden und die Einsteiger:innen müssen genau minimal wenig kennenlernen.
+okay Script Sprachen brauchen noch weniger, aber irgendwo ist schluss
+--
+
+== Combine
+
+[source,java]
+....
+void main() {
+    System.out.println("Goodbye Info Days")
+}
+....
+
+++++
+<div style="margin-left: 47px; margin-right: 47px ">
+    <img style="float: left; width: 37%" src="images/steckpuzzel.jpg" />
+    <img style="float: right; width: 50%" src="images/SequencedCollectionDiagram20220216.png" />
+</div>
+++++
+
+
+=== Print invoice
+
+[source,java]
+....
+int value = 34;
 double tax = value * 0.1;
+List<String> brainCarrier = //..
 
 void main() {
-    System.out.println(FMT."...");
-}
+  FMT."""
+  Hi %s\{ brainCarrier.reversed().getFirst() },
+  please send %.2f\{ value + tax }€ to us or we eat you brain.
 
+  Sincerely
+    The 🧟s""";
+}
 ....
 
 // ####################################################

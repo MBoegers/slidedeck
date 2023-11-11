@@ -1,0 +1,6 @@
+== Image Credits
+* Plants vs Zombies Wallpaper from http://images5.fanpop.com/image/photos/29000000/Plants-vs-Zombies-Wallpaper-plants-vs-zombies-29019425-1900-1200.jpg[Fanpop]
+* What do we want Meme from https://imgflip.com/i/85ojrw[imgflip]
+* Chaos image from https://de.freepik.com/vektoren-kostenlos/fuehrungskraefte-loesen-probleme-und-leiten-die-organisation-an-geschaeftliche-hindernisse-zu-ueberwinden-um-die-geplanten-geschaeftsziele-zu-erreichen_29175410.htm#query=Chaos&position=42&from_view=search&track=sph[jcomp] on Freepik
+* Stagelights from https://de.freepik.com/fotos-kostenlos/projektor-buehnenbeleuchtung_24515767.htm#query=sieger&from_query=Siegerehrung&position=7&from_view=search&track=sph[vector_corp] on Freepik
+* Collection Hirachy by https://cr.openjdk.org/~smarks/collections/SequencedCollectionDiagram20220216.png[Stuart Marks]

@@ -152,6 +152,10 @@ image::images/maoam.jpg[]
 
 [source,java]
 ....
+String name = "Merlin";
+int value = 34;
+double tax = value * 0.1;
+
 String invoiceTxt = STR."""
   Hi \{ name },
   please send \{ value + tax }€ to us or we eat you brain.
@@ -176,6 +180,8 @@ Er prozessiert einen ein StringTemplate zu einem String, und es gibt noch weiter
 === With Format
 [source,java]
 ....
+// String name; int value; double tax;
+
 String invoiceTxt = FMT."""
   Hi %s\{ name },
   please send %.2f\{ value + tax }€ to us or we eat you brain.
@@ -194,19 +200,37 @@ Format und Wert sind zusammen, ein Durchgäniger Lesefluss und nur eine Handvoll
 Ist das wirklich alles was wir wollen? Nein wir wollen auch erweitern.
 --
 
-=== are you entertained? meme here?
+//=== are you entertained? meme here?
+//oder etwas zum thema, wir brauchen aber mehr
 
 === Code Behind
 [source,java]
 ....
-var SHUFFLER = StringTemplate.Processor.of(
-(StringTemplate st) -> {
-  var values = st.values().reversed().iterator();
-  var sb = new StringBuilder();
-  st.fragments().reversed()
-    .forEach(frag -> sb.append(frag).append(values.next()));
-  return sb.toString();
-});
+@FunctionalInterface
+public interface Processor<R, E extends Throwable> {
+
+  // transform StringTemplate to Result
+  R process(StringTemplate stringTemplate) throws E;
+
+  // Factory Method for Processors
+  static <T> Processor<T, RuntimeException>
+    of(Function<? super StringTemplate, ? extends T> process){}
+}
+....
+
+=== Code Behind
+[source,java]
+....
+class Shuffler implements Processor<String, Throwable> {
+  @Override
+  public String process(StringTemplate st) throws Throwable {
+    var values = st.values().reversed().iterator();
+    var sb = new StringBuilder();
+    st.fragments().reversed()
+      .forEach(frag -> sb.append(frag).append(values.next()));
+    return sb.toString();
+  }
+} // new Shuffler().""
 
 var JSON = StringTemplate.Processor
   .of(st -> new JSONObject(st.interpolate()));
@@ -220,8 +244,8 @@ Dieses hat eine Liste fragments und values, die ausgewerteten Werte der Platzhal
 Die Fragmente sind die Strings vor und nach dem Platzhaltern.
 --
 
-=== Abschluss
-//todo kleiner Abschluss
+=== PoJo to String Full Circle
+image::images/18879892_v1030-030.jpg[background,size=cover]
 
 == 🛫 -> 🛬
 image::images/29175410_na_march_19.jpg[background,size=cover]
@@ -254,6 +278,10 @@ deque.getFirst(); deque.getLast();
 
 👑Deque
 
+[.notes]
+--
+--
+
 === Order'n'Reverse
 [source,java]
 ....
@@ -266,6 +294,10 @@ for(var it = deque.descendingIterator(); it.hasNext();){ }
 ....
 
 👑Sorted Set
+
+[.notes]
+--
+--
 
 === Add'n'Remove
 [source,java]
@@ -283,6 +315,10 @@ deque.addFirst("Hello"); deque.addLast("World");
 ....
 
 👑Deque
+
+[.notes]
+--
+--
 
 === And the winner is ⁉
 image::images/projektor-buehnenbeleuchtung.jpg[background,size=cover]
@@ -351,7 +387,22 @@ interface SequencedMap<K,V> extends Map<K,V> {
 
 see https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/SequencedMap.html[SequencedMap] JavaDoc.
 
-=== Abschluss
+=== Why now?
+[quote,Søren Aabye Kierkegaard 1844,]
+--
+We live forward, but we understand backward.
+--
+
+[.notes]
+--
+Warum bekommen wir das jetzt, dass Collection API gibt es schon seit Jahre.
+
+Brain Goetz musste unter anderem auf der Devoxx zugeben "We live forward, but we understand backward."
+
+Diese Asymetrie wurde einfach vergessen, dies macht es vielen schwer die API zu verstehen und/oder mit ihnen zu arbeiten.
+
+Jetzt gibt es in der Colelction API nicht nur Reihenfolge sonder auch eine API die dies repräsentiert.
+--
 
 == learn Java, it's easy
 image::images/auto-feldweg.jpg[background,size=cover]
@@ -374,6 +425,11 @@ public class Main {
 }
 ....
 
+[%step]
+--
+Public Class with public static main with array parametern.
+--
+
 [.notes]
 --
 Enthaltene Konzepte sind 10
@@ -392,8 +448,6 @@ Enthaltene Konzepte sind 10
 
 === Flexible launching
 Allow all non-private classes
-
-from 3 default constructor mandatory
 
 . `static void main(String[] args)`
 . `static void main()`
@@ -482,7 +536,7 @@ schon kann die Klasse gelaunched werden und die Einsteiger:innen müssen genau m
 okay Script Sprachen brauchen noch weniger, aber irgendwo ist schluss
 --
 
-== Combine
+== And now as one
 
 [source,java]
 ....
@@ -517,6 +571,21 @@ void main() {
 }
 ....
 
+=== For all, Newbie or Hero
+image::images/_716929d6-b0e0-4ab1-a387-e4c2cb2fae94.jpg[background,size=cover]
+
+[.notes]
+--
+Zum schluss möchte ich noch einmal schnell repatulieren was wir heute gesehen haben.
+Antworten auf drei häufige "why havn't they simply"-Fragen.
+String interpolation um Werte typsicher, formatiert in Strings einzufügen oder sie sogar in Objekte überführen.
+
+Collections die nicht nur eine Ordnung respektieren sondern diese auch in der API wiederspiegeln.
+
+Und abschließend das neue, minimalistisch starten von Java Anwendungen.
+
+Von alle den drei Aspekte werden sowohl richtige Experten und Neulinge in den ersten Minuten profitieren.
+--
 // ####################################################
 // #            Presentation area  end                #
 // ####################################################

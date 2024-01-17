@@ -1,0 +1,42 @@
+=== Let's Start 🏃🏾‍🏃🏾‍
+
+//Upgrade Spring Boot 2.7 to 3.0 in https://spring-petclinic.github.io/[Spring Pet Clinic]
+image:images/springbootpetclinic.png[Screenshot,630,370]
+
+[.notes]
+--
+* Lasst uns eine einfache Demo machen
+* Spring Boot 2.7 auf Spring Boot 3.2
+* Spring Boot Petclinic manuell zurueckgesetzt
+--
+
+=== Activate Recipe
+
+Migrate to Spring Boot 3.2 (from 2.0 😱🤯)
+
+📝 Recipe https://docs.openrewrite.org/recipes/java/spring/boot3/upgradespringboot_3_2[UpgradeSpringBoot_3_2]
+
+[source,bash]
+....
+-Drewrite.recipeArtifactCoordinates=\
+  org.openrewrite.recipe:rewrite-spring:RELEASE \
+-Drewrite.activeRecipes=\
+  org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_2
+....
+
+=== Refactor!
+[source,bash]
+....
+Changes have been made to src/main/java/o/s/s/p/v/Vet.java by:
+ o.o.j.spring.boot3.UpgradeSpringBoot_3_2
+  o.o.j.spring.boot3.UpgradeSpringBoot_3_1
+   o.o.j.spring.boot3.UpgradeSpringBoot_3_0
+    o.o.j.migrate.UpgradeToJava17
+     o.o.j.migrate.Java8toJava11
+      o.o.j.migrate.JavaVersion11
+       o.o.j.migrate.UpgradeJavaVersion: {version=11}
+     o.o.j.migrate.JavaVersion17
+      o.o.j.migrate.UpgradeJavaVersion: {version=17}
+    o.o.j.migrate.jakarta.JavaxMigrationToJakarta
+....
+

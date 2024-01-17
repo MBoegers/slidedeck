@@ -1,0 +1,45 @@
+[%notitle]
+== Takeaways
+
+image:../../_shared/images/adesso_Fotos/Bilder_PPT_Notizbuch.jpg[.stretch]
+
+=== Abilities
+
+image::images/powerOfRewrite.png[background=white,600,347]
+
+[.columns]
+=== Write your Own
+
+[.column]
+--
+1. Declarative
+2. Refaster Templates
+3. Imperative
+
+Always test driven, see you at JavaLand
+--
+
+[.column]
+--
+image::images/Bildschirmfoto 2024-01-16 um 13.07.09.png[]
+--
+
+[.columns]
+=== Moderne
+[.column]
+image:images/moderne_ui_screenshot.png[height=400px]
+
+[.column]
+--
+https://public.moderne.io[Moderne] UI
+
+https://docs.openrewrite.org/[Open Rewrite] Docs
+
+https://www.youtube.com/channel/UCQmEmxQd0DP7TqmNOKjSnvg[Moderne Youtube] Channel
+--
+
+[%notitle]
+== Interaction
+
+//image::../../_shared/images/adesso_Fotos/Bilder_PPT_InteractionRoom I.jpg[background]
+image:../../_shared/images/adesso_Fotos/Bilder_PPT_InteractionRoom I.jpg[.stretch]

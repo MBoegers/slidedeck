@@ -1,0 +1,117 @@
+
+== What if? And how?
+image::images/student-posiert-im-klassenzimmer.jpg[background,size=cover]
+
+=== LST
+
+//Sicht auf die Dinge, der https://docs.openrewrite.org/concepts-explanations/lossless-semantic-trees[Lossless Semantic Tree]
+
+[source,java]
+....
+class A {
+  void test() {
+    int a;
+    a = 0;
+  }
+}
+....
+
+[%step]
+--
+[source,bash]
+....
+-J.CompilationUnit
+ \-J.ClassDeclaration
+   |-J.Identifier | "A"
+   \-J.Block
+     \-J.MethodDeclaration | "MethodDeclaration{A{name=test,return=void,parameters=[]}}"
+       |---J.Primitive | "void"
+       |---J.Identifier | "test"
+....
+--
+
+=== Imperative Recipe
+
+//Ausführbare Einheit in OpenRewrite, ein https://docs.openrewrite.org/concepts-explanations/recipes[Recipe]
+
+[source,java]
+....
+public class MakePublic extends Recipe {
+  @Override
+  protected JavaVisitor<ExecutionContext> getVisitor() {
+    return new ChangeTypeVisitor();
+  }
+  public String getDisplayName() {
+    return "Make Class Public";
+  }
+  private class MakePublicVisitor
+    extends JavaVisitor<ExecutionContext> {}
+}
+....
+
+=== Visitor
+
+Bearbeite den LST mit https://docs.openrewrite.org/concepts-explanations/visitors[Visitor]s
+
+[source,java]
+....
+class JavaVisitor<P> extends TreeVisitor<J, P> {
+  J visitStatement(Statement statement) {}
+  J visitAnnotatedType(J.AnnotatedType annotatedType)  {}
+  J visitAnnotation(J.Annotation annotation) {}
+  J visitAssert(J.Assert azzert) {}
+  J visitAssignment(J.Assignment assign) {}
+  J visitAssignmentOperation(J.AssignmentOperation assignOp) {}
+  //...
+}
+....
+
+=== Visitor Implementation
+
+[source,java]
+....
+new JavaIsoVisitor<ExecutionContext> {
+  public J.ClassDeclaration visitClassDeclaration(
+          J.ClassDeclaration cd, ExecutionContext ctx) {
+    cd = super.visitClassDeclaration(cd, ctx);
+    List<J.Modifier> modifiers = cd.getModifiers();
+    modifiers.removeIf(
+            m -> J.Modifier.Type.Private.equals(m.getType()));
+    // and Protected & Public
+    modifiers.add(PUBLIC_MODIFIER);
+    return cd.withModifiers(modifiers);
+  }
+}
+....
+
+=== Styles
+
+[source,yaml]
+....
+type: specs.openrewrite.org/v1beta/style
+name: io.moderne.spring.style
+styleConfigs:
+  - org.openrewrite.java.style.NeedBracesStyle:
+      allowSingleLineStatement: false
+      allowEmptyLoopBody: true
+....
+
+[%step]
+--
+[source,java]
+....
+for(int i = 0; i < 10; i++);
+if(success()) return false;
+....
+--
+
+[%step]
+--
+[source,java]
+....
+for(int i = 0; i < 10; i++);
+if(success()){
+    return false;
+}
+....
+--

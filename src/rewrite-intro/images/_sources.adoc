@@ -3,3 +3,6 @@
 * Project Logos from respective Project Page
 * Migration Types from https://docs.moderne.io/administrator-documentation/proof-of-value[Moderne Prove of Value]
 * Moderne UI Screenshot by Author
+* IKEA instruction from http://justinzhuang.com/wp-content/uploads/images/Tune_Table_1980s.jpg[justinzhuang.com]
+* DIY Titelbild Bild von https://de.freepik.com/fotos-kostenlos/frau-die-holzbretter-kratzt_12240569.htm#query=do%20it%20yourself&position=14&from_view=search&track=ais&uuid=5866b3a4-41df-4c92-ae1d-65a40f2162c5[Freepik]
+* Schüler Bild von https://de.freepik.com/fotos-kostenlos/student-posiert-im-klassenzimmer_1213789.htm#query=motivierter%20sch%C3%BCler&position=5&from_view=search&track=ais&uuid=25e24a00-080f-4341-af8a-2644cf635bab[Freepik]

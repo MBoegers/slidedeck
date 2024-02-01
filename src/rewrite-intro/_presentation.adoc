@@ -17,12 +17,12 @@
 :iconsdir: ../../_shared/icons
 
 // Edit host information
-:host-name: JUG Paderborn
-:host-url: https://jug-pb.gitlab.io
+:host-name: JUG Switzerland
+:host-url: https://www.jug.ch
 :host-logo-style: logo
-:host-logo-url: ../../_shared/images/hosts/jugpb-logo-duke.svg
-:host-twitter-url: https://twitter.com/jugpaderborn
-:host-twitter-name: @jugpaderborn
+:host-logo-url: ../../_shared/images/hosts/jugch.png
+:host-twitter-url: https://ijug.social/@jugch
+:host-twitter-name: @jugch@ijug.social
 
 include::../../_shared/hightlightjs.adoc[]
 include::../../_shared/events-on-title-and-footer.adoc[]

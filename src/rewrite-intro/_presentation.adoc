@@ -17,12 +17,12 @@
 :iconsdir: ../../_shared/icons
 
 // Edit host information
-:host-name: JUG Switzerland
-:host-url: https://www.jug.ch
+:host-name: JUG Bonn
+:host-url: https://meetup.com/jug-bonn
 :host-logo-style: logo
-:host-logo-url: ../../_shared/images/hosts/jugch.png
-:host-twitter-url: https://ijug.social/@jugch
-:host-twitter-name: @jugch@ijug.social
+:host-logo-url: ../../_shared/images/hosts/jub-bn-logo.jpg
+:host-twitter-url: https://bonn.social/@jug
+:host-twitter-name: @jug@bonn.social
 
 include::../../_shared/hightlightjs.adoc[]
 include::../../_shared/events-on-title-and-footer.adoc[]

@@ -48,6 +48,36 @@ String query = """
 * nur lesbarkeit und tool support, kein value
 * aber daraus setzten sich upgrades zusammen ;)
 --
+=== JUnit Upgrade
+
+++++
+<table style="border: none">
+<tr>
+<td>
+++++
+image::images/junit4-logo.png[height=64]
+++++
+</td>
+<td style="justify-content: center"> zu </td>
+<td>
+++++
+image::images/junit5-logo.png[height=64]
+++++
+</td>
+</tr>
+</table>
+++++
+
+[source,java]
+....
+@Before /*->*/ @BeforeEach
+@AfterClass /*->*/ @AfterAll
+@Test(expected = IndexOutOfBoundsException.class)
+  /*->*/ assertThrows(IndexOutOfBoundsException.class, () -> {})
+Assert.assertEquals("One is one", 1, 1);
+  /*->*/ Assertions.assertEquals(1, 1, "One is one");
+@Test(timeout = 500) /*->*/ @Test @Timeout(500)
+....
 
 === Framework Migration
 

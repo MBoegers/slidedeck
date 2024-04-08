@@ -58,7 +58,7 @@ String query = """
 image::images/junit4-logo.png[height=64]
 ++++
 </td>
-<td style="justify-content: center"> zu </td>
+<td style="justify-content: center"> ➜ </td>
 <td>
 ++++
 image::images/junit5-logo.png[height=64]

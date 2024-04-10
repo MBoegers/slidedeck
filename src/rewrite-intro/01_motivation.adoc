@@ -93,9 +93,21 @@ Und hier werden auch Management Ebenen aktiv.
 Das Kostet doch! Müsen wir das? Das ist aber kritisch!
 
 stimmt auch alles.
+Leider ist es immer schwer sowas durch zu bekommen.
 --
 
 [%notitle]
 === Migration Types
 
 image::images/Komplexitaet_verteiling.webp[.stretch]
+
+[.notes]
+--
+Die Frage nach dem Warum kann man ganz gut mit diesem Dreieck beantworten.
+
+Refactorings sind entweder sehr klein teilig und es dauert ewig sie in großen Projekte durchzuführen.
+Oder sie gehen verhältnismäßig schnell, wie ein Versionsupgrade der Libs, sind dann aber durchaus Riskant.
+
+Langwierig und/oder Riskant sind zwei Vokabeln die ich und viele andere in einem Projektkontext nicht gerne hören.
+Die Lösung ist wie im Falle von CI/CD die Automatisierung solcher Aufgaben.
+--

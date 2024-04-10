@@ -48,10 +48,10 @@ class SomeService {
 }
 ....
 
-[%step]
---
-Remove SuppressWarnings to generate compile time warnings
---
+//[%step]
+//--
+//Remove SuppressWarnings to generate compile time warnings
+//--
 
 [.notes]
 --
@@ -112,7 +112,7 @@ Note: Recompile with -Xlint:deprecation for details.`
 
 image::images/Bildschirmfoto 2024-01-17 um 16.41.59.png[]
 
-Projektseite: https://errorprone.info/[ErrorProne.info]
+//Projektseite: https://errorprone.info/[ErrorProne.info]
 
 [.notes]
 --
@@ -139,10 +139,10 @@ class SomeService {
 }
 ....
 
-[%step]
---
-switch from `oldOperation` to `newOperation`
---
+//[%step]
+//--
+//switch from `oldOperation` to `newOperation`
+//--
 
 [.notes]
 --

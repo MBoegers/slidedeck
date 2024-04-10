@@ -1,13 +1,36 @@
 [%notitle.columns]
 == Lösung: OpenRewrite
 
-[.column.is-one-third]
+++++
+<table style="border: none">
+    <tr>
+    <td>
+++++
 image::images/61478321.png[.stretch]
-
-[.column]
+++++
+    </td>
+    <td>
+++++
 image::images/moderne_logo.avif[width=400]
+++++
+    </td>
+    </tr>
+    <tr>
+    <td>
+++++
+image::images/commonhouse-logo.svg[.stretch]
+++++
+    </td>
+    <td style="vertical-align: middle">
+++++
+Commonhaus Foundation
 
-//https://docs.openrewrite.org
+https://www.commonhaus.org/
+++++
+    </td>
+    </tr>
+</table>
+++++
 
 [.notes]
 --
@@ -107,7 +130,7 @@ Hier Nutzte ich den No-Changes-maven-way der eine einmalige ausfuerhung anstoess
 
 === Continuous Refactoring
 
-Configure as part of your project
+//Configure as part of your project
 
 [source,xml]
 ....
@@ -137,7 +160,7 @@ Ueber diesen Weg kann Open Rewrite auch gut als Reviewer auf Code Style Ebene ve
 Beide gehht übrigens auch mit Gradle und für den Hard Core Refactor Dev gibt es noch die Moderne CLI (JavaLand)
 --
 
-== Recipes Catalog
+=== Recipes Catalog
 //https://docs.openrewrite.org/recipes[Recipe Katalog]
 image:images/open_rewrite_catalog.png[background,size=cover]
 
@@ -149,3 +172,7 @@ Die Dokumentation der Recipes ist automatisiert also kann jedes Recipe verwendet
 
 Achtung bei einigen werden weitere Open Rewrite Artefakte benoetigt.
 --
+
+=== Moderne / Open Rewrite
+
+image::images/moderne_commonhaus_statement.png[]

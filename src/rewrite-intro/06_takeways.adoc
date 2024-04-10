@@ -7,6 +7,7 @@ image:../../_shared/images/adesso_Fotos/Bilder_PPT_Notizbuch.jpg[.stretch]
 
 image::images/powerOfRewrite.png[background=white,600,347]
 
+
 [.columns]
 === Write your Own
 

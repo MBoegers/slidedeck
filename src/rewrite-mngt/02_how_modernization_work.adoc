@@ -1,4 +1,5 @@
 == How modernizations work?
+image::images/student-posiert-im-klassenzimmer.jpg[background,size=cover]
 
 [.notes]
 --
@@ -13,11 +14,11 @@ Refactoring is a controlled technique for *improving* the design of an *existing
 Its essence is applying a series of small behavior-preserving transformations, *each* of which "*too small* to be worth doing".
 
 
-=== Just use another Method
+=== Just another Method
 
 image::images/DepricatedServices.svg[]
 
-=== Just use the new Version
+=== Just a new version
 ++++
 <table style="border: none">
 <tr>
@@ -57,13 +58,16 @@ Assert.assertEquals("One is one", 1, 1);
 --
 
 [%step]
-Setup Annotations 30 min each => 1h
+Setup Annotations
+30 min each
 
 [%step]
-Timeouts 10 min per usage
+Timeouts
+10 min/use
 
 [%step]
-Expected Exceptions 10min per usage
+Expected Exceptions
+10 min/use
 
 [%step]
 times the hourly rate
@@ -74,10 +78,10 @@ times the hourly rate
 
 [.column]
 --
-image::../../_shared/images/dukes/ChezDuke.svg[]
+image::../../_shared/images/dukes/ChezDuke.svg[height=400px]
 --
 
-=== Okay Repeat with Project X
+=== Repeat on next
 
 image::images/netflix-microservices-traffic-flow-768x466.png[]
 

@@ -1,6 +1,6 @@
 == Why modernization?
 
-image::images/motorplane_and_modern.jpeg[]
+image::images/motorplane_and_modern.jpeg[background]
 
 [.notes]
 --
@@ -13,7 +13,7 @@ Time files and technology envoled, this enabled less fule per head, less major i
 
 === JEPs over Time
 
-image::images/java_jeps_overtime.webp[]
+image::images/java_jeps_overtime.webp[height=500px]
 
 [.notes]
 --
@@ -24,7 +24,7 @@ And the other 2/3 are deprications, performance or security improvements.
 
 === Evolution of Java
 
-image::images/java_spring_releases.webp[]
+image::images/java_spring_releases.webp[height=500px]
 
 [.notes]
 --
@@ -34,7 +34,7 @@ At least Java is denser now and with this higher rate of releases the ecosystem 
 
 === Act now!
 
-image::images/motorplane_and_modern.jpeg[]
+image::images/motorplane_and_modern.jpeg[height=500px]
 
 [.notes]
 --

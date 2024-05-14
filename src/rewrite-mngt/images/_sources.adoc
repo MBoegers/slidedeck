@@ -1,0 +1,4 @@
+== Image Credits
+* Java Versions and JEPs over time from https://www.jrebel.com/resources/new-features-java[JRebel]
+* Motorplane in front of airbus generated with Microsoft Designer Image Creator
+* Netflix Microservices Traffic Flow from https://www.honeycomb.io/microservices[honeycomb.io/microservices]

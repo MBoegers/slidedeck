@@ -1,0 +1,51 @@
+= Open Rewrite: 🤿 into Automated Refactorings
+:backend: revealjs
+:revealjs_theme: adesso
+:revealjs_controls: false
+:revealjs_controlsTutorial: false
+:revealjs_progress: false
+:revealjs_slideNumber: false
+:revealjs_history: true
+:revealjs_center: true
+:revealjs_transition: fade
+:revealjs_backgroundTransition: fade
+
+:imagedir: images
+
+:icons: image
+:icontype: svg
+:iconsdir: ../../_shared/icons
+
+// Edit host information
+:host-name: JCON
+:host-url: https://jcon.one/
+:host-logo-style: logo
+:host-logo-url: ../../_shared/images/hosts/JCON-2024.png
+:host-twitter-url: https://twitter.com/jcon_conference
+:host-twitter-name: @jcon_conference
+
+include::../../_shared/hightlightjs.adoc[]
+include::../../_shared/events-on-title-and-footer.adoc[]
+// ####################################################
+// #            Presentation area  start              #
+// ####################################################
+
+// Refactorings are proactive actions aimed at enhancing code quality without altering its behavior, effectively minimizing the risk of introducing new bugs.
+// Despite being occasionally dismissed as 'costs, ballast, or dumb work,' it's essential to recognize that small refactorings represent significant rebuilding efforts, comparable to tasks such as updating frameworks or enforcing coding standards.
+// Software engineers and IT managers grappling with modernization challenges will find this session invaluable.
+// Open Rewrite empowers them to streamline refactoring efforts, significantly reducing manual work and ensuring reproducibility.
+// Its architecturally sound design facilitates easy integration into existing workflows, supporting code compliance and fostering high-quality development practices.
+// By the end of this session, attendees will have gained a foundational understanding of Open Rewrite.
+// This knowledge serves as a springboard for minimizing efforts, ensuring reproducibility, and unlocking avenues for continued high-quality development in the realm of code modernization.
+
+include::01_why.adoc[]
+include::02_how_modernization_work.adoc[]
+include::03_what_is_openrewrite.adoc[]
+include::04_how_to_migrate_with_OR.adoc[]
+include::05_what_to_do_tomorrow.adoc[]
+
+// ####################################################
+// #            Presentation area  end                #
+// ####################################################
+include::../../_shared/about-slide.adoc[]
+include::images/_sources.adoc[]

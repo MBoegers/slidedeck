@@ -1,0 +1,57 @@
+[%notitle.columns]
+== What is Open Rewrite?
+
+++++
+<table style="border: none">
+    <tr>
+    <td>
+++++
+image::images/61478321.png[.stretch]
+++++
+    </td>
+    <td>
+++++
+image::images/moderne_logo.avif[width=400]
+++++
+    </td>
+    </tr>
+    <tr>
+    <td>
+++++
+image::images/commonhouse-logo.svg[.stretch]
+++++
+    </td>
+    <td style="vertical-align: middle">
+++++
+Commonhaus Foundation
+
+https://www.commonhaus.org/
+++++
+    </td>
+    </tr>
+</table>
+++++
+
+[.notes]
+--
+* Automatisierung von kleinen Anpassungen
+* Zusammenschluss zu großen Refactorings
+* Wiederholbar und gleichförmig
+* Unit tested und Open Source
+--
+
+[.columns]
+=== Instruction
+[.column]
+--
+image::images/Tune_Table_1980s_L.jpg[]
+--
+
+[.column]
+--
+image::images/Tune_Table_1980s_R.jpg[]
+--
+
+=== Moderne / Open Rewrite
+
+image::images/moderne_commonhaus_statement.png[]

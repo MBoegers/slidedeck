@@ -39,13 +39,18 @@ include::../../_shared/events-on-title-and-footer.adoc[]
 // This knowledge serves as a springboard for minimizing efforts, ensuring reproducibility, and unlocking avenues for continued high-quality development in the realm of code modernization.
 
 include::01_why.adoc[]
+
 include::02_how_modernization_work.adoc[]
+
 include::03_what_is_openrewrite.adoc[]
-include::04_how_to_migrate_with_OR.adoc[]
+
+//include::04_how_to_migrate_with_OR.adoc[]
+
 include::05_what_to_do_tomorrow.adoc[]
 
 // ####################################################
 // #            Presentation area  end                #
 // ####################################################
 include::../../_shared/about-slide.adoc[]
+
 include::images/_sources.adoc[]

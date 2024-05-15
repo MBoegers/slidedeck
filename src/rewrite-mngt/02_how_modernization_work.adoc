@@ -52,7 +52,7 @@ Assert.assertEquals("One is one", 1, 1);
 --
 
 [.columns]
-=== Recipe Please!
+=== Check Please!
 
 [.column]
 --

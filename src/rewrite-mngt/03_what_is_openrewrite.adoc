@@ -52,6 +52,10 @@ image::images/Tune_Table_1980s_L.jpg[]
 image::images/Tune_Table_1980s_R.jpg[]
 --
 
+=== Support for
+
+image::images/powerOfRewrite.png[background=white,600,34]
+
 === Moderne / Open Rewrite
 
 image::images/moderne_commonhaus_statement.png[]

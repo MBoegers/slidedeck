@@ -1,1 +1,36 @@
-== What to do tomorrow?
+== What to do now?
+image::../../_shared/images/adesso_Fotos/Bilder_PPT_Notizbuch.jpg[background]
+
+[.columns]
+=== Start Playing & Calculate
+[.column]
+image::images/modern_builder_remove.png[height=400px]
+
+[.column]
+--
+https://public.moderne.io[Moderne] UI
+
+https://docs.openrewrite.org/[Open Rewrite] Docs
+
+https://www.youtube.com/channel/UCQmEmxQd0DP7TqmNOKjSnvg[Moderne Youtube] Channel
+--
+
+=== Collaborate
+
+image::images/SLA-Slack-from-Salesforce-logo-COLOR-RGB.jpg[height=50px]
+
+https://rewriteoss.slack.com/join/shared_invite/zt-nj42n3ea-b~62rIHzb3Vo0E1APKCXEA#/shared-invite/email[Join Slack]
+
+image::images/discord-logo-blue.png[height=50px]
+
+https://discord.com/invite/xk3ZKrhWAb[Join Discord]
+
+=== Coffee and Talk
+
+image::../../_shared/images/adesso_Fotos/Bilder_PPT_Tassen.jpg[background]
+
+[.notes]
+--
+use Brella to schedule a Coffe and Cockies meeting
+visit Ricks and Tims talk in the Blackbox on 1:30 and 2:30
+--

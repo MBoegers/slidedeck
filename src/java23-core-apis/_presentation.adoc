@@ -1,0 +1,64 @@
+= Java 23 - Mehr Handlung, mehr Übersicht
+:backend: revealjs
+:revealjs_theme: adesso
+:revealjs_controls: false
+:revealjs_controlsTutorial: false
+:revealjs_progress: false
+:revealjs_slideNumber: false
+:revealjs_history: true
+:revealjs_center: true
+:revealjs_transition: fade
+:revealjs_backgroundTransition: fade
+
+:imagedir: images
+
+:icons: image
+:icontype: svg
+:iconsdir: ../../_shared/icons
+
+// Edit host information
+:host-name: Unknown Cnf
+:host-url: https://www.unknowconf.com
+:host-logo-style: logo
+:host-twitter-url: https://twitter.com/unknownconf
+:host-twitter-name: @unknownconf
+
+include::../../_shared/hightlightjs.adoc[]
+include::../../_shared/events-on-title-and-footer.adoc[]
+// ####################################################
+// #            Presentation area  start              #
+// ####################################################
+
+== Pre Content
+
+=== Content
+
+|===
+|Topic |JEP
+
+|Virtual Threads
+|https://openjdk.org/jeps/444[444]
+
+|Scoped Values
+|446, 454, https://openjdk.org/jeps/481[481]
+
+|Structured Concurrency
+|453, 462, https://openjdk.org/jeps/480[480]
+
+|===
+
+=== Abstract
+Mehr Handlung, mehr Übersicht - Nebenläufige Programme mit Java 23
+
+Was passiert hier eigentlich wann? Wann ist Schluss, wie wird zwischen Aktivitätssträngen kommuniziert? Und was ist, wenn ein Fehler auftritt? Diese Art der Verwirrung muss nicht (mehr) sein!
+
+Mit Java 23 wurden einige neue APIs im Kontext der nebenläufigen Logik eingeführt. Scoped Values können Daten von einem Thread an seine Kinderthreads weiter gereicht werden. Structured Concurrency macht es einfach, nebenläufige Aufgaben als eine Einheit zu behandeln. Diese Features in Verbindung mit Virtual Threads machen nebenläufige Programmierung mit Java wieder einfach.
+
+In dieser Session werden wir uns die Neuerungen im Bereich der nebenläufigen Programmierung mit Java ansehen. Durch die neuen APIs werden eure nebenläufigen Logiken einfacher verständlich und einfacher umsetzbar.
+
+
+// ####################################################
+// #            Presentation area  end                #
+// ####################################################
+include::../../_shared/about-slide.adoc[]
+include::images/_sources.adoc[]

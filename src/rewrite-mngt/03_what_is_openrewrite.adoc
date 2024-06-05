@@ -54,7 +54,7 @@ image::images/Tune_Table_1980s_R.jpg[]
 
 === Support for
 
-image::images/powerOfRewrite.png[background=white,600,34]
+image::images/powerOfRewrite.png[background=white,600,340]
 
 === Moderne / Open Rewrite
 

@@ -2,7 +2,7 @@
 image::images/collage-aus-wolkenfoermigen-koepfen.jpg[background,size=cover]
 
 === Make your Opinion
-For every te am there are different trade-offs:
+There are different trade-offs:
 
 * Readability - learn and use
 * Duplication - not always bad
@@ -17,7 +17,9 @@ Micro steps and huge gain for small disruption.
 === Try it!
 image::images/github_dop-java.png[background,size=cover]
 
-https://github.com/MBoegers/DataOrientedJava[GitHub.com/MBoegers/DataOrientedJava]
+💻 https://github.com/MBoegers/DataOrientedJava[GitHub.com/MBoegers/DataOrientedJava]
+
+📖 https://inside.java/2024/05/23/dop-v1-1-introduction[Data-Oriented Programming in Java]
 
 // === Readability
 // patterns are great

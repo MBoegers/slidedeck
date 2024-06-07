@@ -30,8 +30,8 @@ No need to share anemic model and handle all the edge-cases every time.
 One step further is even possible.
 --
 
-=== Even smaller
-image::images/konzept-der-cyber-server-cloud-datenspeicherung-cloudscape-digitaler-online-rack-service-fuer-globale-netzwerk-datenbank-backup-computer-sicherheitsinfrastrukturtechnologie.jpg[text,700]
+=== Even smaller, the ☁️
+image::images/konzept-der-cyber-server-cloud-datenspeicherung-cloudscape-digitaler-online-rack-service-fuer-globale-netzwerk-datenbank-backup-computer-sicherheitsinfrastrukturtechnologie.jpg[background,size=cover]
 
 [.notes]
 --
@@ -47,7 +47,8 @@ Logic is implemented dependently from the data.
 
 * Data is Data and nothing but the data
 * Strict separation between data and logic
-* like functional programming
+* Invalid state is not representable
+* Nothing is Mutable
 
 [.notes]
 --

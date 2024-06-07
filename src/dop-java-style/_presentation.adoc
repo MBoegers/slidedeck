@@ -17,12 +17,12 @@
 :iconsdir: ../../_shared/icons
 
 // Edit host information
-:host-name: ECLIPSE CON 2023
-:host-url: https://www.eclipsecon.org/2023
+:host-name: adesso Tech Day
+:host-url: https://www.adesso.de/de/
 :host-logo-style: logo
-:host-logo-url: ../../_shared/images/hosts/eclipsecon.ico
-:host-twitter-url: https://twitter.com/EclipseCon
-:host-twitter-name: @EclipseCon
+:host-logo-url: ../../_shared/images/adesso_logo_NoClaim.png
+:host-twitter-url: https://twitter.com/SeAdesso
+:host-twitter-name: @SeAdesso
 
 include::../../_shared/hightlightjs.adoc[]
 include::../../_shared/events-on-title-and-footer.adoc[]
@@ -39,7 +39,14 @@ In this talk I'll show you Data Oriented Programming in Java with modern Languag
 If you wanne learn about the new features in depth, stay here and listen to Falk directly afterwards.
 --
 
+[%notitle]
 == Warning
+image::images/WarningMessage.jpg[background,size=cover]
+
+{empty} +
+{empty} +
+{empty} +
+
 Heavy use of preview features!
 
 include::01_what_is_dop.adoc[]

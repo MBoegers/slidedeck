@@ -33,10 +33,12 @@ include::../../_shared/events-on-title-and-footer.adoc[]
 [.notes]
 --
 Hi I am Merlin, Enterprise Java Developer for more than 10 year.
-I am Glider Instructor, Volleyball Setter and in love with the _new_ Java.
-But the _new_ ideas Pattern Matching and Data oriented Programming are not that new in general.
+I am with adesso for 2,5 year now in the role as senior software engineer and architect.
+besides IT i am a Glider Instructor, Volleyball Setter and in love with the _new_ Java.
+I always aime to help teams to modernize their applications and educate them in new Java and programming in general.
 In this talk I'll show you Data Oriented Programming in Java with modern Language features.
-If you wanne learn about the new features in depth, stay here and listen to Falk directly afterwards.
+If you wanne have something to educate your self i recommend this book and if you have questions just stop me, apporach me right after the talk, via social media.
+But lets get startet.
 --
 
 [%notitle]
@@ -57,5 +59,28 @@ include::04_final_thoughts.adoc[]
 // ####################################################
 // #            Presentation area  end                #
 // ####################################################
-include::../../_shared/about-slide.adoc[]
+//include::../../_shared/about-slide.adoc[]
+
+[.columns.about]
+== Contact
+
+image::../../_shared/images/gluehbirnen.jpg[background,size=cover]
+
+[.column]
+--
+++++
+<h3>Me</h3>
+<a href="https://fosstodon.org/@MBoegie" title="Merlin on Fosstodon">🐘 MBoegie@fosstodon.org</a> //</br>
+<a href="https://twitter.com/mboegie">𝚾</a> & <a href="https://bsky.app/profile/MBoegi.bsky.social">🦋</a> @MBoegi //</br>
+GitHub/<a href="https://github.com/mboegers">MBoegers</a>
+<br>
+<h3>See you!</h3>
+++++
+--
+
+[.column.is-one-third]
+--
+image::images/Printen.jpeg[]
+--
+
 include::images/_sources.adoc[]

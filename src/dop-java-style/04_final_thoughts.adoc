@@ -1,18 +1,16 @@
 == Final Thoughts
 image::images/collage-aus-wolkenfoermigen-koepfen.jpg[background,size=cover]
 
-=== Make your Opinion
-There are different trade-offs:
+=== Make your own Opinion
+image::images/tradeoffs-meme.png[size=cover]
 
-* Readability - learn and use
-* Duplication - not always bad
-* Testability - no brain needed
-* Performance - don't guess, measure!
 
+=== Make your own Opinion
 [%step]
---
-Micro steps and huge gain for small disruption.
---
+* Readability 👓 - learn and use 📚
+* Duplication 🖨️ - not always bad 🧀
+* Testability ✅ - no brain needed 🧟‍
+* Performance 🚴‍- don't guess, measure! ⏲️
 
 === Try it!
 image::images/github_dop-java.png[background,size=cover]

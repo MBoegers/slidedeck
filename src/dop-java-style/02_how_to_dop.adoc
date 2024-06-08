@@ -45,8 +45,11 @@ record InterneVerechnung(String abteilung, double wert)
 [.notes]
 --
 sealed Rechnung because it can only have 2 types, other types are not modeled into the domain.
+sealed interfaces since Java 17
 
-Records (implicitly final)
+Records (implicitly final) available since Java 16
+
+Both since 2021!!!
 
 String and double are not mutable, nice!
 But String could be null, and about mutable data?
@@ -115,8 +118,8 @@ static double calculateMwSt(Kunde kunde, double wert) {
   if (kunde instanceof Privatkunde) {
     return wert * 0.1d;
   } else if (kunde instanceof Businesskunde b) {
-    if (b.isVorsteuerAbzugsberechtigt()) return 0.0d;
-    else return wert * 0.1d;
+      return b.isVorsteuerAbzugsberechtigt()
+                ? 0.0d : wert * 0.1d;
   } else {
     throw new IllegalArgumentException(/* */);
   }
@@ -125,7 +128,7 @@ static double calculateMwSt(Kunde kunde, double wert) {
 
 [.notes]
 --
-There is a pattern for this, called instanceof pattern, it basically does the same but in a safe way.
+There is a pattern for this, called instanceof pattern (final since Java 16), it basically does the same but in a safe way.
 
 Never ever forget to change the cast type after copy'n'past.
 
@@ -151,6 +154,7 @@ static double calculateMwSt(Kunde kunde, double wert) {
 [.notes]
 --
 There is an expression that helps us with this problem, the freshly recovered switch!
+Available since java 19 and final since Java 21 (2023).
 
 We still use an instanceof pattern but this time the compiler can use the information from the data model to determine if we covered all cases.
 
@@ -178,6 +182,7 @@ static double calculateMwSt(Kunde kunde, double wert) {
 I only relay in contained data and not the object a the whole.
 
 Here I use the deconstruction pattern to take the kunde apart and use portions inside the when.
+Available since Java 19 final since Java 21.
 
 Now I have multiple not needed Variables, like n and m which are name and Mailadresse,
 
@@ -198,7 +203,7 @@ static double calculateMwSt(Kunde kunde, double wert) {
 
 [.notes]
 --
-Here I get rid of everything not directly needed.
+Here I get rid of everything not directly needed, available since Java 21 final since Java 22.
 
 The I only check the type but mark the variable as unused with a _, there will be no binding.
 This lil trick works on catch as well..
@@ -210,45 +215,42 @@ We have a solution that
 * deals with new type
 * focus only on the data needed
 * is very concise, compared to the first version
-
-Last thing I want to show is a later open for dicussion, it is perfektly fine java.
-It may lack style :D
 --
 
 // small atomic functions outside of domain classes
 // only rely on in exact type
 // write more instead of less, yes duplication are not bad in every case
 
-=== Format the Text
-[source,java]
-....
-static String produceInvoiceText(
-        Kunde kunde, double wert, double mwst) {
-  return FMT. """
-    Hallo \{
-      switch (kunde) {
-        case Privatkunde(String name, _) -> name;
-        case Businesskunde(var name, _, _) -> name;
-      } },
-    Bitte senden Sie uns den Rechnungsbetrag in Höhe von \
-    %.2f\{ wert }€ plus %.2f\{ mwst }€ MwSt \
-    %2.f\{ wert + mwst }.
-
-    Mit freundlichen Grüßen
-    Merlin Bögershausen
-    """ ;
-}
-....
-
-[.notes]
---
-Let this sink in.
-
-We work with data at the place where it is needed and interpolate the String template with Formating informatione.
-This of this as a Method call for String.format(), it is nothing less but with Multiline Strings and Expressions within.
-
-For the Record, I am fan of the curly brace notation.
-It indicates what it is, a Java Block within a String.
-
-But I am not yet done with this one.
---
+// === Format the Text
+// [source,java]
+// ....
+// static String produceInvoiceText(
+//         Kunde kunde, double wert, double mwst) {
+//   return FMT. """
+//     Hallo \{
+//       switch (kunde) {
+//         case Privatkunde(String name, _) -> name;
+//         case Businesskunde(var name, _, _) -> name;
+//       } },
+//     Bitte senden Sie uns den Rechnungsbetrag in Höhe von \
+//     %.2f\{ wert }€ plus %.2f\{ mwst }€ MwSt \
+//     %2.f\{ wert + mwst }.
+//
+//     Mit freundlichen Grüßen
+//     Merlin Bögershausen
+//     """ ;
+// }
+// ....
+//
+// [.notes]
+// --
+// Let this sink in.
+//
+// We work with data at the place where it is needed and interpolate the String template with Formating informatione.
+// This of this as a Method call for String.format(), it is nothing less but with Multiline Strings and Expressions within.
+//
+// For the Record, I am fan of the curly brace notation.
+// It indicates what it is, a Java Block within a String.
+//
+// But I am not yet done with this one.
+// --

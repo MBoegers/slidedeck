@@ -50,12 +50,14 @@ Logic is fine to reuse, data is a different story, but the discussions are the s
 public class InvoiceResource {
   @Inject KundenRepository kundenRepo;
   @Inject MailService mailService;
-  @GET
+  @POST // parameter mapping omitted
   public void sendInvoice(long kundeID, double wert) {
     var kunde = kundenRepo.findById(kundeID);
+
     var mwst = MwStRechner.calculateMwSt(kunde, wert);
     var text = InvoiceFormatter.
         produceInvoiceText(kunde, wert, mwst);
+
     mailService.sendMail(kunde, text);
   }
 }
@@ -66,12 +68,16 @@ public class InvoiceResource {
 But we need to deploy a Resource or MDB for our customer, not a modul.
 
 Here we see normal technical Jakarta EE calls like to Repository and Service.
+We could even DOP them, but I suggest stopping here.
 
 The Kunde is loaded from the database and populated into the record.
+This one still needs expensive Tests but just one.
 
 This data is forwarded into the business logic to calculate the MwSt and format a Mail.
+Ultra fast mock and CID free pure JUnit/TestNG testing.
 
 Later on it is handed back to EE Resources and is send as e-mail.
+One Mock needed in Integration Testing or an appropriate setup.
 
 This code may need some happy path test with Testcontainer of Mocks, but the business logic can be tested very fast without an EE Container.
 

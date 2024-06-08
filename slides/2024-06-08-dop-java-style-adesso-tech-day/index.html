@@ -442,10 +442,12 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );</script></head><
 	})
 </script>
 <aside class="notes"><div class="paragraph"><p>Hi I am Merlin, Enterprise Java Developer for more than 10 year.
-I am Glider Instructor, Volleyball Setter and in love with the <em>new</em> Java.
-But the <em>new</em> ideas Pattern Matching and Data oriented Programming are not that new in general.
+I am with adesso for 2,5 year now in the role as senior software engineer and architect.
+besides IT i am a Glider Instructor, Volleyball Setter and in love with the <em>new</em> Java.
+I always aime to help teams to modernize their applications and educate them in new Java and programming in general.
 In this talk I&#8217;ll show you Data Oriented Programming in Java with modern Language features.
-If you wanne learn about the new features in depth, stay here and listen to Falk directly afterwards.</p></div></aside></div></section>
+If you wanne have something to educate your self i recommend this book and if you have questions just stop me, apporach me right after the talk, via social media.
+But lets get startet.</p></div></aside></div></section>
 <section id="_warning" data-background-image="images/WarningMessage.jpg" data-background-size="cover"><div class="slide-content">
 <div class="paragraph"><p><br>
 <br>
@@ -482,8 +484,10 @@ record ExternVersandt(Kunde kunde, double wert)
 
 record InterneVerechnung(String abteilung, double wert)
   implements Rechnung {}</code></pre></div></div>
-<aside class="notes"><div class="paragraph"><p>sealed Rechnung because it can only have 2 types, other types are not modeled into the domain.</p></div>
-<div class="paragraph"><p>Records (implicitly final)</p></div>
+<aside class="notes"><div class="paragraph"><p>sealed Rechnung because it can only have 2 types, other types are not modeled into the domain.
+sealed interfaces since Java 17</p></div>
+<div class="paragraph"><p>Records (implicitly final) available since Java 16</p></div>
+<div class="paragraph"><p>Both since 2021!!!</p></div>
 <div class="paragraph"><p>String and double are not mutable, nice!
 But String could be null, and about mutable data?</p></div></aside></div></section><section id="_write_domain_2"><h2>Write Domain</h2><div class="slide-content"><div class="listingblock"><div class="content"><pre class="highlight"><code class="language-java" data-lang="java">// omitted interface Kunde and record Businesskunde
 
@@ -520,13 +524,13 @@ Another Big problem which will lead to ClassCastExceptions while development or 
   if (kunde instanceof Privatkunde) {
     return wert * 0.1d;
   } else if (kunde instanceof Businesskunde b) {
-    if (b.isVorsteuerAbzugsberechtigt()) return 0.0d;
-    else return wert * 0.1d;
+      return b.isVorsteuerAbzugsberechtigt()
+                ? 0.0d : wert * 0.1d;
   } else {
     throw new IllegalArgumentException(/* */);
   }
 }</code></pre></div></div>
-<aside class="notes"><div class="paragraph"><p>There is a pattern for this, called instanceof pattern, it basically does the same but in a safe way.</p></div>
+<aside class="notes"><div class="paragraph"><p>There is a pattern for this, called instanceof pattern (final since Java 16), it basically does the same but in a safe way.</p></div>
 <div class="paragraph"><p>Never ever forget to change the cast type after copy&#8217;n&#8217;past.</p></div>
 <div class="paragraph"><p>We have no distributed logic and no cause for ClassCastExcpetion.
 But the if cascade will grow and become an ugly mess, especially if new types are introduced.</p></div>
@@ -538,7 +542,8 @@ But the if cascade will grow and become an ugly mess, especially if new types ar
     case Businesskunde b -&gt; wert * 0.1d;
   };
 }</code></pre></div></div>
-<aside class="notes"><div class="paragraph"><p>There is an expression that helps us with this problem, the freshly recovered switch!</p></div>
+<aside class="notes"><div class="paragraph"><p>There is an expression that helps us with this problem, the freshly recovered switch!
+Available since java 19 and final since Java 21 (2023).</p></div>
 <div class="paragraph"><p>We still use an instanceof pattern but this time the compiler can use the information from the data model to determine if we covered all cases.</p></div>
 <div class="paragraph"><p>It also includes the when-part into the analysis. this when guards the branch and check additional conditions.
 In this case if a Kunde is allowed to pay 0% MwSt..</p></div>
@@ -551,7 +556,8 @@ In this case if a Kunde is allowed to pay 0% MwSt..</p></div>
   };
 }</code></pre></div></div>
 <aside class="notes"><div class="paragraph"><p>I only relay in contained data and not the object a the whole.</p></div>
-<div class="paragraph"><p>Here I use the deconstruction pattern to take the kunde apart and use portions inside the when.</p></div>
+<div class="paragraph"><p>Here I use the deconstruction pattern to take the kunde apart and use portions inside the when.
+Available since Java 19 final since Java 21.</p></div>
 <div class="paragraph"><p>Now I have multiple not needed Variables, like n and m which are name and Mailadresse,</p></div>
 <div class="paragraph"><p>Important but they do not contribute to the solution, they only produce noise and motivate the add not related logic.</p></div></aside></div></section><section id="_ignore_parts"><h2>Ignore Parts</h2><div class="slide-content"><div class="listingblock"><div class="content"><pre class="highlight"><code class="language-java" data-lang="java">static double calculateMwSt(Kunde kunde, double wert) {
   return switch (kunde) {
@@ -560,35 +566,12 @@ In this case if a Kunde is allowed to pay 0% MwSt..</p></div>
     case Businesskunde _ -&gt; wert * 0.1d;
   };
 }</code></pre></div></div>
-<aside class="notes"><div class="paragraph"><p>Here I get rid of everything not directly needed.</p></div>
+<aside class="notes"><div class="paragraph"><p>Here I get rid of everything not directly needed, available since Java 21 final since Java 22.</p></div>
 <div class="paragraph"><p>The I only check the type but mark the variable as unused with a _, there will be no binding.
 This lil trick works on catch as well..</p></div>
 <div class="paragraph"><p>Now we have reached the end, for the current version of Java.
 We have a solution that</p></div>
-<div class="ulist"><ul><li><p>is type safe</p></li><li><p>deals with new type</p></li><li><p>focus only on the data needed</p></li><li><p>is very concise, compared to the first version</p></li></ul></div>
-<div class="paragraph"><p>Last thing I want to show is a later open for dicussion, it is perfektly fine java.
-It may lack style :D</p></div></aside></div></section><section id="_format_the_text"><h2>Format the Text</h2><div class="slide-content"><div class="listingblock"><div class="content"><pre class="highlight"><code class="language-java" data-lang="java">static String produceInvoiceText(
-        Kunde kunde, double wert, double mwst) {
-  return FMT. """
-    Hallo \{
-      switch (kunde) {
-        case Privatkunde(String name, _) -&gt; name;
-        case Businesskunde(var name, _, _) -&gt; name;
-      } },
-    Bitte senden Sie uns den Rechnungsbetrag in Höhe von \
-    %.2f\{ wert }€ plus %.2f\{ mwst }€ MwSt \
-    %2.f\{ wert + mwst }.
-
-    Mit freundlichen Grüßen
-    Merlin Bögershausen
-    """ ;
-}</code></pre></div></div>
-<aside class="notes"><div class="paragraph"><p>Let this sink in.</p></div>
-<div class="paragraph"><p>We work with data at the place where it is needed and interpolate the String template with Formating informatione.
-This of this as a Method call for String.format(), it is nothing less but with Multiline Strings and Expressions within.</p></div>
-<div class="paragraph"><p>For the Record, I am fan of the curly brace notation.
-It indicates what it is, a Java Block within a String.</p></div>
-<div class="paragraph"><p>But I am not yet done with this one.</p></div></aside></div></section></section>
+<div class="ulist"><ul><li><p>is type safe</p></li><li><p>deals with new type</p></li><li><p>focus only on the data needed</p></li><li><p>is very concise, compared to the first version</p></li></ul></div></aside></div></section></section>
 <section><section id="_real_world" data-background-image="images/standard-qualitaetssicherungskonzept-m.jpg" data-background-size="cover"><h2>Real World</h2><div class="slide-content"></div></section><section id="_testing"><h2>Testing</h2><div class="slide-content"><div class="listingblock"><div class="content"><pre class="highlight"><code class="language-java" data-lang="java">@Test
 void invoiceValue100() {
   var customer = new Privatkunde("test", "test@dummy.de");
@@ -609,44 +592,40 @@ Logic is fine to reuse, data is a different story, but the discussions are the s
 public class InvoiceResource {
   @Inject KundenRepository kundenRepo;
   @Inject MailService mailService;
-  @GET
+  @POST // parameter mapping omitted
   public void sendInvoice(long kundeID, double wert) {
     var kunde = kundenRepo.findById(kundeID);
+
     var mwst = MwStRechner.calculateMwSt(kunde, wert);
     var text = InvoiceFormatter.
         produceInvoiceText(kunde, wert, mwst);
+
     mailService.sendMail(kunde, text);
   }
 }</code></pre></div></div>
 <aside class="notes"><div class="paragraph"><p>But we need to deploy a Resource or MDB for our customer, not a modul.</p></div>
-<div class="paragraph"><p>Here we see normal technical Jakarta EE calls like to Repository and Service.</p></div>
-<div class="paragraph"><p>The Kunde is loaded from the database and populated into the record.</p></div>
-<div class="paragraph"><p>This data is forwarded into the business logic to calculate the MwSt and format a Mail.</p></div>
-<div class="paragraph"><p>Later on it is handed back to EE Resources and is send as e-mail.</p></div>
+<div class="paragraph"><p>Here we see normal technical Jakarta EE calls like to Repository and Service.
+We could even DOP them, but I suggest stopping here.</p></div>
+<div class="paragraph"><p>The Kunde is loaded from the database and populated into the record.
+This one still needs expensive Tests but just one.</p></div>
+<div class="paragraph"><p>This data is forwarded into the business logic to calculate the MwSt and format a Mail.
+Ultra fast mock and CID free pure JUnit/TestNG testing.</p></div>
+<div class="paragraph"><p>Later on it is handed back to EE Resources and is send as e-mail.
+One Mock needed in Integration Testing or an appropriate setup.</p></div>
 <div class="paragraph"><p>This code may need some happy path test with Testcontainer of Mocks, but the business logic can be tested very fast without an EE Container.</p></div>
 <div class="paragraph"><p>Same for Spring/Quarkus and other.</p></div></aside></div></section></section>
-<section><section id="_final_thoughts" data-background-image="images/collage-aus-wolkenfoermigen-koepfen.jpg" data-background-size="cover"><h2>Final Thoughts</h2><div class="slide-content"></div></section><section id="_make_your_opinion"><h2>Make your Opinion</h2><div class="slide-content"><div class="paragraph"><p>There are different trade-offs:</p></div>
-<div class="ulist"><ul><li><p>Readability - learn and use</p></li><li><p>Duplication - not always bad</p></li><li><p>Testability - no brain needed</p></li><li><p>Performance - don&#8217;t guess, measure!</p></li></ul></div>
-<div class="openblock fragment"><div class="content"><div class="paragraph"><p>Micro steps and huge gain for small disruption.</p></div></div></div></div></section><section id="_try_it" data-background-image="images/github_dop-java.png" data-background-size="cover"><h2>Try it!</h2><div class="slide-content">
+<section><section id="_final_thoughts" data-background-image="images/collage-aus-wolkenfoermigen-koepfen.jpg" data-background-size="cover"><h2>Final Thoughts</h2><div class="slide-content"></div></section><section id="_make_your_own_opinion"><h2>Make your own Opinion</h2><div class="slide-content"><div class="imageblock"><img src="images/tradeoffs-meme.png" alt="tradeoffs meme"></div></div></section><section id="_make_your_own_opinion_2"><h2>Make your own Opinion</h2><div class="slide-content"><div class="ulist"><ul><li class="fragment"><p>Readability 👓 - learn and use 📚</p></li><li class="fragment"><p>Duplication 🖨️ - not always bad 🧀</p></li><li class="fragment"><p>Testability ✅ - no brain needed 🧟‍</p></li><li class="fragment"><p>Performance 🚴‍- don&#8217;t guess, measure! ⏲️</p></li></ul></div></div></section><section id="_try_it" data-background-image="images/github_dop-java.png" data-background-size="cover"><h2>Try it!</h2><div class="slide-content">
 <div class="paragraph"><p>💻 <a href="https://github.com/MBoegers/DataOrientedJava">GitHub.com/MBoegers/DataOrientedJava</a></p></div>
 <div class="paragraph"><p>📖 <a href="https://inside.java/2024/05/23/dop-v1-1-introduction">Data-Oriented Programming in Java</a></p></div></div></section></section>
 <section id="_contact" class="columns about" data-background-image="../../_shared/images/gluehbirnen.jpg" data-background-size="cover"><h2>Contact</h2><div class="slide-content">
 <div class="openblock column"><div class="content"><h3>Me</h3>
-<a href="https://fosstodon.org/@MBoegie" title="Merlin on Fosstodon">MBoegie@fosstodon.org</a> //
-<a href="https://twitter.com/mboegie">@MBoegi</a> //
-<a href="https://github.com/mboegers">MBoegers</a>
+<a href="https://fosstodon.org/@MBoegie" title="Merlin on Fosstodon">🐘 MBoegie@fosstodon.org</a> //</br>
+<a href="https://twitter.com/mboegie">𝚾</a> & <a href="https://bsky.app/profile/MBoegi.bsky.social">🦋</a> @MBoegi //</br>
+GitHub/<a href="https://github.com/mboegers">MBoegers</a>
 <br>
-<h3>adesso</h3>
-<a href="https://adesso.de">Infos</a> //
-<a href="https://www.adesso.de/de/news/blog">DevBlog</a>
-<h3>Approach direct</h3>
-I'm here all day with cookies!</div></div>
-<div class="openblock column is-one-third"><div class="content"><h3>Jobs</h3>
-<div class="imageblock"><img src="../../_shared/images/qrcode_adesso_jobs.png" alt="qrcode adesso jobs"></div></div></div>
-<aside class="notes"><div class="paragraph"><p>Follow me on Twitter for the slides.</p></div>
-<div class="paragraph"><p>Look out for cool jobs with new Java at adesso SE.</p></div>
-<div class="paragraph"><p>I blog about java at adesso dev blog and in my github page.</p></div></aside></div></section>
-<section id="_image_credits"><h2>Image Credits</h2><div class="slide-content"><div class="ulist"><ul><li><p><a href="https://de.freepik.com/vektoren-kostenlos/moderne-warnung-pop-up-mit-flachem-design_2648716.htm#fromView=search&amp;page=1&amp;position=10&amp;uuid=8e4ac086-0c82-4e43-b896-4099353271b2">Bild von freepik</a></p></li><li><p><a href="https://de.freepik.com/fotos-kostenlos/konzept-der-cyber-server-cloud-datenspeicherung-cloudscape-digitaler-online-rack-service-fuer-globale-netzwerk-datenbank-backup-computer-sicherheitsinfrastrukturtechnologie_40583087.htm#query=serverless&amp;position=5&amp;from_view=search&amp;track=ais">svstudioart</a> on Freepik</p></li><li><p><a href="https://de.freepik.com/fotos-kostenlos/mann-gekleidet-mit-pfeilen-ueber-den-kopf_961259.htm#query=confusion&amp;position=1&amp;from_view=search&amp;track=sph">creativeart</a> on Freepik</p></li><li><p><a href="https://de.freepik.com/fotos-kostenlos/standard-qualitaetssicherungskonzept-m_36027715.htm#query=enterprise%20application&amp;position=4&amp;from_view=search&amp;track=ais">Image</a>Freepik</p></li><li><p><a href="https://de.freepik.com/fotos-kostenlos/collage-aus-wolkenfoermigen-koepfen_33806193.htm#query=final%20thoughts&amp;position=5&amp;from_view=search&amp;track=ais">Image</a> from Freepik</p></li></ul></div></div></section></div></div><script src="../../_reveal.js/js/reveal.js"></script><script>Array.prototype.slice.call(document.querySelectorAll('.slides section')).forEach(function(slide) {
+<h3>See you!</h3></div></div>
+<div class="openblock column is-one-third"><div class="content"><div class="imageblock"><img src="images/Printen.jpeg" alt="Printen"></div></div></div></div></section>
+<section id="_image_credits"><h2>Image Credits</h2><div class="slide-content"><div class="ulist"><ul><li><p><a href="https://de.freepik.com/vektoren-kostenlos/moderne-warnung-pop-up-mit-flachem-design_2648716.htm#fromView=search&amp;page=1&amp;position=10&amp;uuid=8e4ac086-0c82-4e43-b896-4099353271b2">Bild von freepik</a></p></li><li><p><a href="https://de.freepik.com/fotos-kostenlos/konzept-der-cyber-server-cloud-datenspeicherung-cloudscape-digitaler-online-rack-service-fuer-globale-netzwerk-datenbank-backup-computer-sicherheitsinfrastrukturtechnologie_40583087.htm#query=serverless&amp;position=5&amp;from_view=search&amp;track=ais">svstudioart</a> on Freepik</p></li><li><p><a href="https://de.freepik.com/fotos-kostenlos/mann-gekleidet-mit-pfeilen-ueber-den-kopf_961259.htm#query=confusion&amp;position=1&amp;from_view=search&amp;track=sph">creativeart</a> on Freepik</p></li><li><p><a href="https://de.freepik.com/fotos-kostenlos/standard-qualitaetssicherungskonzept-m_36027715.htm#query=enterprise%20application&amp;position=4&amp;from_view=search&amp;track=ais">Image</a>Freepik</p></li><li><p><a href="https://de.freepik.com/fotos-kostenlos/collage-aus-wolkenfoermigen-koepfen_33806193.htm#query=final%20thoughts&amp;position=5&amp;from_view=search&amp;track=ais">Image</a> from Freepik</p></li><li><p><a href="https://imgflip.com/i/8t7ffs">Tradeoffs Meme</a> from Imgflip Meme Generator</p></li></ul></div></div></section></div></div><script src="../../_reveal.js/js/reveal.js"></script><script>Array.prototype.slice.call(document.querySelectorAll('.slides section')).forEach(function(slide) {
   if (slide.getAttribute('data-background-color')) return;
   // user needs to explicitly say he wants CSS color to override otherwise we might break custom css or theme (#226)
   if (!(slide.classList.contains('canvas') || slide.classList.contains('background'))) return;

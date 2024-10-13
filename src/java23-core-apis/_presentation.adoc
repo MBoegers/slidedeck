@@ -1,4 +1,4 @@
-= Java 23 - Mehr Handlung, mehr Übersicht
+= Java 23: Mehr Handlung, mehr Übersicht
 :backend: revealjs
 :revealjs_theme: adesso
 :revealjs_controls: false
@@ -17,11 +17,12 @@
 :iconsdir: ../../_shared/icons
 
 // Edit host information
-:host-name: Unknown Cnf
-:host-url: https://www.unknowconf.com
+:host-name: betterCode()
+:host-url: https://java.bettercode.eu/
 :host-logo-style: logo
-:host-twitter-url: https://twitter.com/unknownconf
-:host-twitter-name: @unknownconf
+:host-logo-url: ../../_shared/images/hosts/bettercode_java.png
+:host-twitter-url: https://twitter.com/bettercodeconf
+:host-twitter-name: @bettercodeconf
 
 include::../../_shared/hightlightjs.adoc[]
 include::../../_shared/events-on-title-and-footer.adoc[]
@@ -29,33 +30,602 @@ include::../../_shared/events-on-title-and-footer.adoc[]
 // #            Presentation area  start              #
 // ####################################################
 
-== Pre Content
+//|Virtual Threads |https://openjdk.org/jeps/444[444]
+//|Scoped Values |446, 454, https://openjdk.org/jeps/481[481]
+//|Structured Concurrency |453, 462, https://openjdk.org/jeps/480[480]
 
-=== Content
+== ♻️ Recap on Threads ♻️
 
-|===
-|Topic |JEP
+[.columns]
+=== Threads in general
 
-|Virtual Threads
-|https://openjdk.org/jeps/444[444]
+[.column]
+--
+.Birth and Death of Threads
+[graphviz,format=svg,target=images/generated/thread_forking]
+----
+digraph G {
+    subgraph cluster_0 {
+        label="T1";
+        p1_a [label="Op 1"];
+        p1_x [label="Op x"];
+        p1_a -> p1_x;
+	}
 
-|Scoped Values
-|446, 454, https://openjdk.org/jeps/481[481]
+    subgraph cluster_1 {
+        label="T2"
+        p2_a [label="Op 1"];
+        p2_z [label="Op z"];
+        p2_a -> p2_z;
+	}
 
-|Structured Concurrency
-|453, 462, https://openjdk.org/jeps/480[480]
+    start [shape=Mdiamond];
+    start -> p1_a [taillabel="fork"];
+    start -> p2_a;
+    p1_x -> end;
+    p2_z -> end [headlabel="join"];
+	end [shape=Msquare];
+}
+----
+--
+[.column]
+--
+.Lifecycle of a Thread
+[graphviz,format=svg,target=images/generated/thread_states]
+----
+digraph G {
+    NEW -> RUNABLE;
+    RUNABLE -> BLOCKED;
+    BLOCKED -> RUNABLE;
+    RUNABLE -> WAITING;
+    WAITING -> RUNABLE;
+    RUNABLE -> TERMINATED;
+}
+----
+--
+[.notes]
+--
+Threads in general are used to group Activities in a certen order.
+I thread is froked from its parent and at some point is joined again.
+Between *fork* and *join* a thread executes operations in a defined order.
 
-|===
+If multiple threads are run in paralell concurrency problems like syncronization and concurrent access enter the game.
 
-=== Abstract
-Mehr Handlung, mehr Übersicht - Nebenläufige Programme mit Java 23
+If a thread is managed by the OS, outside of the JVM, it refered to as a platform thread.
 
-Was passiert hier eigentlich wann? Wann ist Schluss, wie wird zwischen Aktivitätssträngen kommuniziert? Und was ist, wenn ein Fehler auftritt? Diese Art der Verwirrung muss nicht (mehr) sein!
+Threads in general have a state model that look different from every OS but it can be condensed to the JVM states on the right.
+They start as new, here they canot run yet.
+After moving to Runable thes are considered for scheduling.
+Blocked and Waiting are two simlar states that are of interest if we consider Scheduling.
+If terminated a thread is ready for disposal and will not receive any computation time.
+--
 
-Mit Java 23 wurden einige neue APIs im Kontext der nebenläufigen Logik eingeführt. Scoped Values können Daten von einem Thread an seine Kinderthreads weiter gereicht werden. Structured Concurrency macht es einfach, nebenläufige Aufgaben als eine Einheit zu behandeln. Diese Features in Verbindung mit Virtual Threads machen nebenläufige Programmierung mit Java wieder einfach.
+=== Threads in Java
 
-In dieser Session werden wir uns die Neuerungen im Bereich der nebenläufigen Programmierung mit Java ansehen. Durch die neuen APIs werden eure nebenläufigen Logiken einfacher verständlich und einfacher umsetzbar.
+[source, java]
+----
+class ExampleThread extends Thread {
+  public void run() { /* Do it */}
+}
+var t1 = new ExampleThread();
 
+class ExampleRunable implements Runable {
+  public void run() { /* Do it again */}
+}
+var runable = new ExampleRunable();
+var t2 = new Thread(runable);
+
+t2.start(); t1.start();
+t2.join(); t1.join();
+----
+
+[.notes]
+--
+Threads in Java are modeled as instances of the class java.lang.Thread.
+The operations can be defined within the run method.
+An instance of Thread is the smallest unit of scheduable work in the JVM.
+
+A runable abstracts from Thread, it has the same Interface and seems to address a simlar need: a Unit of concurrent work to execute at some point.
+The key difference here is that java.lang.Runable is not bound to a specific platform thread and can be scheduled by the JVM.
+How runables there are scheduled/or better executed are determined by the concurrency model we work with.
+
+This API there since Java 1.0 with only minor changes at the API level.
+--
+
+[.columns]
+=== Concurrency Models footnote:[Credits to Hanno Embregts on Devoxx.BE 2024, https://hanno.codes/slides/javas-concurrency-journey-continues/devoxx-2024/#/3/21/5[slides]]
+
+[.column]
+--
+*ExecutorService*
+
+* Thread Pool Management
+* reuse OS Threads
+--
+
+[.column]
+--
+*CompletableFuture*
+
+* Composing asyncron operations
+* handling Results
+--
+
+[.notes]
+--
+Credits to Hanno Embret for this comparison.
+
+*ExecutorServicer* (since Java 1.5) is an Interface that is used to execute scheduable Units (Runables).
+They can be executed on one more multiple Plattform Threads, usually they reuse there Threads.
+Very basic and even Error Handling relies on propagation and nesting of exceptions.
+
+*CompletableFuture* (since 1.8) is a Future that with completion and defined semantics on multiple threads.
+Extends the Future (Since Java 1.5) that models asyncronous openrations.
+
+Both are somehow connectable but its not that straingt forward.
+--
+
+== JEP 444 Virtual Threads
+
+[%step]
+Virtual threads are [.step.highlight-blue]#lightweight# threads that [.step.highlight-blue]#improve Maintanace# and [.step.highlight-blue]#Obervability#.
+
+[.notes]
+--
+Now that we spend 10 minutes on well know and present stuff.
+We can dive into something cool an new.
+
+Virtual Threads, lets see how much "new" is in there, by looking at the goals first.
+
+*CLICK and Read*
+
+They are planed to be lightweight and contribute to maintainabllility and oberservability.
+At the same time they still are threads with the well known semantics, somehow.
+
+Lets dive into the proposed changes and decide on ourself.
+--
+
+=== Platform vs. Virtual
+
+.Execution of Platform vs. Virtual Threads
+[graphviz,format=svg,target=images/generated/thread_normal]
+----
+digraph G {
+    node[shape=box,width=1.2,height=0.5];
+
+    subgraph cluster_normal {
+
+        CPU1[shape=box3d,fixedsize=true,width=3,style=filled,color=lightgrey,label="CPU"];
+
+        subgraph cluster_p1 {
+            label = "Task 1";
+            R1[label="Runnable"];
+            JT1[label="Thread"];
+            OST1[label="OS Thread"];
+            R1 -> JT1 -> OST1;
+        }
+
+        subgraph cluster_p2 {
+            label = "Task 2";
+            R2[label="Runnable"];
+            JT2[label="Thread"];
+            OST2[label="OS Thread"];
+            R2 -> JT2 -> OST2;
+        }
+
+        OST1 -> CPU1;
+        OST2 -> CPU1;
+    }
+
+    subgraph cluster_virtual {
+        CPU2[shape=box3d,fixedsize=true,width=3,style=filled,color=lightgrey,label="CPU"];
+        subgraph cluster_p3 {
+            label = "Task 3";
+            R3[label="Runnable"];
+            JT3[label="Virtual Thread"];
+            R3 -> JT3;
+        }
+
+        subgraph cluster_p4 {
+            label = "Task 4";
+            R4[label="Runnable"];
+            JT4[label="Virtual Thread"];
+            R4 -> JT4;
+        }
+
+        OST3[label="OS Thread"];
+        JT3 -> OST3;
+        JT4 -> OST3;
+        OST3 -> CPU2;
+    }
+}
+----
+
+[.notes]
+--
+Lets take a look inside the OS/JVM connection.
+Please note that we look at basic thread interaction and not use any thread pooling.
+
+On the left there are two old Platform Threads that wrap around a Runnable.
+With each Thread instance there is an associated OS Thread forked from the JVM Main PID.
+The number if the OS Threads per process is guarded by the OS Kernel.
+
+On the right there are two process utilizing the new JVM Virtual Threads.
+Each Virtual thread is managed by the JVM itself.
+It is therefor more lightweight and only has the JVM needed stuff.
+If a virtual Thread is selected for execution it is assigned a already present OS Thread.
+--
+
+=== Creation of Virtual
+
+[source,java]
+----
+Thread.ofVirtual().start(() -> doIOStuffInParallel());
+
+Thread.ofPlatform() // is new as well
+----
+
+[.notes]
+--
+In JEP 444 the Thread API got two FactoryMethods for ThreadBuilders, for virtual and Platform.
+Each of the Builder supports the configuration of all maybe needed values and finally the Runnable to execute.
+
+Two basic remarks, don't pool them and be careful with ThreadLocals.
+The pooling is only needed for Platform Threads and virtuals are designed to be throwaway instances.
+ThreadLocals are copied for every thread, virtuals threads are designed to be numerous.
+With basic math it is easy to see that ThreadLocals and Virtual Threads are a dangerous road to ride.
+
+And Finally: Friends don't let friends create their own thread!
+--
+
+=== Better use Executors
+
+[source,java]
+----
+Executors.newVirtualThreadPerTaskExecutor()
+	.submit(() -> doIOStuffInParallel());
+----
+
+[.notes]
+--
+For most developers Executors are the way to go, just because DIY is possible but hard to get right.
+Greeting to the ARCH people, I am fascinated by your will.
+
+Executors Utility got a new FactoryMethod called newVirtualThreadPerTaskExecutor.
+This name breaks with the idea of executors, at the first sight.
+But because the JVM handles the bounded number of OS Thread and assignes virtual threads when needed, the JVM acts as executor.
+We don't need an additional!
+--
+
+=== Awesome, now what?
+
+* Lightweight?
+* Maintainabllility?
+* Oberservability?
+
+[.notes]
+--
+The JEP promissed Lightweight, maintainable and oberservable threads.
+
+We have the JVM Threads and internal scheduling.
+Because everything is internal we can understand the traces.
+Because everything is internal, we can debug everything.
+
+Mostly virtual threads are the foundation of all new things around concurrent programming in Java.
+Two of them are Scoped Values and Structured Concurrency.
+--
+
+=== Example we Work with
+
+[.step]
+--
+[mermaid,format=svg,target=images/generated/example_class, height=400px]
+----
+classDiagram
+    Engine : -SSLContext
+    Engine : -List~Rule~
+    Engine: +execute(Map data)
+    Rule: ~readAddress()
+    Rule: ~readName()
+    Rule: ~fire()*
+
+    Engine o-- Rule
+----
+--
+
+[.notes]
+--
+Today I want to use a RuleEngine as example to work with.
+A lot of poeple dislike RuleEniges for various reasons but they can be simple.
+
+*CLICK*
+
+A RuleEngine is nothing more than a List of Rules that are executed when input data is provided.
+Our Rules here define to methods to read adress and Names from somewhere and have a fire Method to implement where the data rule is executed.
+At first we stay at this level and later one we see the code in small bites.
+
+One thing to notice is that the Engine holds an SSLContext that is intended to be used in execution.
+It can be used for Requests by the rules, this is an often see situation in Frameworks.
+The users code (RuleImplementation) needs something from the Framework to do the job, often in thread-safe and concurrent ways.
+
+*Here is missing that we want cocurrency and thread safty.*
+--
+
+== JEP 481 Scoped Values
+
+Share [.step.highlight-blue]#immutable data# between callees [.step.highlight-blue]#within a thread# and [.step.highlight-blue]#child threads#.
+
+=== Concept
+
+[mermaid,format=svg,target=images/generated/scoped_values_concept,height=400px]
+----
+timeline
+    section ThreadLocal
+        T1: sslCtx=0x01
+        T2: sslCtx=0x02
+    section ScopedValue
+        T3: sslCtx=0xA1
+        T4: sslCtx=0xA1
+----
+[.notes]
+--
+This example assumes that Threads T1,T2 are forked from the Blue Thread and and T3 and T4 from the YellowThread.
+
+In blue we see how the SSLContext would be passed with a ThreadLocal.
+Very thread T1 and T2 initializes it's own instance at creation time.
+For numerous threads its a waste of heap space and very efficient because initialization of SSLContext is telecommuting.
+
+On the yellow we see the same situation solved with a ScopedValue.
+Each, virtual, thread T3 and T4 refe to the same HeapAdress and therefore use the same instance.
+
+This way it is secure that memory is not polluted with SSLContexts even when we have a million threads in parallel.
+--
+
+=== Goals of Scoped Values
+
+* 🥅 Ease of use
+* 🥅 Comprehensibility
+* 🥅 Robustness
+* 🥅 Performance
+
+[.notes]
+--
+Before we see the API lets quickly look at the goals so we can make our own mind.
+
+* Ease of use — It should be easy to reason about dataflow.
+* Comprehensibility — The lifetime of shared data should be apparent from the syntactic structure of code.
+* Robustness — Data shared by a caller should be retrievable only by legitimate callees.
+* Performance — Data should be efficiently sharable across a large number of threads.
+--
+
+=== ScopesValues API
+
+[source,java]
+----
+final static ScopedValue<SSLContext> SSL_CTX
+                    = ScopedValue.newInstance();
+
+ScopedValue.where(SSL_CTX, SSLContext.getDefault())
+           .run(() -> SSL_CTX.get());
+
+ScopedValue.runWhere(SSL_CTX, value, () -> /* ... */);
+----
+
+[.notes]
+--
+The ScopedValue API is small but powerful.
+
+A ScopedValue Instance is a Generic value holder.
+A new Instance is easily received via the newInstance call in the first line, this is the only way to receive an instance.
+
+Before the value can be accessed it has to be set, this is done with the static where Method using the ScopedValue instance as key.
+
+The forwarding of the value to child thread has to be done at creation of the child, but to activate the binding a Runnable has to bound with the run method.
+This creates an virtual thread wrapping the Runnable implicitly.
+
+Configuration and execution can be done in one step with the shorthand runWhere Method.
+Childs can rebind scopedValues for their children, this will not effect the praent scope.
+--
+
+=== Framework - Creation
+
+[source,java]
+----
+private final static ScopedValue<Map<String, String>>
+    INPUTDATA = ScopedValue.newInstance();
+
+private final static ScopedValue<SSLContext>
+    SSL_CTX = ScopedValue.newInstance();
+----
+
+=== Framework -Config
+
+[source,java]
+----
+ScopedValue.Carrier executionScope = ScopedValue
+    .where(INPUTDATA, Map.copyOf(data))
+    .where(SSL_CTX, SSLContext.getDefault());
+----
+
+=== Framework - Execution
+
+[source,java]
+----
+// ScopedValue.Carrier executionScope;
+
+for (var r : rules) {
+    executionScope.run(r::fire);
+}
+----
+
+=== Usercode - Access I
+
+[source,java]
+----
+//ScopedValue<Map<String, String>> INPUTDATA;
+
+String inputName = INPUTDATA
+        .orElseThrow(new IllegalArgumentException())
+        .getOrDefault("name", "JON");
+----
+
+=== Usercode - Access II
+
+[source,java]
+----
+// ScopedValue<SSLContext> SSL_CTX
+
+if(SSL_CTX.isBound()) {
+    intputName = "%s %s".formatted(
+            inputName, getLastName(SSL_CTX.get()));
+}
+----
+
+[.columns]
+=== Comparison footnote:[full length comparison by Alex Klimenko on https://medium.com/@alxkm/threadlocal-vs-scopedvalue-a348c37658d8[Medium]]
+
+[.column]
+--
+*ScopedValues*
+
+* Immutable Carrier
+* Same instance
+* Rebindable
+--
+
+[.column]
+--
+*ThreadLocal*
+
+* Supplier
+* Instance per Thread
+* Mutable Value
+--
+
+[.notes]
+--
+For the end lets have a small
+--
+
+== JEP 480 Stuctured Concurrency
+
+Treat groups of [.step.highlight-blue]#related tasks# running in different threads as a [.step.highlight-blue]#single unit# of work, thereby streamlining [.step.highlight-blue]#error handling and cancellation, improving reliability, and enhancing observability#.
+
+=== Concept
+
+[mermaid,format=svg,target=images/generated/scoped_values_concept,height=400px]
+----
+gantt
+    dateFormat HH:mm
+    axisFormat %H:%M
+
+    section Merlin
+        readAddress     :a1, 12:30, 2m
+        readName        :a2, 12:30, 1m
+        generateAnswer : after a1, 23s
+
+    section Vanessa
+        readAddress     :a3, 12:30, 90s
+        readName        :a4, 12:30, 45s
+        generateAnswer : after a3, 23s
+----
+
+[.notes]
+--
+If we have a task like a rule that is executed for two separate datasets (like my wife vanessa and me) that are independent tasks to execute.
+It is natural to model them as Method with a parameter.
+
+Each execution does the same, it generates an Answer based on the name and address.
+The address and name has to be read from somewhere which consumes some time.
+These tasks are related but not depending on each other, a perfect situation to read them concurrently as they usually wait for IO to happen.
+
+We can do this with StructuredConcurrency.
+--
+
+=== Task Scope API
+
+[source,java]
+----
+public class StructuredTaskScope<T> implements AutoCloseable {
+  public <U extends T> Subtask<U>
+        fork(Callable<? extends U> task);
+
+  public StructuredTaskScope<T> join()
+        throws InterruptedException;
+  public StructuredTaskScope<T> joinUntil(Instant deadline)
+        throws InterruptedException, TimeoutException;
+
+  public void shutdown();
+  public void close();
+}
+----
+
+[.notes]
+--
+The general workflow of code using StructuredTaskScope is:
+
+1. Create a scope. The thread that creates the scope is its owner.
+2. Use the fork(Callable) method to fork subtasks in the scope.
+3. At any time, any of the subtasks, or the scope's owner, may call the scope's shutdown() method to cancel unfinished subtasks and prevent the forking of new subtasks.
+4. The scope's owner joins the scope, i.e., all of its subtasks, as a unit. The owner can call the scope's join() method, to wait until all subtasks have either completed (successfully or not) or been cancelled via shutdown(). Alternatively, it can call the scope's joinUntil(java.time.Instant) method, to wait up to a deadline.
+5. After joining, handle any errors in the subtasks and process their results.
+6. Close the scope, usually implicitly via try-with-resources. This shuts down the scope, if it is not already shut down, and waits for any subtasks that have been cancelled but not yet completed to complete.
+--
+
+[.columns]
+=== Shutdown Policies
+
+[.column]
+--
+*ShutdownOnFailure*
+first task failed
+--
+
+[.column]
+--
+*ShutdownOnSuccess*
+first task successfully terminates
+--
+
+=== Structured Concurrency in Rule
+
+[source,java]
+----
+try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
+    Supplier<String> name = scope.fork(() -> readName());
+    Supplier<Address> address   = scope.fork(() ->readAddress());
+
+    scope.join().throwIfFailed();
+
+    var addr = address.get();
+  catch (ExecutionException | InterruptedException e) {
+    throw new RuntimeException(e);
+}
+----
+
+=== Final words
+
+* Never pool VirtualThreads
+* Migrate immediately
+* ThreadLocal never mutated => ScopedValues
+* IO Concurrency => StructuredConcurrency
+
+https://gist.github.com/MBoegers/87fa0928c46e037155dbc7d48aaf7553[GitHub GIST] with full code
+
+[.notes]
+--
+* Never Pool Virtual threads
+* Migrate to Virtual threads now to benefit
+* use ScopedValues if you want the same value down the stack
+** if you want just a starting point or mutate it, stick with threadlocal
+* Handing ScopedValuse to the children seems hard ATM, but this seem to be on the agenda for the next iterations
+
+* What we have seen
+** Virutal Threads as lightway JDK Managed scheduabl unit that is theoretically unbound in there number
+** Scoped Values to pass immutable values from the prant thread (scope) to the child threads
+** SturcturedConcurrency to easly oversee what may happen concurrrently, at which point the tasks are joind together and where errors are handled
+* Link to Github
+--
 
 // ####################################################
 // #            Presentation area  end                #

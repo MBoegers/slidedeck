@@ -402,13 +402,13 @@ Before we see the API lets quickly look at the goals so we can make our own mind
 
 [source,java]
 ----
-final static ScopedValue<SSLContext> SSL_CTX
+final static ScopedValue<SSLContext> VAL
                     = ScopedValue.newInstance();
 
-ScopedValue.where(SSL_CTX, SSLContext.getDefault())
-           .run(() -> SSL_CTX.get());
+ScopedValue.where(VAL, value)
+           .run(() -> VAL.get());
 
-ScopedValue.runWhere(SSL_CTX, value, () -> /* ... */);
+ScopedValue.runWhere(VAL, value, () -> /* ... */);
 ----
 
 [.notes]
@@ -513,7 +513,7 @@ Treat groups of [.step.highlight-blue]#related tasks# running in different threa
 
 === Concept
 
-[mermaid,format=svg,target=images/generated/scoped_values_concept,height=400px]
+[mermaid,format=svg,target=images/generated/structured_concurrency_concept,height=400px]
 ----
 gantt
     dateFormat HH:mm
@@ -591,14 +591,13 @@ first task successfully terminates
 
 [source,java]
 ----
-try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
-    Supplier<String> name = scope.fork(() -> readName());
-    Supplier<Address> address   = scope.fork(() ->readAddress());
+try (var scope = new StructuredTaskScope.ShutdownOnFailure()){
+    Supplier<String> adr = scope.fork(() -> readAddress());
 
     scope.join().throwIfFailed();
 
-    var addr = address.get();
-  catch (ExecutionException | InterruptedException e) {
+    var addres = adr.get();
+} catch (ExecutionException | InterruptedException e) {
     throw new RuntimeException(e);
 }
 ----

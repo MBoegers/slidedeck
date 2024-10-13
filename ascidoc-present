@@ -57,7 +57,8 @@ def print_help()
   puts 'asciidoc-present - a small Asciidoctor presentation utility'
   puts "USAGE '$ ascidoc-present [clean, build, watch]'"
   puts "\tclean/c\t- removes prior build slides"
-  puts "\tbuild/b\t- builds all presentations"
+  puts "\tbuild/b\t- builds selected presentation"
+  puts "\tbuildall/ba\t- builds all presentation"
   puts "\twatch/w\t- rebuilds changed presentation on save"
   puts "\tprint/p\t- prints all presentations"
   puts "\tzip/z\t- prints all presentations"
@@ -72,11 +73,12 @@ def select_presentation
   list_presentation_dirs[i]
 end
 
-ARGV.each { |cmd|
-  case cmd.upcase
+case ARGV[0].upcase
   when 'CLEAN', 'C'
     FileUtils.remove_dir "_dist", force: true
   when 'BUILD', 'B'
+    compile_presentation ARGV[1] != nil ? ARGV[1] : select_presentation
+  when 'BUILDALL', 'BA'
     list_presentation_dirs.each { |p| compile_presentation p }
   when 'WATCH', 'W'
     configure_recompile
@@ -87,7 +89,7 @@ ARGV.each { |cmd|
   when 'ZIP', 'Z'
     print_to_pdf ARGV[1] != nil ? ARGV[1] : select_presentation
   when 'NEW', 'N'
-    if ARGV[1] == nil || ARGV.length != 2
+    if ARGV[1] == nil || ARGV.length < 2
       print_help
       exit
     end
@@ -98,5 +100,5 @@ ARGV.each { |cmd|
   else
     puts "Unable to understand '#{cmd}', type help for further infos"
     print_help
-  end
-}
+end
+

@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg height='301pt' preserveAspectRatio='xMidYMid meet' viewBox='0.00 0.00 256.00 300.50' width='256pt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg'>
+<g class='graph' id='graph0' transform='scale(1 1) rotate(0) translate(4 296.5)'>
+<title>G</title>
+<polygon fill='white' points='-4,4 -4,-296.5 252,-296.5 252,4 -4,4' stroke='none'/>
+<g class='cluster' id='clust1'>
+<title>cluster_p1</title>
+<polygon fill='none' points='8,-136 8,-284.5 120,-284.5 120,-136 8,-136' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='64' y='-267.2'>Process 1</text>
+</g>
+<g class='cluster' id='clust2'>
+<title>cluster_p2</title>
+<polygon fill='none' points='128,-136 128,-284.5 240,-284.5 240,-136 128,-136' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='184' y='-267.2'>Process 2</text>
+</g>
+
+<g class='node' id='node1'>
+<title>CPU</title>
+<polygon fill='lightgrey' points='232,-36 20,-36 16,-32 16,0 228,0 232,-4 232,-36' stroke='lightgrey'/>
+<polyline fill='none' points='228,-32 16,-32' stroke='lightgrey'/>
+<polyline fill='none' points='228,-32 228,0' stroke='lightgrey'/>
+<polyline fill='none' points='228,-32 232,-36' stroke='lightgrey'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='124' y='-12.95'>CPU</text>
+</g>
+
+<g class='node' id='node2'>
+<title>R3</title>
+<polygon fill='none' points='107.2,-252 20.8,-252 20.8,-216 107.2,-216 107.2,-252' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='64' y='-228.95'>Runable</text>
+</g>
+
+<g class='node' id='node3'>
+<title>JT3</title>
+<polygon fill='none' points='111.75,-180 16.25,-180 16.25,-144 111.75,-144 111.75,-180' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='64' y='-156.95'>Virtual Thread</text>
+</g>
+
+<g class='edge' id='edge1'>
+<title>R3&#45;&gt;JT3</title>
+<path d='M64,-215.7C64,-208.41 64,-199.73 64,-191.54' fill='none' stroke='black'/>
+<polygon fill='black' points='67.5,-191.62 64,-181.62 60.5,-191.62 67.5,-191.62' stroke='black'/>
+</g>
+
+<g class='node' id='node6'>
+<title>OST</title>
+<polygon fill='none' points='167.2,-108 80.8,-108 80.8,-72 167.2,-72 167.2,-108' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='124' y='-84.95'>OS Thread</text>
+</g>
+
+<g class='edge' id='edge3'>
+<title>JT3&#45;&gt;OST</title>
+<path d='M78.83,-143.7C85.81,-135.56 94.27,-125.69 101.97,-116.7' fill='none' stroke='black'/>
+<polygon fill='black' points='104.5,-119.12 108.35,-109.25 99.19,-114.57 104.5,-119.12' stroke='black'/>
+</g>
+
+<g class='node' id='node4'>
+<title>R4</title>
+<polygon fill='none' points='227.2,-252 140.8,-252 140.8,-216 227.2,-216 227.2,-252' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='184' y='-228.95'>Runable</text>
+</g>
+
+<g class='node' id='node5'>
+<title>JT4</title>
+<polygon fill='none' points='231.75,-180 136.25,-180 136.25,-144 231.75,-144 231.75,-180' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='184' y='-156.95'>Virtual Thread</text>
+</g>
+
+<g class='edge' id='edge2'>
+<title>R4&#45;&gt;JT4</title>
+<path d='M184,-215.7C184,-208.41 184,-199.73 184,-191.54' fill='none' stroke='black'/>
+<polygon fill='black' points='187.5,-191.62 184,-181.62 180.5,-191.62 187.5,-191.62' stroke='black'/>
+</g>
+
+<g class='edge' id='edge4'>
+<title>JT4&#45;&gt;OST</title>
+<path d='M169.17,-143.7C162.19,-135.56 153.73,-125.69 146.03,-116.7' fill='none' stroke='black'/>
+<polygon fill='black' points='148.81,-114.57 139.65,-109.25 143.5,-119.12 148.81,-114.57' stroke='black'/>
+</g>
+
+<g class='edge' id='edge5'>
+<title>OST&#45;&gt;CPU</title>
+<path d='M124,-71.7C124,-64.41 124,-55.73 124,-47.54' fill='none' stroke='black'/>
+<polygon fill='black' points='127.5,-47.62 124,-37.62 120.5,-47.62 127.5,-47.62' stroke='black'/>
+</g>
+</g>
+</svg>

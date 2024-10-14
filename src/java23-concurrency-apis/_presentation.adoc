@@ -35,52 +35,52 @@ include::../../_shared/events-on-title-and-footer.adoc[]
 //|Structured Concurrency |453, 462, https://openjdk.org/jeps/480[480]
 
 == ♻️ Recap on Threads ♻️
+image::images/AamCjmYS.jpg[background,size=cover]
 
 [.columns]
 === Threads in general
 
-[.column]
+[.column.is-one-third]
 --
-.Birth and Death of Threads
-[graphviz,format=svg,target=images/generated/thread_forking]
+[mermaid,format=svg,target=images/generated/thread_forking,height=400px]
 ----
-digraph G {
-    subgraph cluster_0 {
-        label="T1";
-        p1_a [label="Op 1"];
-        p1_x [label="Op x"];
-        p1_a -> p1_x;
-	}
+---
+title: Birth and Death of Threads
+---
 
-    subgraph cluster_1 {
-        label="T2"
-        p2_a [label="Op 1"];
-        p2_z [label="Op z"];
-        p2_a -> p2_z;
-	}
+ stateDiagram-v2
+    state fork_state <<fork>>
+      [*] --> fork_state
+      T1 : Thread 1
+      T2 : Thread 2
+      PT : Parent Thread
 
-    start [shape=Mdiamond];
-    start -> p1_a [taillabel="fork"];
-    start -> p2_a;
-    p1_x -> end;
-    p2_z -> end [headlabel="join"];
-	end [shape=Msquare];
-}
+      fork_state --> T1
+      fork_state --> T2
+
+      state join_state <<join>>
+
+      T1 --> join_state
+      T2 --> join_state
+      join_state --> PT
+      PT --> [*]
 ----
 --
 [.column]
 --
-.Lifecycle of a Thread
-[graphviz,format=svg,target=images/generated/thread_states]
+[mermaid,format=svg,target=images/generated/thread_states,height=400px]
 ----
-digraph G {
-    NEW -> RUNABLE;
-    RUNABLE -> BLOCKED;
-    BLOCKED -> RUNABLE;
-    RUNABLE -> WAITING;
-    WAITING -> RUNABLE;
-    RUNABLE -> TERMINATED;
-}
+---
+title: Lifecycle of a Thread
+---
+stateDiagram-v2
+    [*] --> New
+    New --> Runable
+    Runable --> Blocked
+    Blocked --> Runable
+    Runable --> Waiting
+    Waiting --> Runable
+    Runable --> Terminated
 ----
 --
 [.notes]
@@ -166,6 +166,7 @@ Both are somehow connectable but its not that straingt forward.
 --
 
 == JEP 444 Virtual Threads
+image::images/dhhhSRjf.jpg[background,size=cover]
 
 [%step]
 Virtual threads are [.step.highlight-blue]#lightweight# threads that [.step.highlight-blue]#improve Maintanace# and [.step.highlight-blue]#Obervability#.
@@ -187,58 +188,49 @@ Lets dive into the proposed changes and decide on ourself.
 
 === Platform vs. Virtual
 
-.Execution of Platform vs. Virtual Threads
-[graphviz,format=svg,target=images/generated/thread_normal]
+[mermaid,format=svg,target=images/generated/thread_normal]
 ----
-digraph G {
-    node[shape=box,width=1.2,height=0.5];
+stateDiagram-v2
 
-    subgraph cluster_normal {
+    OST3 : OSThread
+    CPU: Hardware CPU
+    OST3 --> CPU
 
-        CPU1[shape=box3d,fixedsize=true,width=3,style=filled,color=lightgrey,label="CPU"];
-
-        subgraph cluster_p1 {
-            label = "Task 1";
-            R1[label="Runnable"];
-            JT1[label="Thread"];
-            OST1[label="OS Thread"];
-            R1 -> JT1 -> OST1;
-        }
-
-        subgraph cluster_p2 {
-            label = "Task 2";
-            R2[label="Runnable"];
-            JT2[label="Thread"];
-            OST2[label="OS Thread"];
-            R2 -> JT2 -> OST2;
-        }
-
-        OST1 -> CPU1;
-        OST2 -> CPU1;
+    T1: Task 1
+    state T1 {
+        R1: Runable
+        JT1: Thread
+        OST1: OS Thread
+        R1 --> JT1
+        JT1 --> OST1
     }
+    OST1 --> CPU
 
-    subgraph cluster_virtual {
-        CPU2[shape=box3d,fixedsize=true,width=3,style=filled,color=lightgrey,label="CPU"];
-        subgraph cluster_p3 {
-            label = "Task 3";
-            R3[label="Runnable"];
-            JT3[label="Virtual Thread"];
-            R3 -> JT3;
-        }
-
-        subgraph cluster_p4 {
-            label = "Task 4";
-            R4[label="Runnable"];
-            JT4[label="Virtual Thread"];
-            R4 -> JT4;
-        }
-
-        OST3[label="OS Thread"];
-        JT3 -> OST3;
-        JT4 -> OST3;
-        OST3 -> CPU2;
+    T2: Task 2
+    state T2 {
+        R2: Runable
+        JT2: Thread
+        OST2: OS Thread
+        R2 --> JT2
+        JT2 --> OST2
     }
-}
+    OST2 --> CPU
+
+    T3: Task 3
+    state T3 {
+        R3: Runable
+        JT3: Virtual Thread
+        R3 --> JT3
+    }
+    JT3 --> OST3
+
+    T4: Task 4
+    state T4 {
+        R4: Runable
+        JT4: Virtual Thread
+        R4 --> JT4
+    }
+    JT4 --> OST3
 ----
 
 [.notes]
@@ -352,6 +344,7 @@ The users code (RuleImplementation) needs something from the Framework to do the
 --
 
 == JEP 481 Scoped Values
+image::images/SVT84DAs.jpg[background,size=cover]
 
 Share [.step.highlight-blue]#immutable data# between callees [.step.highlight-blue]#within a thread# and [.step.highlight-blue]#child threads#.
 
@@ -508,6 +501,7 @@ For the end lets have a small
 --
 
 == JEP 480 Stuctured Concurrency
+image::images/wpEBCJQU.jpg[background,size=cover]
 
 Treat groups of [.step.highlight-blue]#related tasks# running in different threads as a [.step.highlight-blue]#single unit# of work, thereby streamlining [.step.highlight-blue]#error handling and cancellation, improving reliability, and enhancing observability#.
 

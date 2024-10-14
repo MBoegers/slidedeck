@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 # for exporting https://github.com/astefanutti/decktape
-# decktape -s '1280x820' reveal _dist/jewel-java/index.html output.pdf
+# decktape -s '1280x820' reveal _dist/jewel-java/index.html Mehr_Handlung,_mehr_Übersicht-MBögershausen-BettercodeJava2024.pdf
 
 require 'fileutils'
 require 'listen'

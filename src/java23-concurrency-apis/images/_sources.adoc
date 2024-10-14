@@ -1,2 +1,6 @@
 == Image Credits
-All generated from source.
+
+* Knited Speach Blubled generetd with https://deepai.org/gallery-item/e7ee5d480bed4d359b70607caf8b7f39/multiple-speech-bubbles-made-out-of-knited-wo_uKTYSNr.jpg.html[deepai.org]
+* Virtual reality background generetd with https://deepai.org/gallery-item/7668458efa334d2081f1d41484319e6b/multiple-concurrent-actions-in-virtual-reality-3be37f.jpg.html[deepai.org]
+* Elderly Person handing over treats generated with https://deepai.org/gallery-item/abec1ea3e0de460f9c5ac32b8128391c/elderly-person-handing-over-treats-to-todlers.jpg.html[deepai.org]
+* Chaos of pipes and notations generated with https://deepai.org/gallery-item/3a428d1087004b27bb3caea2c0e7e0fd/a-chaos-of-pipes-that-contains-bpmn-notations.jpg.html[deepai.org]

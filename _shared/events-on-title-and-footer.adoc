@@ -23,6 +23,12 @@
             <p>Line of Business Public</p>
 		</div>
 	</div>
+	<div class="participant">
+		<a href="https://ace.oracle.com/apex/ace/profile/mboegers"><img src="../../_shared/images/ACEAssociate.svg" class="logo"></a>
+		<div class="name">
+			<p>Oracle ACE Associate</p>
+		</div>
+	</div>
 </div>
 <header>
     <div class="host">
